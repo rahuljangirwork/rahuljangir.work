@@ -15,11 +15,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} antialiased bg-primary`}>
-        <main className="bg-primary">
-          <NavBar />
-          {children}
-        </main>
+      <body
+        className={`${inter.className} antialiased bg-gradient-to-b from-black to-slate-500`}
+      >
+        <NavBar />
+        <main className="min-h-screen">{children}</main>
       </body>
     </html>
   );
