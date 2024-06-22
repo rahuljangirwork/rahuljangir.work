@@ -29,7 +29,7 @@ export default function NavBar() {
   const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-50 bg-primary bg-opacity-25 border-palette-2 border-b-[1px] shadow-xl backdrop-blur-sm transition-all duration-200">
+    <header className="sticky top-0 z-50 mb-2 bg-primary bg-opacity-25 border-palette-2 border-b-[1px] shadow-xl backdrop-blur-sm transition-all duration-200">
       <nav className="flex items-center justify-between h-16 text-palette-3">
         <Link href="/" className="flex flex-shrink-2 pl-2">
           <Image
