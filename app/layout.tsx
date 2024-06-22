@@ -16,7 +16,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${space_grotesk.className} antialiased bg-gradient-to-b from-primary from-10% to-palette-1 to-90%`}
+        className={`${space_grotesk.className} antialiased bg-gradient-to-b from-primary from-40% to-palette-1 to-90%`}
       >
         <NavBar />
         <main className="min-h-screen">{children}</main>
