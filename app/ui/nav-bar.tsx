@@ -28,19 +28,19 @@ export default function NavBar() {
   const pathname = usePathname();
 
   return (
-    <header className="bg-opacity-50">
-      <nav
-        className="flex items-center justify-between h-16"
-      >
-        <Link href="/" className="flex flex-shrink-2">
+    <header className="bg-opacity-50 border-palette-2 border-b-[1px] mb-2">
+      <nav className="flex items-center justify-between h-16 text-palette-3">
+        <Link href="/" className="flex flex-shrink-2 pl-2">
           <Image
             src="/ilogo.png"
             alt="Logo"
             width={50}
             height={50}
+            sizes="100vw"
+            priority={true}
             className="hover:rotate-12"
           />
-          <p className="p-2 text-white text-[25px]">Isai Sanchez</p>
+          <p className="p-2 font-semibold text-[25px]">Isai Sanchez</p>
         </Link>
         <ul className="flex mr-12">
           {links.map((link) => (
@@ -49,10 +49,10 @@ export default function NavBar() {
                 key={link.name}
                 href={link.href}
                 className={clsx(
-                  "font-medium text-palette-3",
+                  "font-medium",
                   pathname === link.href
-                    ? "text-[#f7f7f4] underline underline-offset-2"
-                    : "hover:border-b-2 hover:border-palette-2 hover:shadow-xl",
+                    ? "text-palette-2 underline underline-offset-2"
+                    : "text-palette-3 hover:underline hover:underline-offset-2 hover:shadow-xl",
                 )}
               >
                 {link.name}
@@ -60,8 +60,8 @@ export default function NavBar() {
             </li>
           ))}
         </ul>
-        <button className="bg-palette-1 text-white font-bold rounded">
-          Icon
+        <button className="bg-palette-1 p-1 pr-2 pl-2 mr-2 font-bold rounded">
+          Contact Me
         </button>
       </nav>
     </header>
