@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { inter } from "@/app/ui/fonts";
+import { space_grotesk } from "@/app/ui/fonts";
 import "@/app/globals.css";
 import NavBar from "@/app/ui/nav-bar";
 
@@ -16,7 +16,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.className} antialiased bg-gradient-to-b from-black to-slate-500`}
+        className={`${space_grotesk.className} antialiased bg-gradient-to-b from-black to-slate-500`}
       >
         <NavBar />
         <main className="min-h-screen">{children}</main>
