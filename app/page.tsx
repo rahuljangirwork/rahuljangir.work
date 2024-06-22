@@ -1,8 +1,22 @@
+import Image from "next/image";
+
 export default function Home() {
   return (
     <div className="flex w-full h-full justify-center">
       <div className="flex flex-col w-[50%] text-palette-2">
-        <h1 className="font-bold text-center">Home Page</h1>
+        <div className="w-full flex justify-center mb-4">
+          <Image
+            src="/shepherd.jpg"
+            width={200}
+            height={200}
+            sizes="100vw"
+            alt="Isai Professional Headshot"
+            className="flex border-2 border-palette-2 rounded-xl"
+          />
+        </div>
+        <h1 className="font-bold text-center border-2 border-palette-4 rounded-md">
+          Home Page
+        </h1>
         <p className="text-center text-sm italic">Whats going on fellas</p>
         {[...Array(6)].map((_, index) => (
           <p key={index}>
