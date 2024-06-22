@@ -1,8 +1,12 @@
 export default function Home() {
   return (
-    <div>
-      <h1>Home Page</h1>
-      <p className="text-[10px]">Whats going on fellas</p>
+    <div className="flex w-full h-full justify-center">
+      <div className="flex flex-col w-[50%]">
+        <h1>
+          <strong>Home Page</strong>
+        </h1>
+        <p className="text-sm">Whats going on fellas</p>
+      </div>
     </div>
   );
 }
