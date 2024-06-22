@@ -9,11 +9,11 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        primary: "#495057",
+        primary: "#1A4D2E", // forrest green
         palette: {
-          1: "#597445",
-          2: "#658147",
-          3: "#729762",
+          1: "#4F6F52", // lighter forrest green
+          2: "#E8DFCA", // off-white
+          3: "#F5E5E6", // white
         },
       },
       /*
