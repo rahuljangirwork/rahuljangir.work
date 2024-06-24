@@ -19,7 +19,7 @@ export default function Home() {
         </h1>
         <p className="text-center text-sm italic">Whats going on fellas</p>
         {[...Array(6)].map((_, index) => (
-          <p key={index}>
+          <p key={index} className="text-palette-2">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
             ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
