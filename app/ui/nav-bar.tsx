@@ -5,6 +5,7 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import clsx from "clsx";
 import Socials from "./socials";
+import { Menu } from "react-feather";
 
 const links = [
   {
@@ -40,12 +41,17 @@ export default function NavBar() {
               height={50}
               sizes="100vw"
               priority={true}
-              className="transition-transform duration-300 hover:rotate-12"
+              className="hidden md:block md:transition-transform md:duration-300 hover:rotate-12"
             />
-            <p className="p-2 font-semibold text-2xl">Isai Sanchez</p>
+            <p className="text-center font-semibold text-md md:text-md lg:text-xl">
+              Isai Sanchez
+            </p>
           </Link>
         </div>
-        <ul className="flex-1 flex justify-center space-x-5">
+        <div className="justify-end md:hidden border border-palette-1 p-1 rounded-md">
+          <Menu aria-label="Menu" />
+        </div>
+        <ul className="flex-1 justify-center space-x-5 hidden md:flex">
           {links.map((link) => (
             <li key={link.name}>
               <Link
@@ -62,7 +68,7 @@ export default function NavBar() {
             </li>
           ))}
         </ul>
-        <div className="flex-1 flex justify-end">
+        <div className="flex-1 justify-end hidden md:flex">
           <Socials />
         </div>
       </nav>
