@@ -29,25 +29,26 @@ export default function NavBar() {
   const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-50 mb-2 bg-primary bg-opacity-25 border-palette-1 border-b-[1px] shadow-xl backdrop-blur-sm transition-all duration-200">
-      <nav className="flex items-center justify-between h-16 text-palette-3">
-        <Link href="/" className="flex flex-shrink-2 pl-2">
-          <Image
-            src="/ilogo.png"
-            alt="Logo"
-            width={50}
-            height={50}
-            sizes="100vw"
-            priority={true}
-            className="transition-transform duration-300 hover:rotate-12"
-          />
-          <p className="p-2 font-semibold text-2xl">Isai Sanchez</p>
-        </Link>
-        <ul className="flex space-x-5 mr-12">
+    <header className="sticky top-0 z-50 mb-2 bg-primary bg-opacity-25 border-palette-1 border-b shadow-xl backdrop-blur-sm transition-all duration-200">
+      <nav className="flex items-center h-16 px-4 text-palette-3 max-w-7xl mx-auto">
+        <div className="flex-1 flex justify-start">
+          <Link href="/" className="flex items-center space-x-1">
+            <Image
+              src="/ilogo.png"
+              alt="Logo"
+              width={50}
+              height={50}
+              sizes="100vw"
+              priority={true}
+              className="transition-transform duration-300 hover:rotate-12"
+            />
+            <p className="p-2 font-semibold text-2xl">Isai Sanchez</p>
+          </Link>
+        </div>
+        <ul className="flex-1 flex justify-center space-x-5">
           {links.map((link) => (
             <li key={link.name}>
               <Link
-                key={link.name}
                 href={link.href}
                 className={clsx(
                   "font-medium px-3 py-2 rounded-md transition-all duration-200",
@@ -61,7 +62,7 @@ export default function NavBar() {
             </li>
           ))}
         </ul>
-        <div className="">
+        <div className="flex-1 flex justify-end">
           <MySocials />
         </div>
       </nav>
