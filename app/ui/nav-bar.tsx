@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import clsx from "clsx";
-import MySocials from "./socials";
+import Socials from "./socials";
 
 const links = [
   {
@@ -63,7 +63,7 @@ export default function NavBar() {
           ))}
         </ul>
         <div className="flex-1 flex justify-end">
-          <MySocials />
+          <Socials />
         </div>
       </nav>
     </header>

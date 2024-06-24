@@ -14,7 +14,7 @@ const socialLinks = [
   },
 ];
 
-export default function MySocials() {
+export default function Socials() {
   return (
     <div className="flex flex-row gap-2 mr-2">
       {socialLinks.map((link) => {
