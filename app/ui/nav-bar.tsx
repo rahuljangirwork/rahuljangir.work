@@ -6,6 +6,8 @@ import { usePathname } from "next/navigation";
 import clsx from "clsx";
 import Socials from "./socials";
 import { Menu } from "react-feather";
+import { useState } from "react";
+import MenuScreen from "./menu-screen";
 
 const links = [
   {
@@ -28,6 +30,10 @@ const links = [
 
 export default function NavBar() {
   const pathname = usePathname();
+  const [isOpen, setIsOpen] = useState(false);
+  const toggleMenuState = () => {
+    setIsOpen((prevState) => !prevState);
+  };
 
   return (
     <header className="sticky top-0 z-50 mb-2 bg-primary bg-opacity-25 border-palette-1 border-b shadow-xl backdrop-blur-sm transition-all duration-200">
@@ -48,9 +54,14 @@ export default function NavBar() {
             </p>
           </Link>
         </div>
-        <div className="justify-end md:hidden border border-palette-1 p-1 rounded-md">
+        <button
+          onClick={toggleMenuState}
+          className="justify-end md:hidden border border-palette-1 p-1 rounded-md"
+          aria-label="Toggle menu"
+        >
           <Menu aria-label="Menu" />
-        </div>
+        </button>
+        <MenuScreen links={links} onClose={toggleMenuState} isOpen={isOpen} />
         <ul className="flex-1 justify-center space-x-5 hidden md:flex">
           {links.map((link) => (
             <li key={link.name}>
