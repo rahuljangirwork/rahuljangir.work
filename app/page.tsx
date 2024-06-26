@@ -13,14 +13,14 @@ export default function Home() {
             className="hidden lg:block border-2 border-palette-2 rounded-xl"
           />
           <div className="mx-2 flex flex-col">
+            <Image
+              src="/shepherd.jpg"
+              width={50}
+              height={50}
+              alt="photo of me"
+              className="block lg:hidden border-2 border-palette-2 rounded-xl"
+            ></Image>
             <h1 className="flex justify-center items-center gap-2 mb-2 font-bold text-2xl">
-              <Image
-                src="/shepherd.jpg"
-                width={50}
-                height={50}
-                alt="photo of me"
-                className="block lg:hidden border-2 border-palette-2 rounded-xl"
-              ></Image>
               Hi, I'm Isai
             </h1>
             <div className="px-2">
