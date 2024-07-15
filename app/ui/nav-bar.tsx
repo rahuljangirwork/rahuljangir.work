@@ -19,8 +19,8 @@ const links = [
     href: "/projects",
   },
   {
-    name: "Contact",
-    href: "/contact",
+    name: "Blog",
+    href: "/blog",
   },
   {
     name: "Gallery",
