@@ -1,5 +1,3 @@
-export default function Gallery() {
-  return (
-  <></>
-  );
+export default function Gallery({}) {
+  return <></>;
 }
