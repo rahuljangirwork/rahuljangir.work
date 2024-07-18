@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import { space_grotesk } from "@/app/ui/fonts";
+import { space_grotesk } from "@/app/components/fonts";
 import "@/app/globals.css";
-import NavBar from "@/app/ui/nav-bar";
+import NavBar from "@/app/components/nav-bar";
 
 export const metadata: Metadata = {
   title: "Isai Portfolio",
