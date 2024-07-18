@@ -1,6 +1,7 @@
 ---
 title: "Mohr's Circle"
 date: "2020-01-01"
+coverImage: "/assets/background.jpg"
 ---
 
 # Mohr's Circle

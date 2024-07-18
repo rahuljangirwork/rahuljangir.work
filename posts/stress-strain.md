@@ -1,6 +1,7 @@
 ---
 title: "Stress Strain Diagram"
 date: "2020-01-01"
+coverImage: "/assets/background.jpg"
 ---
 
 # Stress-Strain Diagram

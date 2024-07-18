@@ -1,6 +1,7 @@
 ---
 title: "Heat Equation Explan"
 date: "2020-01-01"
+coverImage: "/assets/background.jpg"
 ---
 
 # The Heat Equation in Thermodynamics
