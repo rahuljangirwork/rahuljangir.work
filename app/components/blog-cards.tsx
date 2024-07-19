@@ -20,9 +20,11 @@ export default async function BlogCards() {
                 <CardTitle className="">{title}</CardTitle>
                 <CardDescription className="">{id}</CardDescription>
               </CardHeader>
+              {/*
               <CardContent>
                 <p>{date}</p>
               </CardContent>
+              */}
             </Card>
           </li>
         ))}
