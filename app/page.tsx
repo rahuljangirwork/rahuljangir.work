@@ -1,9 +1,13 @@
 import Image from "next/image";
+import { Separator } from "@/app/components/ui/separator";
 
 export default function Home() {
+  const intro =
+    "Welcome to my website! I've always wanted an online space to document my notes and share my thoughts on a wide range of topics that I've gratefully encountered in my schooling and in my life. Here, you'll find some of my projects and ramblings on everything from how I set up my film camera to the intricacy of the Heat Equation and everything in between. I'd love to hear your feedback or have a discussion about any of these topics, feel free to reach out!";
+
   return (
-    <div className="flex w-full h-full justify-center p-4">
-      <div className="flex flex-col w-full max-w-4xl text-palette-2">
+    <>
+      <section className="w-full max-w-4xl mx-auto text-palette-2">
         <div className="flex flex-col md:flex-row justify-between items-start my-7 gap-4">
           <Image
             src="/mebw.JPG"
@@ -28,25 +32,25 @@ export default function Home() {
               className="block md:hidden border-2 border-palette-2 rounded-xl"
             />
             <div className="py-2">
-              <h1 className="text-center md:text-left py-1 font-bold text-2xl">
-                {`Hi, I'm Isai`}
-              </h1>
-              <p className="italic pb-1 text-md">Thanks for swinging by!</p>
-              <p className="text-sm text-palette-2">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat.
-                <br />
-                Duis aute irure dolor in reprehenderit in voluptate velit esse
-                cillum dolore eu fugiat nulla pariatur. Excepteur sint cupidatat
-                non proident, sunt in culpa qui officia deserunt mollit anim id
-                est laborum.
-              </p>
+              <div className="flex items-center space-x-4 pb-2">
+                <h1 className="text-center md:text-left font-bold text-2xl">
+                  {`Hi, I'm Isai`}
+                </h1>
+                <Separator
+                  orientation="vertical"
+                  className="h-7 bg-palette-1"
+                />
+                <p className="italic text-md">Thanks for swinging by!</p>
+              </div>
+              <p className="text-md">{intro}</p>
             </div>
           </div>
         </div>
-      </div>
-    </div>
+      </section>
+      <Separator className="w-full max-w-4xl mx-auto bg-palette-1" />
+      <section className="w-full max-w-4xl mx-auto text-palette-2">
+        <h1 className="font-bold text-2xl py-2">About Me</h1>
+      </section>
+    </>
   );
 }
