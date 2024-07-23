@@ -1,6 +1,11 @@
 import Image from "next/image";
+import clsx from "clsx";
 
-export default function Carousel() {
+export default function Carousel({
+  isFlipped = false,
+}: {
+  isFlipped?: boolean;
+}) {
   return (
     <>
       <div className="relative w-full h-full">
@@ -9,7 +14,7 @@ export default function Carousel() {
           layout="fill"
           objectFit="cover"
           alt="NEEDS GOOD ALT"
-          className="rounded-r-md"
+          className={clsx(!isFlipped ? "rounded-r-md" : "rounded-l-md")}
         />
       </div>
     </>
