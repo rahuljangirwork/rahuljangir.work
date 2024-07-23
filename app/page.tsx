@@ -52,6 +52,7 @@ export default function Home() {
       <section className="w-full max-w-4xl mx-auto text-palette-2 mb-3">
         <h1 className="font-bold text-3xl py-2">About Me</h1>
         <HorizontalCard />
+        <HorizontalCard order="flip" />
       </section>
     </>
   );
