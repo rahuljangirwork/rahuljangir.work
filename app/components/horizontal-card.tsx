@@ -12,12 +12,12 @@ export default function HorizontalCard({
     <section className="flex flex-col md:flex-row w-full max-w-4xl border border-palette-2 rounded-md overflow-hidden mb-5">
       {order === "flip" ? (
         <>
-          <CarouselContainer />
+          <CarouselContainer isFlipped={true} />
           <ContentContainer isFlipped={true} />
         </>
       ) : (
         <>
-          <ContentContainer isFlipped={false} />
+          <ContentContainer />
           <CarouselContainer />
         </>
       )}
@@ -25,15 +25,15 @@ export default function HorizontalCard({
   );
 }
 
-function CarouselContainer() {
+function CarouselContainer({ isFlipped = false }: { isFlipped?: boolean }) {
   return (
     <div className="w-full md:w-1/2">
-      <Carousel />
+      <Carousel isFlipped={isFlipped} />
     </div>
   );
 }
 
-function ContentContainer({ isFlipped }: { isFlipped: boolean }) {
+function ContentContainer({ isFlipped = false }: { isFlipped?: boolean }) {
   return (
     <div
       className={clsx(
