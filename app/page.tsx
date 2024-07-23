@@ -8,7 +8,7 @@ export default function Home() {
 
   return (
     <>
-      <section className="w-full max-w-4xl mx-auto text-palette-2">
+      <section className="w-full px-2 md:max-w-4xl md:px-0 mx-auto text-palette-2">
         <div className="flex flex-col md:flex-row justify-between items-start my-7 gap-4">
           <Image
             src="/mebw.JPG"
@@ -48,8 +48,8 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <Separator className="w-full max-w-4xl mx-auto bg-palette-1" />
-      <section className="w-full max-w-4xl mx-auto text-palette-2 mb-3">
+      <Separator className="w-[97%] md:w-full md:max-w-4xl mx-auto bg-palette-1" />
+      <section className="w-full px-2 md:max-w-4xl md:px-0 mx-auto text-palette-2 mb-3">
         <h1 className="font-bold text-3xl py-2">About Me</h1>
         <HorizontalCard />
         <HorizontalCard order="flip" />
