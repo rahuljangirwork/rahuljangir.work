@@ -1,9 +1,10 @@
 import Image from "next/image";
 import { Separator } from "@/app/components/ui/separator";
+import HorizontalCard from "@/app/components/horizontal-card";
 
 export default function Home() {
   const intro =
-    "Welcome to my website! I've always wanted an online space to document my notes and share my thoughts on a wide range of topics that I've gratefully encountered in my schooling and in my life. Here, you'll find some of my projects and ramblings on everything from how I set up my film camera to the intricacy of the Heat Equation and everything in between. I'd love to hear your feedback or have a discussion about any of these topics, feel free to reach out!";
+    "Welcome to my website! I've always wanted an online space to document my notes and share my thoughts on a wide range of topics that I've gratefully encountered in my schooling and in my life. Here, you'll find some of my projects and ramblings on everything from how I set up my film camera to the intricacy of the Second Law of Thermodynamics and everything in between. I'd love to hear your feedback or have a discussion about any of these topics, feel free to reach out!";
 
   return (
     <>
@@ -48,8 +49,9 @@ export default function Home() {
         </div>
       </section>
       <Separator className="w-full max-w-4xl mx-auto bg-palette-1" />
-      <section className="w-full max-w-4xl mx-auto text-palette-2">
-        <h1 className="font-bold text-2xl py-2">About Me</h1>
+      <section className="w-full max-w-4xl mx-auto text-palette-2 mb-3">
+        <h1 className="font-bold text-3xl py-2">About Me</h1>
+        <HorizontalCard />
       </section>
     </>
   );
