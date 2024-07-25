@@ -9,7 +9,7 @@ export default function HorizontalCard({
   order = "normal",
 }: HorizontalCardProps) {
   return (
-    <section className="flex flex-col md:flex-row w-full max-w-4xl border border-palette-2 rounded-md overflow-hidden mb-5">
+    <section className="flex flex-col md:flex-row w-full max-w-4xl border-2 border-palette-1 shadow-xl rounded-md overflow-hidden mb-5">
       {order === "flip" ? (
         <>
           <CarouselContainer isFlipped={true} />
@@ -39,8 +39,8 @@ function ContentContainer({ isFlipped = false }: { isFlipped?: boolean }) {
       className={clsx(
         "w-full md:w-1/2 p-4  bg-palette-2 bg-opacity-10",
         !isFlipped
-          ? "border-r border-r-palette-2"
-          : "border-l border-l-palette-2",
+          ? "border-r border-r-palette-1"
+          : "border-l border-l-palette-1",
       )}
     >
       <h2 className="text-xl text-center mb-2">College</h2>
