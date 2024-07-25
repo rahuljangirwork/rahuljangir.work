@@ -50,14 +50,14 @@ export default function Home() {
                 </p>
               </div>
               <p className="text-md text-justify">
-                Welcome to my website! I've always wanted an online space to
+                {`Welcome to my website! I've always wanted an online space to
                 share my notes and thoughts on a variety of topics that I've
                 been lucky to experience during my schooling and in life. Here,
                 you'll find some of my projects and blog posts discussing
                 everything from how I set up my Minolta film camera to the
                 intricacy of the 2<sup>nd</sup> Law of Thermodynamics and
                 everything in between. I'd love to hear your feedback or chat
-                about any of these topics, so feel free to reach out!
+                about any of these topics, so feel free to reach out!`}
               </p>
             </div>
           </div>
