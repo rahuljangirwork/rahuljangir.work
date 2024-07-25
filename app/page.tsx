@@ -30,9 +30,9 @@ export default function Home() {
               alt="photo of me"
               className="block md:hidden border-2 border-palette-1 rounded-xl"
             />
-            <div className="py-2">
+            <div className="py-2 max-w-lg md:w-full">
               <div className="flex items-center space-x-4 pb-2">
-                <h1 className="text-center md:text-left font-bold text-4xl">
+                <h1 className="text-center font-bold text-4xl inline-block">
                   {`Hi, I'm Isai`}
                 </h1>
                 <Separator
