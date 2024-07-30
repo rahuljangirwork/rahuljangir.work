@@ -71,12 +71,9 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <div className="w-full md:max-w-4xl mx-auto flex items-center text-palette-2 gap-2">
-        <Separator className="w-[80%] bg-palette-1" />
-        <p className="text-sm italic text-end">Thanks for swinging by!</p>
-      </div>
+      <Separator className="w-[97%] md:w-full md:max-w-4xl mx-auto bg-palette-1" />
       <section className="w-full px-2 md:max-w-4xl md:px-0 mx-auto text-palette-2 mb-3">
-        <h1 className="font-bold text-3xl py-2">About Me</h1>
+        <h1 className="font-bold text-3xl py-3">About Me</h1>
         <section>
           <SplitCard>
             <SplitCardContent>
@@ -115,6 +112,10 @@ export default function Home() {
           </SplitCard>
         </section>
       </section>
+      <div className="w-full md:max-w-4xl mx-auto flex items-center text-palette-2 gap-2 mb-2">
+        <Separator className="w-[80%] bg-palette-2" />
+        <p className="text-sm italic text-end">Thanks for swinging by!</p>
+      </div>
     </>
   );
 }
