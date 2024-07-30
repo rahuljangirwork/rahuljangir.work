@@ -1,6 +1,12 @@
 import Image from "next/image";
 import { Separator } from "@/app/components/ui/separator";
-import HorizontalCard from "@/app/components/horizontal-card";
+import {
+  SplitCard,
+  SplitCardContent,
+  SplitCardHeader,
+  SplitCardText,
+  SplitCardCarousel,
+} from "@/app/components/split-card";
 import { cn } from "@/app/lib/utils";
 
 export default function Home() {
@@ -52,12 +58,15 @@ export default function Home() {
               <p className="text-md text-justify">
                 {`Welcome to my website! I've always wanted an online space to
                 share my notes and thoughts on a variety of topics that I've
-                been lucky to experience during my schooling and in life. Here,
-                you'll find some of my projects and blog posts discussing
+                been lucky to experience during my schooling and in life.`}
+              </p>
+              <p className="text-md text-justify">
+                {" "}
+                Here, you'll find some of my projects and blog posts discussing
                 everything from how I set up my Minolta film camera to the
-                intricacy of the 2nd Law of Thermodynamics and
-                everything in between. I'd love to hear your feedback or chat
-                about any of these topics, so feel free to reach out!`}
+                intricacy of the 2nd Law of Thermodynamics and everything in
+                between. I'd love to hear your feedback or chat about any of
+                these topics, so feel free to reach out!
               </p>
             </div>
           </div>
@@ -66,8 +75,21 @@ export default function Home() {
       <Separator className="w-[97%] md:w-full md:max-w-4xl mx-auto bg-palette-1" />
       <section className="w-full px-2 md:max-w-4xl md:px-0 mx-auto text-palette-2 mb-3">
         <h1 className="font-bold text-3xl py-3">About Me</h1>
-        <HorizontalCard />
-        <HorizontalCard order="flip" />
+        <SplitCard>
+          <SplitCardContent>
+            <SplitCardHeader>College</SplitCardHeader>
+            <SplitCardText>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
+              nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.
+              Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
+              nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.
+              Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum.
+              Praesent mauris. Praesent mauris.
+            </SplitCardText>
+          </SplitCardContent>
+          <SplitCardCarousel src="/shepherd.jpg"></SplitCardCarousel>
+        </SplitCard>
       </section>
     </>
   );
