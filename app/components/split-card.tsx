@@ -14,7 +14,7 @@ export function SplitCardContent({
   children,
   side = "left",
 }: {
-  side?: string;
+  side?: "left" | "right";
   children: ReactNode;
 }) {
   return (
@@ -22,8 +22,8 @@ export function SplitCardContent({
       className={clsx(
         "w-full md:w-1/2 p-4  bg-palette-2 bg-opacity-10",
         !(side === "left")
-          ? "border-r border-r-palette-1"
-          : "border-l border-l-palette-1",
+          ? "border-l border-l-palette-1"
+          : "border-r border-r-palette-1",
       )}
     >
       {children}
