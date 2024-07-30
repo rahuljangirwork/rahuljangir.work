@@ -13,7 +13,7 @@ export default function Home() {
   return (
     <>
       <section className="w-full px-2 md:max-w-4xl md:px-0 mx-auto text-palette-2">
-        <div className="flex flex-col md:flex-row justify-between items-center my-7 gap-4">
+        <div className="flex flex-col md:flex-row justify-between items-center mt-7 mb-4 gap-4">
           <Image
             src="/mebw.JPG"
             width={360}
@@ -52,11 +52,11 @@ export default function Home() {
                     "text-transparent bg-clip-text",
                   )}
                 >
-                  Thanks for swinging by.
+                  Welcome to my website!
                 </p>
               </div>
               <p className="text-md text-justify">
-                {`Welcome to my website! I've always wanted an online space to
+                {`I've always wanted an online space to
                 share my notes and thoughts on a variety of topics that I've
                 been lucky to experience during my schooling and in life.`}
               </p>
@@ -65,15 +65,18 @@ export default function Home() {
                 everything from how I set up my Minolta film camera to the
                 intricacy of the 2nd Law of Thermodynamics and everything in
                 between. I'd love to hear your feedback or chat about any of
-                these topics, so feel free to reach out!`}
+                these topics, so feel free to reach out! `}
               </p>
             </div>
           </div>
         </div>
       </section>
-      <Separator className="w-[97%] md:w-full md:max-w-4xl mx-auto bg-palette-1" />
+      <div className="w-full md:max-w-4xl mx-auto flex items-center text-palette-2 gap-2">
+        <Separator className="w-[80%] bg-palette-1" />
+        <p className="text-sm italic text-end">Thanks for swinging by!</p>
+      </div>
       <section className="w-full px-2 md:max-w-4xl md:px-0 mx-auto text-palette-2 mb-3">
-        <h1 className="font-bold text-3xl py-3">About Me</h1>
+        <h1 className="font-bold text-3xl py-2">About Me</h1>
         <section>
           <SplitCard>
             <SplitCardContent>
