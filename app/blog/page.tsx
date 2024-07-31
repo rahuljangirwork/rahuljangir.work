@@ -3,8 +3,6 @@ import { Separator } from "@/app/components/ui/separator";
 import { PenTool } from "lucide-react";
 
 export default async function Blog() {
-  const intro =
-    "I always wanted an online space to share my thoughts on the topics I found most captivating about the mechanical engineering field, and about life too. Here, you'll find my reflections and ramblings on everything from how I set up my Neovim configuration to the intricate way the Heat Equation was derived and everything in between. I'd love to hear your feedback or have a discussion about any of these topics, feel free to reach out!";
   return (
     <>
       <div className="flex flex-col items-center w-ful max-w-5xl mx-auto text-palette-3">
@@ -21,7 +19,15 @@ export default async function Blog() {
             <li>Three</li>
           </ul>
           <Separator orientation="vertical" className="h-[80px] bg-palette-1" />
-          <p className="w-full text-palette-3 bold py-2">{intro}</p>
+          <p className="w-full text-palette-3 bold py-2">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec
+            odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla
+            quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Lorem
+            ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio.
+            Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis
+            sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent
+            mauris. Praesent mauris.
+          </p>
         </div>
       </div>
       <BlogCards />
