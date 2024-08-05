@@ -5,8 +5,9 @@ import {
   SplitCardContent,
   SplitCardHeader,
   SplitCardText,
-  SplitCardCarousel,
+  SplitCardThumbnail,
 } from "@/app/components/split-card";
+import Carousel from "@/app/components/carousel";
 import { cn } from "@/app/lib/utils";
 
 export default function Home() {
@@ -58,12 +59,12 @@ export default function Home() {
               <p className="text-md text-justify">
                 {`I've always wanted an online space to
                 share my notes and thoughts on a variety of topics that I've
-                been lucky to experience during my schooling and in life.`}
+                been fortunate to experience during my schooling and in life.`}
               </p>
               <p className="text-md text-justify">
-                {`Here, you'll find some of my projects and blog posts discussing
+                {`Here, you'll find some of my favorite projects and blog posts, covering
                 everything from how I set up my Minolta film camera to the
-                intricacy of the 2nd Law of Thermodynamics and everything in
+                intricacies of the 2nd Law of Thermodynamics and everything in
                 between. I'd love to hear your feedback or chat about any of
                 these topics, so feel free to reach out! `}
               </p>
@@ -88,15 +89,16 @@ export default function Home() {
                 sagittis ipsum. Praesent mauris. Praesent mauris.
               </SplitCardText>
             </SplitCardContent>
-            <SplitCardCarousel src="/shepherd.jpg"></SplitCardCarousel>
+            <SplitCardThumbnail>
+              <Carousel src="/shepherd.jpg" />
+            </SplitCardThumbnail>
           </SplitCard>
         </section>
         <section>
           <SplitCard>
-            <SplitCardCarousel
-              src="/shepherd.jpg"
-              side="left"
-            ></SplitCardCarousel>
+            <SplitCardThumbnail>
+              <Carousel src="/shepherd.jpg" side="left" />
+            </SplitCardThumbnail>
             <SplitCardContent side="right">
               <SplitCardHeader>My Toolkit</SplitCardHeader>
               <SplitCardText>
