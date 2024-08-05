@@ -1,4 +1,3 @@
-import Carousel from "@/app/components/carousel";
 import clsx from "clsx";
 import { ReactNode } from "react";
 
