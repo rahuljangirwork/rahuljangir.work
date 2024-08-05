@@ -13,16 +13,16 @@ export function SplitCardContent({
   children,
   side = "left",
 }: {
-  side?: "left" | "right";
+  side?: "left" | "right" | "all";
   children: ReactNode;
 }) {
   return (
     <div
       className={clsx(
-        "w-full md:w-1/2 p-4  bg-palette-2 bg-opacity-10",
-        !(side === "left")
-          ? "border-l border-l-palette-1"
-          : "border-r border-r-palette-1",
+        "p-4  bg-palette-2 bg-opacity-10",
+        side === "all" ? "w-full" : "w-1/2",
+        side === "left" && "border-r border-r-palette-1",
+        side === "right" && "border-l border-l-palette-1",
       )}
     >
       {children}
