@@ -37,16 +37,6 @@ export function SplitCardText({ children }: { children: ReactNode }) {
   return <h2 className="text-sm p-2">{children}</h2>;
 }
 
-export function SplitCardCarousel({
-  src,
-  side = "right",
-}: {
-  src: string;
-  side?: string;
-}) {
-  return (
-    <div className="w-full md:w-1/2">
-      <Carousel src={src} side={side} />
-    </div>
-  );
+export function SplitCardThumbnail({ children }: { children: ReactNode }) {
+  return <div className="w-full md:w-1/2">{children}</div>;
 }
