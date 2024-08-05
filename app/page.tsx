@@ -9,6 +9,8 @@ import {
   SplitCardThumbnail,
 } from "@/app/components/split-card";
 import Carousel from "@/app/components/carousel";
+import CppIcon from "@/public/icons/cpp.svg";
+import PythonIcon from "@/public/icons/python.svg";
 import { cn } from "@/app/lib/utils";
 
 export default function Home() {
@@ -82,6 +84,8 @@ export default function Home() {
             <SplitCardContent side="all">
               <SplitCardHeader>My Toolkit</SplitCardHeader>
               <SplitCardText>
+                <CppIcon className="w-6 h-6" />
+                <PythonIcon className="w-6 h-6" />
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
                 nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed
                 nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis
