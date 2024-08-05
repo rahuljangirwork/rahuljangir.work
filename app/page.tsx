@@ -79,6 +79,22 @@ export default function Home() {
         </section>
         <section>
           <SplitCard>
+            <SplitCardContent side="all">
+              <SplitCardHeader>My Toolkit</SplitCardHeader>
+              <SplitCardText>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
+                nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed
+                nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis
+                ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.
+                Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis
+                sagittis ipsum. Praesent mauris. Praesent mauris.
+              </SplitCardText>
+            </SplitCardContent>
+          </SplitCard>
+        </section>
+        <section>
+          <SplitCard>
             <SplitCardThumbnail>
               <Carousel src="/shepherd.jpg" side="left" />
             </SplitCardThumbnail>
