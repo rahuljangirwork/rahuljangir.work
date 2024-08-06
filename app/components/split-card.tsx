@@ -1,5 +1,6 @@
 import clsx from "clsx";
 import { ReactNode } from "react";
+import { Separator } from "@/app/components/ui/separator";
 
 export function SplitCard({ children }: { children: ReactNode }) {
   return (
@@ -36,7 +37,12 @@ export function SplitCardContent({
   );
 }
 export function SplitCardHeader({ children }: { children: ReactNode }) {
-  return <h2 className="text-xl text-center mb-2">{children}</h2>;
+  return (
+    <h2 className="text-xl text-center mb-2">
+      {children}
+      <Separator className="w-[40px] mx-auto mt-1 mb-2 bg-palette-4" />
+    </h2>
+  );
 }
 export function SplitCardBody({ children }: { children: ReactNode }) {
   return <>{children}</>;
