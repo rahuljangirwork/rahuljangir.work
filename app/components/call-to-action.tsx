@@ -12,7 +12,7 @@ export default function CallToAction() {
       </Link>
       <Separator
         orientation="vertical"
-        className="hidden sm:block h-4 bg-palette-1"
+        className="hidden sm:block h-4 bg-palette-4"
       />
       <Link
         href="/blog"
@@ -22,7 +22,7 @@ export default function CallToAction() {
       </Link>
       <Separator
         orientation="vertical"
-        className="hidden sm:block h-4 bg-palette-1"
+        className="hidden sm:block h-4 bg-palette-4"
       />
       <Link
         href="/gallery"
