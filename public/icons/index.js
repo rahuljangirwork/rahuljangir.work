@@ -7,3 +7,6 @@ export { default as TypescriptIcon } from "./typescript.svg";
 export { default as TailwindIcon } from "./tailwind.svg";
 export { default as ReactIcon } from "./react.svg";
 export { default as NextJsIcon } from "./next-js.svg";
+export { default as SolidworksIcon } from "./solidworks.svg";
+export { default as ArduinoIcon } from "./arduino.svg";
+export { default as RaspberryPiIcon } from "./raspberrypi.svg";
