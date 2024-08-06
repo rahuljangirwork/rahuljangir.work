@@ -1,19 +1,15 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { usePathname } from "next/navigation";
 import clsx from "clsx";
 import Socials from "./socials";
 import { Menu, X } from "react-feather";
+import { TentTreeIcon } from "lucide-react";
 import { useState } from "react";
 import DropdownMenu from "@/app/components/dropdown-menu";
 
 const links = [
-  {
-    name: "Home",
-    href: "/",
-  },
   {
     name: "Projects",
     href: "/projects",
@@ -36,19 +32,16 @@ export default function NavBar() {
     <header className="sticky top-0 z-50 mb-2 bg-primary bg-opacity-25 border-palette-1 border-b shadow-xl backdrop-blur-sm transition-all duration-200">
       <nav className="flex items-center h-16 px-4 text-palette-3 max-w-7xl mx-auto">
         <div className="flex-1 flex justify-start">
-          <Link href="/" className="flex items-center space-x-1">
-            <Image
-              src="/ilogo.png"
-              alt="Logo"
-              width={50}
-              height={50}
-              sizes="100vw"
-              priority={true}
-              className="hidden md:block md:transition-transform md:duration-300 hover:rotate-12"
-            />
-            <p className="text-center font-semibold text-md md:text-md lg:text-xl">
-              Isai Sanchez
-            </p>
+          <Link
+            href="/"
+            className={clsx(
+              "flex items-center gap-1 text-center font-semibold text-md bg-transparent md:text-md lg:text-xl",
+              "transition-all duration-300 ease-in-out hover:scale-[1.08] hover:rotate-12",
+              pathname === "/" && "text-palette-4",
+            )}
+          >
+            <TentTreeIcon className="w-6 h-6" />
+            Home
           </Link>
         </div>
         <ul className="flex-1 justify-center space-x-5 hidden md:flex">
@@ -59,7 +52,7 @@ export default function NavBar() {
                 className={clsx(
                   "font-medium px-3 py-2 rounded-md transition-all duration-200",
                   pathname === link.href
-                    ? "text-palette-2 bg-palette-2 bg-opacity-10 underline underline-offset-2"
+                    ? "text-palette-4 bg-palette-2 bg-opacity-10 underline underline-offset-2"
                     : "text-palette-3 hover:underline hover:bg-palette-2 hover:bg-opacity-10 hover:underline-offset-2 hover:shadow-xl",
                 )}
               >
