@@ -1,0 +1,9 @@
+export { default as CppIcon } from "./cpp.svg";
+export { default as CIcon } from "./c.svg";
+export { default as PythonIcon } from "./python.svg";
+export { default as MatlabIcon } from "./matlab.svg";
+export { default as JavascriptIcon } from "./javascript.svg";
+export { default as TypescriptIcon } from "./typescript.svg";
+export { default as TailwindIcon } from "./tailwind.svg";
+export { default as ReactIcon } from "./react.svg";
+export { default as NextJsIcon } from "./next-js.svg";
