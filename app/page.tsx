@@ -5,12 +5,11 @@ import {
   SplitCard,
   SplitCardContent,
   SplitCardHeader,
-  SplitCardText,
+  SplitCardBody,
   SplitCardThumbnail,
 } from "@/app/components/split-card";
 import Carousel from "@/app/components/carousel";
-import CppIcon from "@/public/icons/cpp.svg";
-import PythonIcon from "@/public/icons/python.svg";
+import Toolkit from "@/app/components/toolkit";
 import { cn } from "@/app/lib/utils";
 
 export default function Home() {
@@ -63,8 +62,8 @@ export default function Home() {
           <SplitCard>
             <SplitCardContent>
               <SplitCardHeader>Education</SplitCardHeader>
-              <SplitCardText>
-                <p className="text-md text-justify">
+              <SplitCardBody>
+                <p className="text-sm p-2 text-justify">
                   I graduated with a Mechanical Engineering degree from Brigham
                   Young University. There, I fostered a mindset of continuous
                   learning and curiosity which I use to this day. My technical
@@ -72,7 +71,7 @@ export default function Home() {
                   high-level math & physics, computer programming, and hardware
                   integration.
                 </p>
-              </SplitCardText>
+              </SplitCardBody>
             </SplitCardContent>
             <SplitCardThumbnail>
               <Carousel src="/shepherd.jpg" />
@@ -83,17 +82,9 @@ export default function Home() {
           <SplitCard>
             <SplitCardContent side="all">
               <SplitCardHeader>My Toolkit</SplitCardHeader>
-              <SplitCardText>
-                <CppIcon className="w-6 h-6" />
-                <PythonIcon className="w-6 h-6" />
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
-                nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed
-                nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis
-                ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.
-                Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis
-                sagittis ipsum. Praesent mauris. Praesent mauris.
-              </SplitCardText>
+              <SplitCardBody>
+                <Toolkit />
+              </SplitCardBody>
             </SplitCardContent>
           </SplitCard>
         </section>
@@ -104,7 +95,7 @@ export default function Home() {
             </SplitCardThumbnail>
             <SplitCardContent side="right">
               <SplitCardHeader>My Toolkit</SplitCardHeader>
-              <SplitCardText>
+              <SplitCardBody>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
                 nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed
                 nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis
@@ -112,7 +103,7 @@ export default function Home() {
                 Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.
                 Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis
                 sagittis ipsum. Praesent mauris. Praesent mauris.
-              </SplitCardText>
+              </SplitCardBody>
             </SplitCardContent>
           </SplitCard>
         </section>
