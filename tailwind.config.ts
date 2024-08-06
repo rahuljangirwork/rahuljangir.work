@@ -24,8 +24,7 @@ const config = {
           1: "#4F6F52", // lighter muted forrest green
           2: "#E8DFCA", // light beige
           3: "#F5E5E6", // off-white
-          4: "#C84B31", // ACCENT: terracotta
-          5: "#4D1A39", // ACCENT: purple
+          4: "#F28D35", // ACCENT: Vibrant Orange
         },
       },
       keyframes: {
