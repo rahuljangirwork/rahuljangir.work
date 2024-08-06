@@ -35,7 +35,7 @@ export default function Home() {
             <h1 className="text-center font-bold text-6xl inline-block">
               {`Hi, I'm Isai`}
             </h1>
-            <Separator orientation="vertical" className="h-7 bg-palette-1" />
+            <Separator orientation="vertical" className="h-7 bg-palette-4" />
             <p
               className={cn(
                 "italic text-md pr-1 whitespace-nowrap",
@@ -56,7 +56,7 @@ export default function Home() {
           <CallToAction />
         </div>
       </section>
-      <Separator className="w-[97%] md:w-full md:max-w-4xl mx-auto bg-palette-1 my-4" />
+      <Separator className="w-[97%] md:w-full md:max-w-4xl mx-auto bg-palette-4 my-4" />
       <section className="w-full px-2 md:max-w-4xl md:px-0 mx-auto text-palette-2 my-3">
         <h1 className="font-bold text-3xl pb-3">About</h1>
         <section>
