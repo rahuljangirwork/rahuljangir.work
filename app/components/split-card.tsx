@@ -38,7 +38,7 @@ export function SplitCardContent({
 }
 export function SplitCardHeader({ children }: { children: ReactNode }) {
   return (
-    <h2 className="text-xl text-center mb-2">
+    <h2 className="text-xl text-center">
       {children}
       <Separator className="w-[40px] mx-auto mt-1 mb-2 bg-palette-4" />
     </h2>

@@ -63,7 +63,7 @@ export default function Home() {
             <SplitCardContent>
               <SplitCardHeader>Education</SplitCardHeader>
               <SplitCardBody>
-                <p className="text-sm p-2 text-justify">
+                <p className="text-sm px-2 text-justify">
                   I graduated with a Mechanical Engineering degree from Brigham
                   Young University. There, I fostered a mindset of continuous
                   learning and curiosity which I use to this day. My technical
