@@ -36,7 +36,7 @@ export default function Toolkit() {
       <div className="w-1/3 flex flex-col items-center gap-4">
         <div className="w-3/4 mx-auto flex gap-2 items-center">
           <p className="text-center text-sm place-self-center">CAD</p>
-          <SolidworksIcon className="w-24 h-auto" />
+          <SolidworksIcon className="w-48 h-auto" />
         </div>
         <div className="w-3/4 mx-auto flex gap-2 items-center">
           <p className="text-center text-sm">Hardware</p>
