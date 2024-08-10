@@ -9,14 +9,10 @@ export default async function Post({ params }: { params: { slug: string } }) {
 
   return (
     <div className="flex flex-col justify-center items-center">
-      <h1>{postData.title}</h1>
-      <p>{postData.date}</p>
-      <div>
-        <div key={postData.title} className="prose m-2">
-          <Markdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]}>
-            {postData.content}
-          </Markdown>
-        </div>
+      <div key={postData.title} className="prose prose-offwhite w-full m-1">
+        <Markdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]}>
+          {postData.content}
+        </Markdown>
       </div>
     </div>
   );
