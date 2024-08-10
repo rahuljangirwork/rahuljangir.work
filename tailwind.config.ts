@@ -41,6 +41,51 @@ const config = {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
+      typography: () => ({
+        DEFAULT: {
+          css: [
+            {
+              maxWidth: "85ch",
+            },
+          ],
+        },
+        offwhite: {
+          css: {
+            "--tw-prose-body": "#F5E5E6", // palette-3
+            "--tw-prose-headings": "#E8DFCA", // palette-2
+            "--tw-prose-lead": "#E8DFCA", // palette-2
+            "--tw-prose-links": "#F28D35", // palette-4
+            "--tw-prose-bold": "#E8DFCA", // palette-2
+            "--tw-prose-counters": "#F5E5E6", // palette-3
+            "--tw-prose-bullets": "#F5E5E6", // palette-3
+            "--tw-prose-hr": "#4F6F52", // palette-1
+            "--tw-prose-quotes": "#E8DFCA", // palette-2
+            "--tw-prose-quote-borders": "#4F6F52", // palette-1
+            "--tw-prose-captions": "#F5E5E6", // palette-3
+            "--tw-prose-code": "#F28D35", // palette-4
+            "--tw-prose-pre-code": "#F5E5E6", // palette-3
+            "--tw-prose-pre-bg": "#0D2718", // Darker shade of primary
+            "--tw-prose-th-borders": "#4F6F52", // palette-1
+            "--tw-prose-td-borders": "#4F6F52", // palette-1
+            "--tw-prose-invert-body": "#E8DFCA", // palette-2
+            "--tw-prose-invert-headings": "#F5E5E6", // palette-3
+            "--tw-prose-invert-lead": "#F5E5E6", // palette-3
+            "--tw-prose-invert-links": "#F28D35", // palette-4
+            "--tw-prose-invert-bold": "#F5E5E6", // palette-3
+            "--tw-prose-invert-counters": "#E8DFCA", // palette-2
+            "--tw-prose-invert-bullets": "#E8DFCA", // palette-2
+            "--tw-prose-invert-hr": "#4F6F52", // palette-1
+            "--tw-prose-invert-quotes": "#F5E5E6", // palette-3
+            "--tw-prose-invert-quote-borders": "#4F6F52", // palette-1
+            "--tw-prose-invert-captions": "#E8DFCA", // palette-2
+            "--tw-prose-invert-code": "#F28D35", // palette-4
+            "--tw-prose-invert-pre-code": "#E8DFCA", // palette-2
+            "--tw-prose-invert-pre-bg": "#0D2718", // Darker shade of primary
+            "--tw-prose-invert-th-borders": "#4F6F52", // palette-1
+            "--tw-prose-invert-td-borders": "#4F6F52", // palette-1
+          },
+        },
+      }),
     },
   },
   plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
