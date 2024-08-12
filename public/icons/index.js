@@ -10,3 +10,4 @@ export { default as NextJsIcon } from "./next-js.svg";
 export { default as SolidworksIcon } from "./solidworks.svg";
 export { default as ArduinoIcon } from "./arduino.svg";
 export { default as RaspberryPiIcon } from "./raspberrypi.svg";
+export { default as MyRobotIcon } from "../myrobot.svg";
