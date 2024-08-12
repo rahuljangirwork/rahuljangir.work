@@ -11,6 +11,7 @@ import {
 import Carousel from "@/app/components/carousel";
 import Toolkit from "@/app/components/toolkit";
 import { cn } from "@/app/lib/utils";
+import { MyRobotIcon } from "@/public/icons";
 
 export default function Home() {
   return (
@@ -30,7 +31,10 @@ export default function Home() {
           className="border-2 border-palette-1 rounded-xl"
         />
         <div className="flex flex-col max-w-lg md:w-full h-full">
-          <h1 className="font-bold text-6xl pb-2">{`Hi, I'm Isai`}</h1>
+          <div className="flex">
+            <h1 className="font-bold text-6xl pb-2 self-end">{`Hi, I'm Isai`}</h1>
+            <MyRobotIcon className="w-36 h-auto" />
+          </div>
           <p className="text-md text-justify">
             I&apos;m a Mechanical Engineering graduate and software developer
             who loves design and bringing ideas to life.
