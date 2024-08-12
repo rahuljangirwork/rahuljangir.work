@@ -17,9 +17,9 @@ export default function Home() {
     <>
       <section
         className={cn(
-          "text-palette-2 w-full mx-auto mt-7 gap-4 px-2",
+          "text-palette-2 w-full mx-auto mt-20 gap-4 px-2 mb-32",
           "lg:max-w-4xl lg:px-0",
-          "flex flex-col md:flex-row justify-between items-start",
+          "flex flex-col md:flex-row justify-between items-center",
         )}
       >
         <Image
@@ -29,87 +29,77 @@ export default function Home() {
           alt="photo of me"
           className="border-2 border-palette-1 rounded-xl"
         />
-        <div className="flex flex-col max-w-lg md:w-full">
-          <div className="flex items-center space-x-4 pb-2">
-            <h1 className="text-center font-bold text-6xl inline-block">
-              {`Hi, I'm Isai`}
-            </h1>
-            <Separator orientation="vertical" className="h-7 bg-palette-4" />
-            <p
-              className={cn(
-                "italic text-md pr-1 whitespace-nowrap",
-                "bg-gradient-to-r from-palette-2 to-palette-1",
-                "text-transparent bg-clip-text",
-              )}
-            >
-              Welcome to my website!
-            </p>
-          </div>
+        <div className="flex flex-col max-w-lg md:w-full h-full">
+          <h1 className="font-bold text-6xl pb-2">{`Hi, I'm Isai`}</h1>
           <p className="text-md text-justify">
-            {`Thanks for stopping by. Here, you'll find some of my projects, notes, and blog posts, covering
-                everything from how I set up my Minolta film camera to the
-                intricacies of the 2nd Law of Thermodynamics and everything in
-                between. I'd love to hear your feedback or chat about any of
-                these topics, so feel free to reach out! `}
+            I&apos;m a Mechanical Engineering graduate and software developer
+            who loves design and bringing ideas to life.
           </p>
-          <CallToAction />
+          <div className="flex justify-end mt-2">
+            <CallToAction />
+          </div>
         </div>
       </section>
-      <Separator className="w-[97%] md:w-full md:max-w-4xl mx-auto bg-palette-4 my-4" />
-      <section className="w-full px-2 md:max-w-4xl md:px-0 mx-auto text-palette-2 my-3">
-        <h1 className="font-bold text-3xl pb-3">About</h1>
-        <section>
-          <SplitCard>
-            <SplitCardContent>
-              <SplitCardHeader>Education</SplitCardHeader>
-              <SplitCardBody>
-                <p className="text-sm px-2 text-justify">
-                  I graduated with a Mechanical Engineering degree from Brigham
-                  Young University. There, I fostered a mindset of continuous
-                  learning and curiosity which I use to this day. My technical
-                  proficiencies span advanced CAD software, robotics systems,
-                  high-level math & physics, computer programming, and hardware
-                  integration.
-                </p>
-              </SplitCardBody>
-            </SplitCardContent>
-            <SplitCardThumbnail>
-              <Carousel src="/shepherd.jpg" />
-            </SplitCardThumbnail>
-          </SplitCard>
-        </section>
-        <section>
-          <SplitCard>
-            <SplitCardContent side="all">
-              <SplitCardHeader>My Toolkit</SplitCardHeader>
-              <SplitCardBody>
-                <Toolkit />
-              </SplitCardBody>
-            </SplitCardContent>
-          </SplitCard>
-        </section>
-        <section>
-          <SplitCard>
-            <SplitCardThumbnail>
-              <Carousel src="/shepherd.jpg" side="left" />
-            </SplitCardThumbnail>
-            <SplitCardContent side="right">
-              <SplitCardHeader>My Toolkit</SplitCardHeader>
-              <SplitCardBody>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
-                nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed
-                nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis
-                ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.
-                Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis
-                sagittis ipsum. Praesent mauris. Praesent mauris.
-              </SplitCardBody>
-            </SplitCardContent>
-          </SplitCard>
-        </section>
-        <p className="text-md text-justify">
-          {`I've always wanted an online space to share my notes and thoughts on everything that I've been fortunate enough to experience throughout my schooling and life. All code is found on Github`}
-        </p>
+      <section className="w-full px-2 md:max-w-4xl md:px-0 mx-auto text-palette-2">
+        <SplitCard className="mb-20">
+          <SplitCardContent side="all">
+            <SplitCardHeader>
+              <h1 className="text-center font-bold text-3xl">About</h1>
+            </SplitCardHeader>
+            <SplitCardBody>
+              <p className="text-md text-justify py-3">
+                Welcome to my website! I&apos;ve always wanted an online space
+                to share my notes and thoughts on everything that I&apos;ve been
+                fortunate enough to experience throughout my schooling and life.
+                <br /> Here, you&apos;ll find some of my projects, notes, and
+                blog posts, covering everything from how I set up my Minolta
+                film camera to the intricacies of the 2nd Law of Thermodynamics
+                and everything in between. I&apos;d love to hear your feedback
+                or chat about any of these topics, so feel free to reach out!
+              </p>
+            </SplitCardBody>
+          </SplitCardContent>
+        </SplitCard>
+        <SplitCard
+          className={cn(
+            "mb-5 transition-all duration-200 ease-in-out",
+            "hover:scale-[1.01] hover:shadow-[0_10px_60px_25px_rgba(79,111,82,0.3)]",
+          )}
+        >
+          <SplitCardContent className="bg-palette-2 bg-opacity-10">
+            <SplitCardHeader>
+              <h2 className="text-xl text-center">Education</h2>
+            </SplitCardHeader>
+            <SplitCardBody>
+              <p className="text-sm px-2 text-justify">
+                I graduated with a Mechanical Engineering degree from Brigham
+                Young University. There, I fostered a mindset of continuous
+                learning and curiosity which I use to this day. My technical
+                proficiencies span advanced CAD software, robotics systems,
+                high-level math & physics, computer programming, and hardware
+                integration.
+              </p>
+            </SplitCardBody>
+          </SplitCardContent>
+          <SplitCardThumbnail>
+            <Carousel src="/shepherd.jpg" />
+          </SplitCardThumbnail>
+        </SplitCard>
+        <SplitCard
+          className={cn(
+            "mb-5 transition-all duration-200 ease-in-out",
+            "hover:scale-[1.01] hover:shadow-[0_10px_60px_25px_rgba(79,111,82,0.3)]",
+          )}
+        >
+          <SplitCardContent side="all" className="bg-palette-2 bg-opacity-10">
+            <SplitCardHeader>
+              <h2 className="text-xl text-center">My Toolkit</h2>
+            </SplitCardHeader>
+            <SplitCardBody>
+              <Toolkit />
+            </SplitCardBody>
+          </SplitCardContent>
+        </SplitCard>
       </section>
       <div className="w-full md:max-w-4xl mx-auto flex items-center text-palette-2 gap-2 mb-2">
         <Separator className="w-[80%] bg-palette-2" />
