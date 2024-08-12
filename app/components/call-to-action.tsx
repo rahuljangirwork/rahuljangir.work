@@ -1,9 +1,12 @@
 import Link from "next/link";
 import { Separator } from "@/app/components/ui/separator";
+import { cn } from "@/app/lib/utils";
 
-export default function CallToAction() {
+export default function CallToAction({ className }: { className?: string }) {
   return (
-    <div className="flex justify-end items-center text-palette-2 gap-2 py-3">
+    <div
+      className={cn("flex items-center text-palette-2 gap-2 py-3", className)}
+    >
       <Link
         href="/projects"
         className="whitespace-nowrap italic text-sm hover:text-palette-1 transition-colors"
