@@ -2,7 +2,7 @@
 <!-- Created with sK1/UniConvertor (http://sk1project.org/) -->
 <svg width="266.53pt" height="330.09pt" fill-rule="evenodd" version="1.1" viewBox="0 0 266.53 330.09" xmlns="http://www.w3.org/2000/svg">
  <g transform="translate(-308.78 -359.89)" fill="none">
-  <g stroke="#E8DFCA" stroke-linecap="round" stroke-linejoin="round" stroke-width=".85039">
+  <g stroke="#E8DFCA" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5">
    <path d="m470.44 465.34c0.70933-1.063 1.4187-2.126 2.128-3.189"/>
    <path d="m446.17 409.71c-0.70967 1.063-1.4193 2.126-2.129 3.189"/>
    <path d="m460.42 401.73c-0.603 0.90367-1.206 1.8073-1.809 2.711"/>
@@ -72,7 +72,7 @@
    <path d="m400.65 516.41c-1.9723-1.0453-3.9447-2.0907-5.917-3.136"/>
   </g>
   <path d="m394.73 513.28c-14.946-35.209-29.893-70.418-44.839-105.63"/>
-  <g stroke="#E8DFCA" stroke-linecap="round" stroke-linejoin="round" stroke-width=".85039">
+  <g stroke="#E8DFCA" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5">
    <path d="m403.68 514.49c-1.0127 0.64133-2.0253 1.2827-3.038 1.924"/>
    <path d="m354.87 399.49c16.273 38.334 32.545 76.667 48.818 115"/>
    <path d="m326.33 414.51c2.3633-1.4963 4.7267-2.9927 7.09-4.489"/>
@@ -83,7 +83,7 @@
    <path d="m379.48 505.4c-11.869-27.961-23.739-55.922-35.608-83.883"/>
   </g>
   <path d="m382.79 510.17c-13.106-30.873-26.211-61.746-39.317-92.619"/>
-  <g stroke="#E8DFCA" stroke-linecap="round" stroke-linejoin="round" stroke-width=".85039">
+  <g stroke="#E8DFCA" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5">
    <path d="m382.79 510.17-5.064 3.207"/>
    <path d="m313.7 384.75c0.093 5.2447 0.186 10.489 0.279 15.734"/>
    <path d="m313.98 400.48-4.221 1.593"/>
