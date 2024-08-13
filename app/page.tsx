@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import CallToAction from "@/app/components/call-to-action";
 import { Separator } from "@/app/components/ui/separator";
@@ -10,10 +12,30 @@ import {
 } from "@/app/components/split-card";
 import Carousel from "@/app/components/carousel";
 import Toolkit from "@/app/components/toolkit";
-import { cn } from "@/app/lib/utils";
 import { MyRobotIcon } from "@/public/icons";
+import { cn } from "@/app/lib/utils";
+import { MoveRight } from "lucide-react";
+import { useToast } from "@/app/components/ui/use-toast";
 
 export default function Home() {
+  const { toast } = useToast();
+  const email = "isaisanchezcc@gmail.com";
+
+  const handleCopyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(email);
+      toast({
+        description: "Email copied to clipboard",
+      });
+    } catch (err) {
+      console.error("Failed to copy: ", err);
+      toast({
+        description: "Failed to copy email",
+        variant: "destructive",
+      });
+    }
+  };
+
   return (
     <>
       <section
@@ -62,6 +84,13 @@ export default function Home() {
                 film camera to the intricacies of the 2nd Law of Thermodynamics
                 and everything in between. I&apos;d love to hear your feedback
                 or chat about any of these topics, so feel free to reach out!
+                <MoveRight className="inline-block w-4 h-4 mx-2" />
+                <button
+                  className="text-md text-palette-4 hover:underline focus:outline-none"
+                  onClick={handleCopyEmail}
+                >
+                  {email}
+                </button>
               </p>
             </SplitCardBody>
           </SplitCardContent>
