@@ -15,7 +15,7 @@ import { SolidworksIcon } from "@/public/icons";
 
 export default function Toolkit() {
   return (
-    <div className="w-3/4 mx-auto flex gap-4">
+    <div className="pt-1 w-3/4 mx-auto flex gap-4">
       <div className="w-1/3 flex-col items-center">
         <div className="w-1/2 mx-auto grid grid-cols-2 gap-1 content-center">
           <CppIcon className="col-span-2 w-10 h-10 place-self-center" />
