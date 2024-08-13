@@ -12,10 +12,11 @@ import {
   TailwindIcon,
 } from "@/public/icons";
 import { SolidworksIcon } from "@/public/icons";
+import { cn } from "@/app/lib/utils";
 
-export default function Toolkit() {
+export default function Toolkit({ className }: { className?: string }) {
   return (
-    <div className="pt-1 w-3/4 mx-auto flex gap-4">
+    <div className={cn(className, "pt-1 w-3/4 mx-auto flex gap-4")}>
       <div className="w-1/3 flex-col items-center">
         <div className="w-1/2 mx-auto grid grid-cols-2 gap-1 content-center">
           <CppIcon className="col-span-2 w-10 h-10 place-self-center" />
