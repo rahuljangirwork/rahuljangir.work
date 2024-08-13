@@ -1,8 +1,8 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import CallToAction from "@/app/components/call-to-action";
-import { Separator } from "@/app/components/ui/separator";
 import {
   SplitCard,
   SplitCardContent,
@@ -126,20 +126,52 @@ export default function Home() {
             "hover:scale-[1.01] hover:shadow-[0_10px_60px_25px_rgba(79,111,82,0.3)]",
           )}
         >
-          <SplitCardContent side="all" className="bg-palette-2 bg-opacity-10">
+          <SplitCardContent
+            side="all"
+            className="relative bg-palette-2 bg-opacity-10"
+          >
             <SplitCardHeader>
               <h2 className="text-xl text-center">My Toolkit</h2>
             </SplitCardHeader>
             <SplitCardBody>
               <Toolkit />
+              <p className="absolute right-0 bottom-0 p-1 text-xs italic text-palette-2">
+                Check out my
+                <Link
+                  href="/projects"
+                  className="text-palette-4 hover:text-palette-1 transition-colors px-1"
+                >
+                  projects
+                </Link>
+                to see these in action
+              </p>
+            </SplitCardBody>
+          </SplitCardContent>
+        </SplitCard>
+        <SplitCard
+          className={cn(
+            "mb-5 transition-all duration-200 ease-in-out",
+            "hover:scale-[1.01] hover:shadow-[0_10px_60px_25px_rgba(79,111,82,0.3)]",
+          )}
+        >
+          <SplitCardContent side="all" className="bg-palette-2 bg-opacity-10">
+            <SplitCardHeader>
+              <h2 className="text-xl text-center">Contact Me</h2>
+            </SplitCardHeader>
+            <SplitCardBody>
+              <p className="text-md px-2 text-center">
+                Feel free to shoot me an email at
+                <button
+                  className="text-palette-4 pl-1 hover:underline focus:outline-none"
+                  onClick={handleCopyEmail}
+                >
+                  {email}
+                </button>
+              </p>
             </SplitCardBody>
           </SplitCardContent>
         </SplitCard>
       </section>
-      <div className="w-full md:max-w-4xl mx-auto flex items-center text-palette-2 gap-2 mb-2">
-        <Separator className="w-[80%] bg-palette-2" />
-        <p className="text-sm italic text-end">Thanks for swinging by!</p>
-      </div>
     </>
   );
 }
