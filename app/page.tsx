@@ -18,7 +18,7 @@ export default function Home() {
     <>
       <section
         className={cn(
-          "text-palette-2 w-full mx-auto mt-20 gap-4 px-2 mb-32",
+          "text-palette-2 w-full mx-auto gap-4 px-2 my-10",
           "lg:max-w-4xl lg:px-0",
           "flex flex-col md:flex-row justify-between items-center",
         )}
@@ -31,20 +31,21 @@ export default function Home() {
           className="border-2 border-palette-1 rounded-xl"
         />
         <div className="flex flex-col max-w-lg md:w-full h-full">
-          <div className="flex">
-            <h1 className="font-bold text-6xl pb-2 self-end">{`Hi, I'm Isai`}</h1>
-            <MyRobotIcon className="w-36 h-auto" />
-          </div>
-          <p className="text-md text-justify">
-            I&apos;m a Mechanical Engineering graduate and software developer
-            who loves design and bringing ideas to life.
+          <h1 className="relative font-bold text-6xl pb-2 text-left">
+            Hi<span className="text-palette-4">,</span> I&apos;m Isai
+            <MyRobotIcon className="absolute -top-4 -right-10 w-36 h-auto" />
+          </h1>
+          <p className="w-3/4 text-md text-justify">
+            I&apos;m a dilligent Mechanical Engineer and Software Developer with
+            a resolve to transform innovative designs and fascinating concepts
+            to life.
           </p>
-          <div className="flex justify-end mt-2">
+          <div className="flex justify-end mt-4">
             <CallToAction />
           </div>
         </div>
       </section>
-      <section className="w-full px-2 md:max-w-4xl md:px-0 mx-auto text-palette-2">
+      <section className="w-full md:max-w-4xl md:px-0 mx-auto text-palette-2">
         <SplitCard className="mb-20">
           <SplitCardContent side="all">
             <SplitCardHeader>
@@ -53,8 +54,9 @@ export default function Home() {
             <SplitCardBody>
               <p className="text-md text-justify py-3">
                 Welcome to my website! I&apos;ve always wanted an online space
-                to share my notes and thoughts on everything that I&apos;ve been
-                fortunate enough to experience throughout my schooling and life.
+                dedicated to sharing my efforts and thoughts on everything that
+                I&apos;ve been fortunate enough to experience throughout my
+                schooling and life.
                 <br /> Here, you&apos;ll find some of my projects, notes, and
                 blog posts, covering everything from how I set up my Minolta
                 film camera to the intricacies of the 2nd Law of Thermodynamics
