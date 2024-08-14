@@ -41,7 +41,7 @@ export default function Home() {
       <section
         className={cn(
           "text-palette-2 w-full mx-auto gap-4 px-2 my-10",
-          "lg:max-w-4xl lg:px-0",
+          "lg:max-w-4xl lg:px-4",
           "flex flex-col md:flex-row justify-between items-center",
         )}
       >
@@ -58,9 +58,8 @@ export default function Home() {
             <MyRobotIcon className="absolute -top-4 -right-10 w-36 h-auto" />
           </h1>
           <p className="w-3/4 text-md text-justify">
-            I&apos;m a dilligent Mechanical Engineer and Software Developer with
-            a resolve to transform innovative designs and fascinating concepts
-            to life.
+            Mechanical Engineer and Software Developer with a strong resolve to
+            transform innovative designs and fascinating concepts to life.
           </p>
           <div className="flex justify-end mt-4">
             <CallToAction />
