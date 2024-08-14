@@ -3,10 +3,10 @@
 @tailwind utilities;
 
 .custom-gradient {
-  background-color: #1a4d2e; /* primary color */
-  background-image: radial-gradient(at 24% 13%, #2a5d3e 0, transparent 30%),
-    radial-gradient(at 75% 3%, #153d24 0, transparent 83%),
-    radial-gradient(at 93% 54%, #225a36 0, transparent 41%),
+  background-color: #1a4d2e; /* Your primary color */
+  background-image: radial-gradient(at 94% 33%, #2a5d3e 0, transparent 69%),
+    radial-gradient(at 5% 3%, #153d24 0, transparent 83%),
+    radial-gradient(at 23% 54%, #225a36 0, transparent 81%),
     radial-gradient(at 60% 80%, #1f5434 0, transparent 75%);
 }
 
