@@ -4,7 +4,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/app/components/ui/card";
-import { getSortedPostsData } from "@/app/lib/posts";
+import { getSortedPostsData } from "@/app/lib/blogposts";
 import Link from "next/link";
 
 export default async function BlogCards() {
