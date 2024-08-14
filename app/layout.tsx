@@ -17,7 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${space_grotesk.className} antialiased bg-primary custom-scrollbar`}
+        className={`${space_grotesk.className} antialiased custom-gradient custom-scrollbar`}
       >
         <NavBar />
         <main className="min-h-screen">{children}</main>
