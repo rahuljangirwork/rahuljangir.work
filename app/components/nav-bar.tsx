@@ -30,7 +30,7 @@ export default function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="w-full lg:max-w-5xl mx-auto lg:rounded-md sticky top-2 z-50 mb-2 bg-primary bg-opacity-25 border-palette-1 border-b lg:border shadow-xl backdrop-blur-sm transition-all duration-200">
+    <header className="w-full lg:max-w-xl mx-auto lg:rounded-md sticky top-0 lg:top-2 z-50 mb-2 bg-primary bg-opacity-25 border-palette-1 border-b lg:border shadow-xl backdrop-blur-sm transition-all duration-200">
       <nav className="flex items-center h-16 px-4 text-palette-3 max-w-7xl mx-auto">
         <div className="flex-1 flex justify-start">
           <Link
@@ -45,7 +45,7 @@ export default function NavBar() {
             Home
           </Link>
         </div>
-        <ul className="flex-1 hidden justify-center items-center space-x-2 md:flex">
+        <ul className="flex-1 hidden justify-end items-center space-x-2 md:flex">
           {links.map((link) => (
             <li key={link.name}>
               <Link
@@ -62,9 +62,11 @@ export default function NavBar() {
             </li>
           ))}
         </ul>
+        {/*
         <div className="flex-1 justify-end hidden md:flex gap-1">
           <Socials />
         </div>
+        */}
 
         {/* ---Menu Icon and Toggled Menu--- */}
         <div className="relative md:hidden">
