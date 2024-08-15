@@ -14,8 +14,8 @@ import Carousel from "@/app/components/carousel";
 import Toolkit from "@/app/components/toolkit";
 import { MyRobotIcon } from "@/public/icons";
 import { cn } from "@/app/lib/utils";
-import { MoveRight } from "lucide-react";
 import { useToast } from "@/app/components/ui/use-toast";
+import { Copy } from "lucide-react";
 
 export default function Home() {
   const { toast } = useToast();
@@ -81,12 +81,12 @@ export default function Home() {
                 film camera to the intricacies of the 2nd Law of Thermodynamics
                 and everything in between. I&apos;d love to hear your feedback
                 or chat about any of these topics, so feel free to reach out!
-                <MoveRight className="inline-block w-4 h-4 mx-2" />
                 <button
-                  className="text-md text-palette-4 hover:underline focus:outline-none"
+                  className="pl-1 inline-flex gap-1 text-md text-palette-4 hover:underline focus:outline-none"
                   onClick={handleCopyEmail}
                 >
                   {email}
+                  <Copy className="w-4" />
                 </button>
               </p>
             </SplitCardBody>
@@ -159,10 +159,11 @@ export default function Home() {
               <p className="text-md px-2 text-center">
                 Feel free to shoot me an email at
                 <button
-                  className="text-palette-4 pl-1 hover:underline focus:outline-none"
+                  className="pl-1 inline-flex gap-1 text-md text-palette-4 hover:underline focus:outline-none"
                   onClick={handleCopyEmail}
                 >
                   {email}
+                  <Copy className="w-4" />
                 </button>
               </p>
             </SplitCardBody>
