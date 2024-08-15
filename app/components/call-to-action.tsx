@@ -4,9 +4,7 @@ import { cn } from "@/app/lib/utils";
 
 export default function CallToAction({ className }: { className?: string }) {
   return (
-    <div
-      className={cn("flex items-center text-palette-2 gap-2 py-3", className)}
-    >
+    <div className={cn("flex items-center text-palette-2 gap-2", className)}>
       <Link
         href="/projects"
         className="whitespace-nowrap italic text-sm hover:text-palette-1 transition-colors"

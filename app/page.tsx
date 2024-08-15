@@ -40,7 +40,7 @@ export default function Home() {
     <>
       <section
         className={cn(
-          "text-palette-2 w-full mx-auto gap-4 px-2 my-10",
+          "relative text-palette-2 w-full mx-auto gap-6 px-2 my-10",
           "lg:max-w-4xl lg:px-4",
           "flex flex-col md:flex-row justify-between items-center",
         )}
@@ -57,14 +57,12 @@ export default function Home() {
             Hi<span className="text-palette-4">,</span> I&apos;m Isai
             <MyRobotIcon className="absolute -top-4 -right-10 w-36 h-auto" />
           </h1>
-          <p className="w-3/4 text-md text-justify">
+          <p className="w-3/4 text-md">
             Mechanical Engineer and Software Developer with a strong resolve to
             transform innovative designs and fascinating concepts to life.
           </p>
-          <div className="flex justify-end mt-4">
-            <CallToAction />
-          </div>
         </div>
+        <CallToAction className="absolute bottom-0 right-0" />
       </section>
       <section className="w-full md:max-w-4xl md:px-0 mx-auto text-palette-2">
         <SplitCard className="mb-20">
