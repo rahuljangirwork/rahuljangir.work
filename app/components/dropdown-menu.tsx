@@ -32,9 +32,7 @@ export default function DropdownMenu({ links, setIsOpen }: DropdownMenuProps) {
           {link.name}
         </Link>
       ))}
-      <div className="flex justify-end px-2">
-        <Socials />
-      </div>
+      <Socials className="flex justify-end" />
     </div>
   );
 }

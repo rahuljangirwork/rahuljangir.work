@@ -3,6 +3,8 @@ import { space_grotesk } from "@/app/components/fonts";
 import "@/app/globals.css";
 import NavBar from "@/app/components/nav-bar";
 import { Toaster } from "@/app/components/ui/toaster";
+import Socials from "./components/socials";
+import { Mail } from "react-feather";
 
 export const metadata: Metadata = {
   title: "Isai Portfolio",
@@ -22,6 +24,9 @@ export default function RootLayout({
         <NavBar />
         <main className="min-h-screen">{children}</main>
         <Toaster />
+        {/*
+        <Socials className="hidden fixed left-16 bottom-12 lg:flex flex-col text-palette-2" /> 
+        */}
         <footer className="flex justify-between items-center bg-palette-2 bg-opacity-10 text-palette-2 text-opacity-50 mt-4 p-2">
           <div className="w-full md:w-1/3 mb-4 md:mb-0">
             <p className="text-sm">
@@ -29,7 +34,9 @@ export default function RootLayout({
             </p>
           </div>
           <h4 className="font-bold pr-4">
-            <a href="mailto:isaisanchezcc@gmail.com">Connect</a>
+            <a href="mailto:isaisanchezcc@gmail.com" className="flex gap-1">
+              Connect <Mail className="w-5" />
+            </a>
           </h4>
         </footer>
       </body>

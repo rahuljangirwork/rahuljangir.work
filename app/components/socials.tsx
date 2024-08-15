@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { GitHub, Twitter } from "react-feather";
+import { GitHub, Twitter, Linkedin } from "react-feather";
+import { cn } from "@/app/lib/utils";
 
 const socialLinks = [
   {
@@ -12,11 +13,16 @@ const socialLinks = [
     href: "https://twitter.com/isaisanzy",
     icon: Twitter,
   },
+  {
+    name: "LinkedIn",
+    href: "/",
+    icon: Linkedin,
+  },
 ];
 
-export default function Socials() {
+export default function Socials({ className }: { className?: string }) {
   return (
-    <div className="flex space-x-2">
+    <div className={cn(className, "gap-2")}>
       {socialLinks.map((link) => {
         const LinkIcon = link.icon;
         return (
@@ -26,7 +32,7 @@ export default function Socials() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label={`Visit ${link.name}`}
-            className="bg-palette-1 p-1 rounded transition-all duration-200 hover:bg-[#5E7E61] hover:shadow-[0_0_10px_rgba(94,126,97,0.8)]"
+            className="border border-palette-1 p-2 rounded-full transition-all duration-200 transform hover:scale-110 hover:bg-[#5E7E61] hover:shadow-[0_0_10px_rgba(94,126,97,0.8)]"
           >
             <LinkIcon size={25} aria-hidden="true" />
           </Link>
