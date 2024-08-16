@@ -1,6 +1,7 @@
 ---
 title: "Mohr's Circle"
 date: "2020-01-01"
+description: "Mohr's Circle is a graphical representation of the state of stress at a point in a material. It is used in mechanical engineering, specifically in the field of machine design, to determine principal stresses, maximum shear stresses, and the orientations of these stresses."
 coverImage: "/assets/background.jpg"
 ---
 

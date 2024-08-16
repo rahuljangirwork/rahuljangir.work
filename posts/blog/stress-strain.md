@@ -1,6 +1,7 @@
 ---
 title: "Stress Strain Diagram"
 date: "2020-01-01"
+description: "A stress-strain diagram is a graphical representation of the relationship between the stress applied to a material and the strain it experiences. This is crucial in the field of mechanical engineering, especially in materials science and machine design."
 coverImage: "/assets/background.jpg"
 ---
 

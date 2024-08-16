@@ -1,6 +1,7 @@
 ---
 title: "Bernuollis"
 date: "2020-01-01"
+description: "Bernoulli's equation is a fundamental principle in fluid dynamics that describes the behavior of a fluid under various conditions. It is derived from the conservation of energy principle and is applicable to incompressible, non-viscous fluids in steady flow."
 coverImage: "/assets/background.jpg"
 ---
 

@@ -24,6 +24,7 @@ export async function getSortedPostsData() {
       content: matterResult.content,
       title: matterResult.data.title,
       date: matterResult.data.date,
+      description: matterResult.data.description,
       src: matterResult.data.coverImage,
       ...matterResult.data,
     };

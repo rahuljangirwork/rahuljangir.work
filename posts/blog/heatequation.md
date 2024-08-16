@@ -1,6 +1,7 @@
 ---
 title: "Heat Equation Explan"
 date: "2020-01-01"
+description: "The heat equation is a fundamental partial differential equation in thermodynamics and mathematical physics. It describes the distribution of heat (or temperature variations) in a given region over time."
 coverImage: "/assets/background.jpg"
 ---
 
