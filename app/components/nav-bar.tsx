@@ -3,18 +3,12 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import clsx from "clsx";
-import Socials from "./socials";
 import { Menu, X } from "react-feather";
 import { TentTreeIcon } from "lucide-react";
 import { useState } from "react";
 import DropdownMenu from "@/app/components/dropdown-menu";
-import { Separator } from "@/app/components/ui/separator";
 
 const links = [
-  {
-    name: "Projects",
-    href: "/projects",
-  },
   {
     name: "Blog",
     href: "/blog",
@@ -30,7 +24,7 @@ export default function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="w-full lg:max-w-xl mx-auto lg:rounded-md sticky top-0 lg:top-2 z-50 mb-2 bg-primary bg-opacity-25 border-palette-1 border-b lg:border shadow-xl backdrop-blur-sm transition-all duration-200">
+    <header className="w-full lg:max-w-4xl mx-auto lg:rounded-md sticky top-0 lg:top-2 z-50 mb-2 bg-primary bg-opacity-25 border-palette-1 border-b lg:border shadow-xl backdrop-blur-sm transition-all duration-200">
       <nav className="flex items-center h-16 px-4 text-palette-3 max-w-7xl mx-auto">
         <div className="flex-1 flex justify-start">
           <Link
