@@ -11,11 +11,11 @@ export default async function BlogCards() {
   const allPostsData = await getSortedPostsData();
   return (
     <div className="w-full max-w-4xl mx-auto px-4 text-palette-3">
-      <ul className="grid grid-cols-2 md:grid-cols-3 gap-3">
-        {allPostsData.map(({ id, date, title, src }) => (
+      <ul className="flex flex-col gap-3">
+        {allPostsData.map(({ id, date, title }) => (
           <li key={id}>
             <Link href={`/blog/${id}`}>
-              <Card src={src} className="flex flex-col h-full">
+              <Card className="flex flex-col h-full">
                 <CardHeader className="flex-grow">
                   <CardTitle>{title}</CardTitle>
                   <CardDescription>{date}</CardDescription>
