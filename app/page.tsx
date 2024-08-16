@@ -1,5 +1,3 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
 import CallToAction from "@/app/components/call-to-action";
@@ -14,28 +12,10 @@ import Carousel from "@/app/components/carousel";
 import Toolkit from "@/app/components/toolkit";
 import { MyRobotIcon } from "@/public/icons";
 import { cn } from "@/app/lib/utils";
-import { useToast } from "@/app/components/ui/use-toast";
-import { Copy } from "lucide-react";
+import EmailToast from "@/app/components/email-toast";
+import ProjectCards from "@/app/components/project-cards";
 
 export default function Home() {
-  const { toast } = useToast();
-  const email = "isaisanchezcc@gmail.com";
-
-  const handleCopyEmail = async () => {
-    try {
-      await navigator.clipboard.writeText(email);
-      toast({
-        description: "Email copied to clipboard ✓",
-      });
-    } catch (err) {
-      console.error("Failed to copy: ", err);
-      toast({
-        description: "Failed to copy email",
-        variant: "destructive",
-      });
-    }
-  };
-
   return (
     <>
       <section
@@ -81,17 +61,12 @@ export default function Home() {
                 film camera to the intricacies of the 2nd Law of Thermodynamics
                 and everything in between. I&apos;d love to hear your feedback
                 or chat about any of these topics, so feel free to reach out!
-                <button
-                  className="pl-1 inline-flex gap-1 text-md text-palette-4 hover:underline focus:outline-none"
-                  onClick={handleCopyEmail}
-                >
-                  {email}
-                  <Copy className="w-4" />
-                </button>
+                <EmailToast className=" inline-flex gap-1 text-md text-palette-4 hover:underline focus:outline-none" />
               </p>
             </SplitCardBody>
           </SplitCardContent>
         </SplitCard>
+        <ProjectCards />
         <SplitCard
           className={cn(
             "mb-5 transition-all duration-200 ease-in-out",
@@ -158,13 +133,7 @@ export default function Home() {
             <SplitCardBody>
               <p className="text-md px-2 text-center">
                 Feel free to shoot me an email at
-                <button
-                  className="pl-1 inline-flex gap-1 text-md text-palette-4 hover:underline focus:outline-none"
-                  onClick={handleCopyEmail}
-                >
-                  {email}
-                  <Copy className="w-4" />
-                </button>
+                <EmailToast className=" inline-flex gap-1 text-md text-palette-4 hover:underline focus:outline-none" />
               </p>
             </SplitCardBody>
           </SplitCardContent>
