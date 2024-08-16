@@ -20,7 +20,15 @@ const socialLinks = [
   },
 ];
 
-export default function Socials({ className }: { className?: string }) {
+export default function Socials({
+  className,
+  iconSize,
+  linkClass,
+}: {
+  className?: string;
+  iconSize?: number;
+  linkClass?: string;
+}) {
   return (
     <div className={cn(className, "gap-2")}>
       {socialLinks.map((link) => {
@@ -32,9 +40,9 @@ export default function Socials({ className }: { className?: string }) {
             target="_blank"
             rel="noopener noreferrer"
             aria-label={`Visit ${link.name}`}
-            className="border border-palette-1 p-2 rounded-full transition-all duration-200 transform hover:scale-110 hover:bg-[#5E7E61] hover:shadow-[0_0_10px_rgba(94,126,97,0.8)]"
+            className={cn(linkClass)}
           >
-            <LinkIcon size={25} aria-hidden="true" />
+            <LinkIcon size={iconSize} aria-hidden="true" />
           </Link>
         );
       })}
