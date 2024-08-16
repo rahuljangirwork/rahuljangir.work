@@ -76,9 +76,9 @@ export default function Home() {
               </SplitCardHeader>
               <SplitCardBody>
                 <p className="text-md text-justify py-3">
-                  Here's a little bit of what I've been working on. Feel free to
-                  reach out with any concerns, questions, or to chat about what
-                  I did!
+                  Here&apos;s a little bit of what I&apos;ve been working on.
+                  Feel free to reach out with any concerns, questions, or to
+                  chat about what I did!
                 </p>
               </SplitCardBody>
             </SplitCardContent>
