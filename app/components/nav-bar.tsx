@@ -45,7 +45,7 @@ export default function NavBar() {
               <Link
                 href={link.href}
                 className={clsx(
-                  "text-md px-3 py-2 rounded-md transition-all duration-200",
+                  "text-md font-semibold px-3 py-2 rounded-md transition-all duration-200",
                   pathname === link.href
                     ? "text-palette-4 bg-palette-2 bg-opacity-10 underline underline-offset-2"
                     : "text-palette-3 hover:underline hover:bg-palette-2 hover:bg-opacity-10 hover:underline-offset-2 hover:shadow-xl",
