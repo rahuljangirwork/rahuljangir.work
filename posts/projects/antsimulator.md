@@ -5,4 +5,4 @@ description: "A simulated ant colony written in C++ with algorithms for food for
 coverImage: "/assets/background.jpg"
 ---
 
-#
+# Header

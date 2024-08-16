@@ -5,4 +5,4 @@ description: "Designed in Solidworks and programmed in C++ with the Arduino IDE.
 coverImage: "/assets/background.jpg"
 ---
 
-#
+# Header
