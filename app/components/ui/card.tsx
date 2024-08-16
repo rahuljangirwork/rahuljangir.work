@@ -1,39 +1,20 @@
 import * as React from "react";
 
 import { cn } from "@/app/lib/utils";
-import Image from "next/image";
 
-interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
-  src?: string;
-}
-
-const Card = React.forwardRef<HTMLDivElement, CardProps>(
-  ({ className, src, ...props }, ref) => (
-    <div
-      ref={ref}
-      className={cn(
-        "rounded-xl border border-palette-3 text-card-foreground group/card",
-        "transition-all duration-200 ease-in-out",
-        "hover:scale-[1.01] hover:shadow-[0_10px_60px_25px_rgba(79,111,82,0.3)]",
-        className,
-      )}
-      {...props}
-    >
-      {src && (
-        <div className="aspect-w-3 aspect-h-2 overflow-hidden rounded-t-lg">
-          <Image
-            src={src}
-            alt={`Cover Image for ${src}`}
-            width={484}
-            height={322}
-            className="object-cover"
-          />
-        </div>
-      )}
-      {props.children}
-    </div>
-  ),
-);
+const Card = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={cn(
+      "rounded-lg border border-neutral-200 bg-white text-neutral-950 shadow-sm dark:border-neutral-800 dark:bg-neutral-950 dark:text-neutral-50",
+      className,
+    )}
+    {...props}
+  />
+));
 Card.displayName = "Card";
 
 const CardHeader = React.forwardRef<
@@ -42,10 +23,7 @@ const CardHeader = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={cn(
-      "flex flex-col space-y-1.5 p-6 group-hover/card:bg-palette-2 group-hover/card:bg-opacity-10 group-hover/card:rounded-b-xl",
-      className,
-    )}
+    className={cn("flex flex-col space-y-1.5 p-6", className)}
     {...props}
   />
 ));
@@ -72,7 +50,7 @@ const CardDescription = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <p
     ref={ref}
-    className={cn("text-sm text-muted-foreground", className)}
+    className={cn("text-sm text-neutral-500 dark:text-neutral-400", className)}
     {...props}
   />
 ));
@@ -82,14 +60,7 @@ const CardContent = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => (
-  <div
-    ref={ref}
-    className={cn(
-      "p-6 pt-0 group-hover/card:bg-palette-2 group-hover/card:bg-opacity-10",
-      className,
-    )}
-    {...props}
-  />
+  <div ref={ref} className={cn("p-6 pt-0", className)} {...props} />
 ));
 CardContent.displayName = "CardContent";
 
