@@ -27,3 +27,7 @@
     @apply bg-palette-4;
   }
 }
+
+html {
+  scroll-behavior: smooth;
+}
