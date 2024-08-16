@@ -6,7 +6,7 @@ export default function CallToAction({ className }: { className?: string }) {
   return (
     <div className={cn("flex items-center text-palette-2 gap-2", className)}>
       <Link
-        href="/projects"
+        href="#projects"
         className="whitespace-nowrap italic text-sm hover:text-palette-1 transition-colors"
       >
         Explore my projects
