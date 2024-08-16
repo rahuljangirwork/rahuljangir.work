@@ -20,7 +20,7 @@ export default function Home() {
     <>
       <section
         className={cn(
-          "relative text-palette-2 w-full mx-auto gap-6 px-2 my-10",
+          "relative text-palette-2 w-full mx-auto gap-6 px-2 my-20",
           "lg:max-w-4xl lg:px-4",
           "flex flex-col md:flex-row justify-between items-center",
         )}
@@ -66,6 +66,24 @@ export default function Home() {
             </SplitCardBody>
           </SplitCardContent>
         </SplitCard>
+        <div id="projects" className="scroll-mt-24">
+          <SplitCard className="mb-2">
+            <SplitCardContent side="all">
+              <SplitCardHeader>
+                <h1 className="text-center font-bold text-3xl">
+                  Check out my latest selected work
+                </h1>
+              </SplitCardHeader>
+              <SplitCardBody>
+                <p className="text-md text-justify py-3">
+                  Here's a little bit of what I've been working on. Feel free to
+                  reach out with any concerns, questions, or to chat about what
+                  I did!
+                </p>
+              </SplitCardBody>
+            </SplitCardContent>
+          </SplitCard>
+        </div>
         <ProjectCards />
         <SplitCard
           className={cn(
