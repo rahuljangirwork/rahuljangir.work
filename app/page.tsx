@@ -14,6 +14,7 @@ import { MyRobotIcon } from "@/public/icons";
 import { cn } from "@/app/lib/utils";
 import EmailToast from "@/app/components/email-toast";
 import ProjectCards from "@/app/components/project-cards";
+import Socials from "./components/socials";
 
 export default function Home() {
   return (
@@ -33,7 +34,7 @@ export default function Home() {
           className="border-2 border-palette-1 rounded-xl"
         />
         <div className="flex flex-col max-w-lg md:w-full h-full">
-          <h1 className="relative font-bold text-6xl pb-2 text-left">
+          <h1 className="relative font-bold text-6xl text-left pb-2">
             Hi<span className="text-palette-4">,</span> I&apos;m Isai
             <MyRobotIcon className="absolute -top-4 -right-10 w-36 h-auto" />
           </h1>
@@ -41,6 +42,11 @@ export default function Home() {
             Mechanical Engineer and Software Developer with a strong resolve to
             transform innovative designs and fascinating concepts to life.
           </p>
+          <Socials
+            className="flex pt-2"
+            iconSize={18}
+            linkClass="p-2 border border-palette-1 rounded-full"
+          />
         </div>
         <CallToAction className="absolute bottom-0 right-0" />
       </section>
