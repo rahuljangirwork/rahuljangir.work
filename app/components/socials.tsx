@@ -22,7 +22,7 @@ const socialLinks = [
 
 export default function Socials({
   className,
-  iconSize,
+  iconSize = 25,
   linkClass,
 }: {
   className?: string;
