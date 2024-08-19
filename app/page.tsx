@@ -45,7 +45,7 @@ export default function Home() {
           <Socials
             className="flex pt-2"
             iconSize={18}
-            linkClass="p-2 border border-palette-1 rounded-full"
+            linkClass="p-1.5 border border-palette-1 rounded-lg hover:text-palette-1"
           />
         </div>
         <CallToAction className="absolute bottom-0 right-0" />
