@@ -24,7 +24,7 @@ export default function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="w-full lg:max-w-4xl mx-auto lg:rounded-md sticky top-0 lg:top-2 z-50 mb-2 bg-primary bg-opacity-25 border-palette-1 border-b lg:border shadow-xl backdrop-blur-sm transition-all duration-200">
+    <header className="w-full lg:max-w-2xl mx-auto lg:rounded-md sticky top-0 lg:top-2 z-50 mb-2 bg-primary bg-opacity-25 border-palette-1 border-b lg:border shadow-xl backdrop-blur-sm transition-all duration-200">
       <nav className="flex items-center h-16 px-4 text-palette-3 max-w-7xl mx-auto">
         <div className="flex-1 flex justify-start">
           <Link
