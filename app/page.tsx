@@ -34,7 +34,7 @@ export default function Home() {
           className="border-2 border-palette-1 rounded-xl"
         />
         <div className="flex flex-col max-w-lg md:w-full h-full">
-          <h1 className="relative font-bold text-6xl text-left pb-2">
+          <h1 className="relative font-bold text-6xl text-left pb-1">
             Hi<span className="text-palette-4">,</span> I&apos;m Isai
             <MyRobotIcon className="absolute -top-4 -right-10 w-36 h-auto" />
           </h1>
