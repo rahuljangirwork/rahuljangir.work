@@ -48,7 +48,7 @@ export default function Home() {
             linkClass="p-1.5 border border-palette-1 rounded-lg hover:text-palette-1"
           />
         </div>
-        <CallToAction className="absolute bottom-0 right-0" />
+        <CallToAction className="absolute -bottom-1 right-0" />
       </section>
       <section className="w-full md:max-w-4xl md:px-0 mx-auto text-palette-2">
         <SplitCard className="mb-20">
@@ -81,7 +81,7 @@ export default function Home() {
                 </h1>
               </SplitCardHeader>
               <SplitCardBody>
-                <p className="text-md text-justify py-3">
+                <p className="text-md text-center py-3">
                   Here&apos;s a little bit of what I&apos;ve been working on.
                   Feel free to reach out with any concerns, questions, or to
                   chat about what I did!
