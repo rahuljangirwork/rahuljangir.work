@@ -8,12 +8,13 @@ export default async function Post({ params }: { params: { slug: string } }) {
   const postData = await getPostData(params.slug);
 
   return (
-    <div className="flex flex-col justify-center items-center">
-      <div key={postData.title} className="prose prose-offwhite w-full m-1">
-        <Markdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]}>
-          {postData.content}
-        </Markdown>
-      </div>
+    <div
+      key={postData.title}
+      className="mx-auto prose prose-offwhite w-full mt-4 px-6"
+    >
+      <Markdown remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]}>
+        {postData.content}
+      </Markdown>
     </div>
   );
 }
