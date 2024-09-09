@@ -7,9 +7,9 @@ coverImage: "/assets/background.jpg"
 
 # A Brief Guide on Installing Neovim on WSL 2
 
-Welcome. There were lots of hurdles I had to hop over when I tried to install Neovim on my WSL 2 environment, so I wrote down a simple guide to look bac on. Please note I'm using the Ubuntu distribution, so some of the commands may differ. In any case, let's get started:
+There were lots of hurdles I had to hop over when I tried to install Neovim on my WSL 2 environment, so I wrote down a simple guide to look back on. Please note I'm using the Ubuntu distribution, so some of the commands may differ. In any case, let's get started:
 
-1. Installed prerequisites: ``sudo apt-get install ninja-build gettext cmake unzip curl build-essential``
+1. Installed prerequisites: `sudo apt-get install ninja-build gettext cmake unzip curl build-essential`
 2. Cloned the neovim repository into my `~/repos` folder: `git clone https://github.com/neovim/neovim ~/repos`
 3. Ran `cd ~/repos/neovim` and checked out the stable branch with `git checkout stable`
 4. I wanted Neovim installed in a specific directory, namely in my own `~/src` directory. Why? I guess simply to keep things organized. The official neovim repo said installing in the default `/usr/local` directory can [complicate](https://github.com/neovim/neovim/blob/master/INSTALL.md#install-from-source) uninstallation. In any case, we have to build it first by running the following command with some cmake flags:
@@ -31,7 +31,7 @@ LuaJIT 2.1.1713484068
 Run "nvim -V1 -v" for more info
 ```
 
-7. Now if you want some configuration files, create the config directory with `mkdir -p ~/.config/nvim` and either start writing your own lua configs or fork them from this repository or others if you want. Go crazy.
+Now to get started with configuring Neovim to your liking, you should first create the config directory with `mkdir -p ~/.config/nvim`. From here you can write your own config with the `init.lua` starting point lua module, or clone other configs or distributions found on Github. Here's [mine](https://github.com/isai7710/darksaber-nvim) if you want to take a look at it.
 
 ### Another quick note on Lua and Luarocks
 
