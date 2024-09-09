@@ -46,13 +46,17 @@ const config = {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
-      typography: () => ({
+      typography: {
         DEFAULT: {
-          css: [
-            {
-              maxWidth: "85ch",
+          css: {
+            maxWidth: "85ch",
+            "code::before": {
+              content: '""',
             },
-          ],
+            "code::after": {
+              content: '""',
+            },
+          },
         },
         offwhite: {
           css: {
@@ -90,7 +94,7 @@ const config = {
             "--tw-prose-invert-td-borders": "#4F6F52", // palette-1
           },
         },
-      }),
+      },
     },
   },
   plugins: [
