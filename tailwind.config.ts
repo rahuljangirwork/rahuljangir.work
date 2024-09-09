@@ -60,6 +60,24 @@ const config = {
         },
         offwhite: {
           css: {
+            code: {
+              color: "#F28D35", // Accent color for inline code
+              backgroundColor: "#1A4D2E", // Dark forest green background
+              padding: "0.2em 0.4em",
+              borderRadius: "0.25rem",
+              fontWeight: "400",
+            },
+            pre: {
+              backgroundColor: "#1A4D2E",
+            },
+            "pre code": {
+              color: "#F28D35", // Accent color for code block text
+              backgroundColor: "transparent", // Remove background from code inside pre
+              padding: "0",
+              borderRadius: "0",
+              fontWeight: "400",
+            },
+
             "--tw-prose-body": "#F5E5E6", // palette-3
             "--tw-prose-headings": "#E8DFCA", // palette-2
             "--tw-prose-lead": "#E8DFCA", // palette-2
@@ -71,9 +89,6 @@ const config = {
             "--tw-prose-quotes": "#E8DFCA", // palette-2
             "--tw-prose-quote-borders": "#4F6F52", // palette-1
             "--tw-prose-captions": "#F5E5E6", // palette-3
-            "--tw-prose-code": "#F28D35", // palette-4
-            "--tw-prose-pre-code": "#F5E5E6", // palette-3
-            "--tw-prose-pre-bg": "#0D2718", // Darker shade of primary
             "--tw-prose-th-borders": "#4F6F52", // palette-1
             "--tw-prose-td-borders": "#4F6F52", // palette-1
             "--tw-prose-invert-body": "#E8DFCA", // palette-2
@@ -87,9 +102,6 @@ const config = {
             "--tw-prose-invert-quotes": "#F5E5E6", // palette-3
             "--tw-prose-invert-quote-borders": "#4F6F52", // palette-1
             "--tw-prose-invert-captions": "#E8DFCA", // palette-2
-            "--tw-prose-invert-code": "#F28D35", // palette-4
-            "--tw-prose-invert-pre-code": "#E8DFCA", // palette-2
-            "--tw-prose-invert-pre-bg": "#0D2718", // Darker shade of primary
             "--tw-prose-invert-th-borders": "#4F6F52", // palette-1
             "--tw-prose-invert-td-borders": "#4F6F52", // palette-1
           },
