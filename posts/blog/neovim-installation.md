@@ -1,13 +1,15 @@
 ---
-title: "My Neovim Installation"
+title: "Neovim Installation Guide"
 date: "2024-09-04"
 description: "A brief tutorial on installing Neovim from source on a WSL 2 environment running the Ubuntu distribution"
 coverImage: "/assets/background.jpg"
 ---
 
-## How I installed Neovim from source on my WSL 2 environment running Ubuntu
+# A Brief Guide on Installing Neovim on WSL 2
 
-1. Installed prerequisites: `sudo apt-get install ninja-build gettext cmake unzip curl build-essential`
+Welcome. There were lots of hurdles I had to hop over when I tried to install Neovim on my WSL 2 environment, so I wrote down a simple guide to look bac on. Please note I'm using the Ubuntu distribution, so some of the commands may differ. In any case, let's get started:
+
+1. Installed prerequisites: ``sudo apt-get install ninja-build gettext cmake unzip curl build-essential``
 2. Cloned the neovim repository into my `~/repos` folder: `git clone https://github.com/neovim/neovim ~/repos`
 3. Ran `cd ~/repos/neovim` and checked out the stable branch with `git checkout stable`
 4. I wanted Neovim installed in a specific directory, namely in my own `~/src` directory. Why? I guess simply to keep things organized. The official neovim repo said installing in the default `/usr/local` directory can [complicate](https://github.com/neovim/neovim/blob/master/INSTALL.md#install-from-source) uninstallation. In any case, we have to build it first by running the following command with some cmake flags:
