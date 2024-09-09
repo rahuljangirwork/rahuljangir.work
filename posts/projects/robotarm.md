@@ -6,3 +6,17 @@ coverImage: "/assets/background.jpg"
 ---
 
 # Header
+
+Here's some regular markdown content.
+
+<collapsible title="Click to expand">
+  This content will be collapsible. You can include any markdown here.
+
+- List item 1
+- List item 2
+
+## Even subheadings work!
+
+</collapsible>
+
+More regular content here.
