@@ -6,7 +6,7 @@ import {
   CardTitle,
   CardDescription,
 } from "@/app/components/ui/card";
-import { getSortedPostsData } from "@/app/lib/projectposts";
+import { getSortedPosts } from "@/app/lib/projectposts";
 import Link from "next/link";
 
 export default async function ProjectCards({
@@ -14,22 +14,25 @@ export default async function ProjectCards({
 }: {
   className?: string;
 }) {
-  const allPostsData = await getSortedPostsData();
+  const posts = await getSortedPosts();
   return (
     <div className="w-full max-w-4xl mx-auto px-4 text-palette-3 mb-12">
       <ul className="flex gap-3">
-        {allPostsData.map(({ id, date, title }) => (
-          <li key={id}>
-            <Link href={`/projects/${id}`}>
-              <Card className="flex flex-col h-full">
-                <CardHeader className="flex-grow">
-                  <CardTitle>{title}</CardTitle>
-                  <CardDescription>{date}</CardDescription>
-                </CardHeader>
-              </Card>
-            </Link>
-          </li>
-        ))}
+        {posts.map(({ slug, frontmatter }) => {
+          return (
+            <li key={slug} className="flex-1 min-w-[250px]">
+              <Link href={`/projects/${slug}`}>
+                <Card className="flex flex-col h-full">
+                  <CardHeader className="flex-grow">
+                    <CardTitle>{frontmatter.title}</CardTitle>
+                    <CardDescription>{frontmatter.publishDate}</CardDescription>
+                  </CardHeader>
+                  {/* Optionally include CardContent or CardFooter if needed */}
+                </Card>
+              </Link>
+            </li>
+          );
+        })}
       </ul>
     </div>
   );
