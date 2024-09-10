@@ -52,12 +52,7 @@ const CustomLink: React.FC<CustomLinkProps> = (props) => {
   return <a target="_blank" rel="noopener noreferrer" {...props} />;
 };
 
-const RoundedImage: React.FC<ImageProps> = (props) => {
-  return <Image alt={props.alt} className="rounded-lg" {...props} />;
-};
-
 export const CustomMDXComponents = {
-  Image: RoundedImage,
   a: CustomLink,
   Table,
   Collapsible,
