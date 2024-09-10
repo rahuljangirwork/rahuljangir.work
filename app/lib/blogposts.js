@@ -4,7 +4,7 @@ import matter from "gray-matter";
 
 const postsDirectory = path.join(process.cwd(), "/posts/blog");
 
-export async function getSortedPostsData() {
+export async function getSortedPostsMetaData() {
   // Get file names under /posts
   const fileNames = fs.readdirSync(postsDirectory);
   const allPostsData = fileNames.map((fileName) => {
@@ -21,7 +21,6 @@ export async function getSortedPostsData() {
     // Combine the data with the id
     return {
       id,
-      content: matterResult.content,
       title: matterResult.data.title,
       date: matterResult.data.date,
       description: matterResult.data.description,
