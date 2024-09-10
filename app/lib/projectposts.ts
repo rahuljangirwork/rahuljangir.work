@@ -1,6 +1,9 @@
 import fs from "fs";
 import path from "path";
 import { compileMDX } from "next-mdx-remote/rsc";
+import remarkMath from "remark-math";
+import rehypeKatex from "rehype-katex";
+import "katex/dist/katex.min.css"; // Import KaTeX styles
 import { CustomMDXComponents } from "@/app/components/mdx";
 
 const contentDir = path.join(process.cwd(), "/posts/projects");
@@ -19,7 +22,13 @@ export async function getPostBySlug(slug: string) {
   const { frontmatter, content } = await compileMDX<PostFrontmatter>({
     source: fileContent,
     components: CustomMDXComponents,
-    options: { parseFrontmatter: true },
+    options: {
+      mdxOptions: {
+        remarkPlugins: [remarkMath],
+        rehypePlugins: [rehypeKatex],
+      },
+      parseFrontmatter: true,
+    },
   });
   return {
     frontmatter,
