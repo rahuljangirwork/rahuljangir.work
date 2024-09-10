@@ -1,22 +1,24 @@
 import fs from "fs";
 import path from "path";
 import { compileMDX } from "next-mdx-remote/rsc";
-import Collapsible from "@/app/components/collapsible";
+import { CustomMDXComponents } from "@/app/components/mdx";
 
 const contentDir = path.join(process.cwd(), "/posts/projects");
+
+type PostFrontmatter = {
+  title: string;
+  publishDate: string;
+  description: string;
+  coverImage: string;
+};
 
 export async function getPostBySlug(slug: string) {
   const fileName = slug + ".mdx";
   const filePath = path.join(contentDir, fileName);
   const fileContent = fs.readFileSync(filePath, "utf8");
-  const { frontmatter, content } = await compileMDX<{
-    title: string;
-    publishDate: string;
-    description: string;
-    coverImage: string;
-  }>({
+  const { frontmatter, content } = await compileMDX<PostFrontmatter>({
     source: fileContent,
-    components: { Collapsible },
+    components: CustomMDXComponents,
     options: { parseFrontmatter: true },
   });
   return {
