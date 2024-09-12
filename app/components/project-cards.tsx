@@ -4,10 +4,12 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-  CardDescription,
 } from "@/app/components/ui/card";
+import { Badge } from "@/app/components/ui/badge";
 import { getSortedPosts } from "@/app/lib/projectposts";
 import Link from "next/link";
+import Image from "next/image";
+import { cn } from "@/app/lib/utils";
 
 export default async function ProjectCards({
   className,
@@ -16,24 +18,56 @@ export default async function ProjectCards({
 }) {
   const posts = await getSortedPosts();
   return (
-    <div className="w-full max-w-4xl mx-auto px-4 text-palette-3 mb-12">
-      <ul className="flex gap-3">
-        {posts.map(({ slug, frontmatter }) => {
-          return (
-            <li key={slug} className="flex-1 min-w-[250px]">
-              <Link href={`/projects/${slug}`}>
-                <Card className="flex flex-col h-full">
-                  <CardHeader className="flex-grow">
-                    <CardTitle>{frontmatter.title}</CardTitle>
-                    <CardDescription>{frontmatter.publishDate}</CardDescription>
-                  </CardHeader>
-                  {/* Optionally include CardContent or CardFooter if needed */}
-                </Card>
-              </Link>
-            </li>
-          );
-        })}
-      </ul>
-    </div>
+    <>
+      {posts.map(({ slug, frontmatter }) => {
+        return (
+          <Card
+            key={slug}
+            className={cn(
+              className,
+              "flex flex-col overflow-hidden border h-full",
+            )}
+          >
+            <Link href={`/projects/${slug}`}>
+              <Image
+                src={frontmatter.coverImage}
+                alt={frontmatter.title}
+                width={500}
+                height={300}
+                className="h-full w-full overflow-hidden object-cover object-top"
+              />
+            </Link>
+            <Link href={`/projects/${slug}`}>
+              <CardHeader className="px-2">
+                <div className="flex flex-col py-1">
+                  <CardTitle className="mt-1 text-base">
+                    {frontmatter.title}
+                  </CardTitle>
+                  <time className="font-sans text-xs text-palette-1">
+                    {frontmatter.publishDate}
+                  </time>
+                </div>
+              </CardHeader>
+              <CardContent className="mt-auto flex flex-col px-2">
+                {frontmatter.technologies &&
+                  frontmatter.technologies.length > 0 && (
+                    <div className="mt-2 flex flex-wrap gap-1">
+                      {frontmatter.technologies?.map((tag) => (
+                        <Badge
+                          className="px-1 py-0 text-[10px]"
+                          style={{ backgroundColor: tag.color }}
+                          key={tag.name}
+                        >
+                          {tag.name}
+                        </Badge>
+                      ))}
+                    </div>
+                  )}
+              </CardContent>
+            </Link>
+          </Card>
+        );
+      })}
+    </>
   );
 }
