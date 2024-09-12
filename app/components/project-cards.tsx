@@ -32,15 +32,15 @@ export default async function ProjectCards({
               <Image
                 src={frontmatter.coverImage}
                 alt={frontmatter.title}
-                width={500}
-                height={300}
+                width={300}
+                height={100}
                 className="h-full w-full overflow-hidden object-cover object-top"
               />
             </Link>
             <Link href={`/projects/${slug}`}>
               <CardHeader className="px-2">
-                <div className="flex flex-col py-1">
-                  <CardTitle className="mt-1 text-base">
+                <div className="flex flex-col p-1">
+                  <CardTitle className="mt-1 text-lg">
                     {frontmatter.title}
                   </CardTitle>
                   <time className="font-sans text-xs text-palette-1">
@@ -48,7 +48,7 @@ export default async function ProjectCards({
                   </time>
                 </div>
               </CardHeader>
-              <CardContent className="mt-auto flex flex-col px-2">
+              <CardContent className="mt-auto flex flex-row px-3 pb-3">
                 {frontmatter.technologies &&
                   frontmatter.technologies.length > 0 && (
                     <div className="mt-2 flex flex-wrap gap-1">
