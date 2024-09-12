@@ -13,6 +13,10 @@ type PostFrontmatter = {
   publishDate: string;
   description: string;
   coverImage: string;
+  technologies: {
+    name: string;
+    color: string;
+  }[];
 };
 
 export async function getPostBySlug(slug: string) {
