@@ -73,7 +73,7 @@ export default function Home() {
           </SplitCardContent>
         </SplitCard>
         <div id="projects" className="scroll-mt-24">
-          <SplitCard className="mb-2">
+          <SplitCard>
             <SplitCardContent side="all">
               <SplitCardHeader>
                 <h1 className="text-center font-bold text-3xl">
@@ -81,7 +81,7 @@ export default function Home() {
                 </h1>
               </SplitCardHeader>
               <SplitCardBody>
-                <p className="text-md text-center py-3">
+                <p className="text-md text-center">
                   Here&apos;s a little bit of what I&apos;ve been working on.
                   Feel free to reach out with any concerns, questions, or to
                   chat about what I did!
@@ -90,13 +90,15 @@ export default function Home() {
             </SplitCardContent>
           </SplitCard>
         </div>
-        <ProjectCards />
-        <SplitCard
-          className={cn(
-            "mb-5 transition-all duration-200 ease-in-out",
-            "hover:scale-[1.01] hover:shadow-[0_10px_60px_25px_rgba(79,111,82,0.3)]",
-          )}
-        >
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-3 mx-auto p-2 mb-20">
+          <ProjectCards
+            className={cn(
+              "transition-all duration-200 ease-in-out",
+              "hover:scale-[1.01] hover:shadow-[0_10px_60px_25px_rgba(79,111,82,0.3)]",
+            )}
+          />
+        </div>
+        <SplitCard className="mb-5">
           <SplitCardContent className="bg-palette-2 bg-opacity-10">
             <SplitCardHeader>
               <h2 className="text-xl text-center">Education</h2>
@@ -116,12 +118,7 @@ export default function Home() {
             <Carousel src="/shepherd.jpg" />
           </SplitCardThumbnail>
         </SplitCard>
-        <SplitCard
-          className={cn(
-            "mb-5 transition-all duration-200 ease-in-out",
-            "hover:scale-[1.01] hover:shadow-[0_10px_60px_25px_rgba(79,111,82,0.3)]",
-          )}
-        >
+        <SplitCard className="mb-5">
           <SplitCardContent
             side="all"
             className="relative bg-palette-2 bg-opacity-10"
@@ -134,7 +131,7 @@ export default function Home() {
               <p className="absolute right-0 bottom-0 p-1 text-xs italic text-palette-2">
                 Check out my
                 <Link
-                  href="/projects"
+                  href="#projects"
                   className="text-palette-4 hover:text-palette-1 transition-colors px-1"
                 >
                   projects
@@ -144,12 +141,7 @@ export default function Home() {
             </SplitCardBody>
           </SplitCardContent>
         </SplitCard>
-        <SplitCard
-          className={cn(
-            "mb-5 transition-all duration-200 ease-in-out",
-            "hover:scale-[1.01] hover:shadow-[0_10px_60px_25px_rgba(79,111,82,0.3)]",
-          )}
-        >
+        <SplitCard className="mb-5">
           <SplitCardContent side="all" className="bg-palette-2 bg-opacity-10">
             <SplitCardHeader>
               <h2 className="text-xl text-center">Contact Me</h2>
