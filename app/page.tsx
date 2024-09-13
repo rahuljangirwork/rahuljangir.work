@@ -14,7 +14,6 @@ import { MyRobotIcon } from "@/public/icons";
 import { cn } from "@/app/lib/utils";
 import EmailToast from "@/app/components/email-toast";
 import ProjectCards from "@/app/components/project-cards";
-import Socials from "./components/socials";
 import * as motion from "framer-motion/client";
 
 export default function Home() {
@@ -22,63 +21,51 @@ export default function Home() {
     <>
       <section
         className={cn(
-          "relative text-palette-2 w-full mx-auto gap-6 px-2 my-20",
-          "lg:max-w-4xl lg:px-4",
-          "flex flex-col md:flex-row justify-between items-center",
+          "relative text-palette-2 max-w-2xl mx-auto gap-2 px-2 my-20",
+          "md:max-w-3xl",
+          "lg:max-w-4xl lg:px-0 lg:gap-4",
+          "flex flex-row items-center",
         )}
       >
-        <Image
-          src="/mebw.JPG"
-          width={360}
-          height={240}
-          alt="photo of me"
-          className="border-2 border-palette-1 rounded-xl"
-        />
         <div className="flex flex-col max-w-lg md:w-full h-full">
           <motion.h1
-            className="relative font-bold text-6xl text-left pb-1"
+            className="relative font-bold text-4xl sm:text-6xl text-left pb-1"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
             Hi<span className="text-palette-4">,</span> I&apos;m Isai
-            <motion.div
-              initial={{ opacity: 0, scale: 1 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.1, duration: 2 }}
-            >
-              <MyRobotIcon className="absolute -top-1 -right-20 w-36 h-auto" />
-            </motion.div>
           </motion.h1>
           <motion.p
-            className="w-5/6 text-md"
+            className="w-full text-lg lg:text-md"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.5 }}
           >
-            a Mechanical Engineer and freelance Software Developer trained in
-            CAD modeling, robotics, and web development with a strong resolve to
-            transorm innovative designs to life.
+            Mechanical Engineer and freelance Software Developer trained in CAD
+            modeling, robotics, and web development. I love transforming
+            innovative designs to life.
           </motion.p>
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.5 }}
+            className="hidden lg:flex mt-2"
+            initial={{ opacity: 0, scale: 1 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.6, duration: 0.5 }}
           >
-            <Socials
-              className="flex pt-1"
-              iconSize={18}
-              linkClass="p-1.5 border border-palette-1 rounded-lg transition-all duration-200 ease-in-out hover:text-palette-1"
-            />
+            <CallToAction className="py-2" />
           </motion.div>
         </div>
-        <motion.div
-          initial={{ opacity: 0, scale: 1 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.6, duration: 0.5 }}
-        >
-          <CallToAction className="absolute -bottom-1 right-0" />
-        </motion.div>
+        <Image
+          src="/mebw.JPG"
+          width={360}
+          height={240}
+          alt="photo of me"
+          className={cn(
+            "border-2 border-palette-1",
+            "w-16 h-full rounded-full", // Mobile styles
+            "md:w-auto md:h-auto md:rounded-xl", // Desktop styles
+          )}
+        />
       </section>
       <section className="w-full md:max-w-4xl md:px-0 mx-auto text-palette-2">
         <SplitCard className="mb-20">
