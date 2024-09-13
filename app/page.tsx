@@ -15,6 +15,7 @@ import { cn } from "@/app/lib/utils";
 import EmailToast from "@/app/components/email-toast";
 import ProjectCards from "@/app/components/project-cards";
 import Socials from "./components/socials";
+import * as motion from "framer-motion/client";
 
 export default function Home() {
   return (
@@ -34,21 +35,50 @@ export default function Home() {
           className="border-2 border-palette-1 rounded-xl"
         />
         <div className="flex flex-col max-w-lg md:w-full h-full">
-          <h1 className="relative font-bold text-6xl text-left pb-1">
+          <motion.h1
+            className="relative font-bold text-6xl text-left pb-1"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
             Hi<span className="text-palette-4">,</span> I&apos;m Isai
-            <MyRobotIcon className="absolute -top-4 -right-10 w-36 h-auto" />
-          </h1>
-          <p className="w-3/4 text-md">
-            Mechanical Engineer and Software Developer with a strong resolve to
-            transform innovative designs and fascinating concepts to life.
-          </p>
-          <Socials
-            className="flex pt-2"
-            iconSize={18}
-            linkClass="p-1.5 border border-palette-1 rounded-lg hover:text-palette-1"
-          />
+            <motion.div
+              initial={{ opacity: 0, scale: 1 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.1, duration: 2 }}
+            >
+              <MyRobotIcon className="absolute -top-1 -right-20 w-36 h-auto" />
+            </motion.div>
+          </motion.h1>
+          <motion.p
+            className="w-5/6 text-md"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.5 }}
+          >
+            a Mechanical Engineer and freelance Software Developer trained in
+            CAD modeling, robotics, and web development with a strong resolve to
+            transorm innovative designs to life.
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 0.5 }}
+          >
+            <Socials
+              className="flex pt-1"
+              iconSize={18}
+              linkClass="p-1.5 border border-palette-1 rounded-lg transition-all duration-200 ease-in-out hover:text-palette-1"
+            />
+          </motion.div>
         </div>
-        <CallToAction className="absolute -bottom-1 right-0" />
+        <motion.div
+          initial={{ opacity: 0, scale: 1 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.6, duration: 0.5 }}
+        >
+          <CallToAction className="absolute -bottom-1 right-0" />
+        </motion.div>
       </section>
       <section className="w-full md:max-w-4xl md:px-0 mx-auto text-palette-2">
         <SplitCard className="mb-20">
@@ -83,8 +113,6 @@ export default function Home() {
               <SplitCardBody>
                 <p className="text-md text-center">
                   Here&apos;s a little bit of what I&apos;ve been working on.
-                  Feel free to reach out with any concerns, questions, or to
-                  chat about what I did!
                 </p>
               </SplitCardBody>
             </SplitCardContent>
