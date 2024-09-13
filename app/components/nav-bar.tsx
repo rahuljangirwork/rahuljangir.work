@@ -7,6 +7,8 @@ import { Menu, X } from "react-feather";
 import { TentTreeIcon } from "lucide-react";
 import { useState } from "react";
 import DropdownMenu from "@/app/components/dropdown-menu";
+import { Separator } from "./ui/separator";
+import Socials from "./socials";
 
 const links = [
   {
@@ -25,7 +27,7 @@ export default function NavBar() {
 
   return (
     <header className="w-full lg:max-w-2xl mx-auto lg:rounded-md sticky top-0 lg:top-2 z-50 mb-2 bg-primary bg-opacity-25 border-palette-1 border-b lg:border shadow-xl backdrop-blur-sm transition-all duration-200">
-      <nav className="flex items-center h-16 px-4 text-palette-3 max-w-7xl mx-auto">
+      <nav className="relative flex items-center h-16 px-4 text-palette-3 max-w-7xl mx-auto">
         <div className="flex-1 flex justify-start">
           <Link
             href="/"
@@ -39,23 +41,25 @@ export default function NavBar() {
             Home
           </Link>
         </div>
-        <ul className="flex-1 hidden justify-end items-center space-x-2 md:flex">
-          {links.map((link) => (
-            <li key={link.name}>
-              <Link
-                href={link.href}
-                className={clsx(
-                  "text-md font-semibold px-3 py-2 rounded-md transition-all duration-200",
-                  pathname === link.href
-                    ? "text-palette-4 bg-palette-2 bg-opacity-10 underline underline-offset-2"
-                    : "text-palette-3 hover:underline hover:bg-palette-2 hover:bg-opacity-10 hover:underline-offset-2 hover:shadow-xl",
-                )}
-              >
-                {link.name}
-              </Link>
-            </li>
-          ))}
-        </ul>
+        <div className="hidden md:flex flex-1 items-center justify-end gap-2">
+          <ul className="flex items-center space-x-2 ">
+            {links.map((link) => (
+              <li key={link.name}>
+                <Link
+                  href={link.href}
+                  className={clsx(
+                    "text-md font-semibold px-3 py-2 rounded-md transition-all duration-200",
+                    pathname === link.href
+                      ? "text-palette-4 bg-palette-2 bg-opacity-10 underline underline-offset-2"
+                      : "text-palette-3 hover:underline hover:bg-palette-2 hover:bg-opacity-10 hover:underline-offset-2 hover:shadow-xl",
+                  )}
+                >
+                  {link.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
         {/*
         <div className="flex-1 justify-end hidden md:flex gap-1">
           <Socials />
@@ -73,6 +77,11 @@ export default function NavBar() {
           </button>
           {isOpen && <DropdownMenu links={links} setIsOpen={setIsOpen} />}
         </div>
+        <Socials
+          className="hidden absolute -right-60 md:flex"
+          iconSize={18}
+          linkClass="p-1.5 border border-palette-1 rounded-lg hover:text-palette-1"
+        />
       </nav>
     </header>
   );
