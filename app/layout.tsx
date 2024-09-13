@@ -31,7 +31,6 @@ export default function RootLayout({
             </p>
           </div>
           <div className="flex justify-between items-center space-x-2">
-            <Socials className="flex" iconSize={20} />
             <h4 className="font-bold pr-2">
               <a href="mailto:isaisanchezcc@gmail.com">
                 <Mail className="w-5" />
