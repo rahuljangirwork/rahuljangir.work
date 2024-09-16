@@ -34,7 +34,7 @@ export default function NavBar() {
             <Link
               href="/"
               className={clsx(
-                "flex items-center gap-1 text-center font-semibold text-md bg-transparent md:text-md lg:text-xl",
+                "flex items-center gap-1 text-center font-semibold text-md bg-transparent md:text-xl",
                 "transition-all duration-300 ease-in-out hover:scale-[1.08]",
                 pathname === "/" && "text-palette-4",
               )}
@@ -70,9 +70,9 @@ export default function NavBar() {
               <AnimatePresence>
                 {showSocials && (
                   <motion.div
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -10 }}
                     transition={{ duration: 0.5 }}
                     className="absolute left-0 -top-1 z-10"
                   >
