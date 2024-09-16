@@ -10,7 +10,7 @@ import {
 } from "@/app/components/split-card";
 import Carousel from "@/app/components/carousel";
 import Toolkit from "@/app/components/toolkit";
-import { MyRobotIcon } from "@/public/icons";
+// import { MyRobotIcon } from "@/public/icons";
 import { cn } from "@/app/lib/utils";
 import EmailToast from "@/app/components/email-toast";
 import ProjectCards from "@/app/components/project-cards";
