@@ -3,7 +3,6 @@ import { space_grotesk } from "@/app/components/fonts";
 import "@/app/globals.css";
 import NavBar from "@/app/components/nav-bar";
 import { Toaster } from "@/app/components/ui/toaster";
-import Socials from "./components/socials";
 import { Mail } from "react-feather";
 
 export const metadata: Metadata = {
