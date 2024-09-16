@@ -1,6 +1,7 @@
 import Link from "next/link";
 import clsx from "clsx";
 import { usePathname } from "next/navigation";
+import { motion } from "framer-motion";
 import Socials from "./socials";
 
 interface LinkType {
@@ -16,7 +17,13 @@ export default function DropdownMenu({ links, setIsOpen }: DropdownMenuProps) {
   const pathname = usePathname();
 
   return (
-    <div className="absolute right-0 mt-2 w-48 bg-palette-1 rounded-md shadow-lg py-1">
+    <motion.div
+      initial={{ opacity: 0, y: -10 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -10 }}
+      transition={{ duration: 0.5 }}
+      className="absolute right-0 mt-4 w-48 bg-primary backdrop-blur-sm rounded-md shadow-lg py-1"
+    >
       {links.map((link) => (
         <Link
           key={link.name}
@@ -32,7 +39,7 @@ export default function DropdownMenu({ links, setIsOpen }: DropdownMenuProps) {
           {link.name}
         </Link>
       ))}
-      <Socials className="flex justify-end" />
-    </div>
+      <Socials className="flex justify-end p-2 space-x-3" />
+    </motion.div>
   );
 }
