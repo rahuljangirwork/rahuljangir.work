@@ -23,13 +23,6 @@ export default function RootLayout({
       >
         <NavBar />
         <main className="flex-grow">{children}</main>
-        <div className="relative">
-          <Socials
-            className="hidden md:flex absolute text-palette-2 z-10"
-            iconSize={18}
-            linkClass="p-1.5 border border-palette-1 rounded-full hover:text-palette-1 bg-palette-1 bg-opacity-24"
-          />
-        </div>
         <Toaster />
         <footer className="bg-palette-2 bg-opacity-10 text-palette-2 text-opacity-50 mt-4 p-2 z-20 relative">
           <div className="flex justify-between items-center">
