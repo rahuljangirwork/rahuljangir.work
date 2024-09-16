@@ -30,7 +30,7 @@ export default function Socials({
   linkClass?: string;
 }) {
   return (
-    <div className={cn(className, "gap-2")}>
+    <div className={cn(className)}>
       {socialLinks.map((link) => {
         const LinkIcon = link.icon;
         return (
