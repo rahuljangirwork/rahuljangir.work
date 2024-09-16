@@ -28,7 +28,7 @@ export default function NavBar() {
 
   return (
     <>
-      <header className="w-full lg:max-w-2xl mx-auto lg:rounded-md sticky top-0 lg:top-2 z-50 mb-2 bg-primary bg-opacity-25 border-palette-1 border-b lg:border shadow-xl backdrop-blur-sm transition-all duration-200">
+      <header className="w-72 md:w-full md:max-w-md mx-auto rounded-full sticky top-2 z-50 bg-primary bg-opacity-25 border-palette-1 border shadow-xl backdrop-blur-sm transition-all duration-200">
         <nav className="relative flex items-center h-16 px-4 text-palette-3 max-w-7xl mx-auto">
           <div className="flex-1 flex justify-start">
             <Link
@@ -77,7 +77,7 @@ export default function NavBar() {
                     className="absolute left-0 -top-1 z-10"
                   >
                     <Socials
-                      className="flex ml-16 space-x-3"
+                      className="flex ml-14 space-x-3"
                       iconSize={18}
                       linkClass="p-1.5 border border-palette-1 rounded-full shadow-lg"
                     />
