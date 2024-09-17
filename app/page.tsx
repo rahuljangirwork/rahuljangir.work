@@ -10,7 +10,6 @@ import {
 } from "@/app/components/split-card";
 import Carousel from "@/app/components/carousel";
 import Toolkit from "@/app/components/toolkit";
-// import { MyRobotIcon } from "@/public/icons";
 import { cn } from "@/app/lib/utils";
 import EmailToast from "@/app/components/email-toast";
 import ProjectCards from "@/app/components/project-cards";
@@ -19,12 +18,11 @@ import { Aperture, BookOpen, PenTool } from "react-feather";
 
 export default function Home() {
   return (
-    <>
+    <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <section
         className={cn(
-          "relative text-palette-2 mx-auto mt-20 px-4 sm:px-8 flex flex-row items-center justify-center gap-2",
-          "w-full md:max-w-2xl lg:max-w-3xl",
-          "md:px-0 md:mb-20",
+          "relative text-palette-2 mt-20 flex flex-row items-center justify-center gap-2",
+          "md:mb-20",
         )}
       >
         <div className="flex flex-col max-w-lg">
@@ -72,7 +70,7 @@ export default function Home() {
       </section>
       <section className="flex sm:hidden w-full py-4 text-palette-2 mb-8">
         <motion.div
-          className="flex justify-start gap-4 max-w-2xl mx-auto"
+          className="flex justify-start gap-4 mx-auto"
           initial={{ opacity: 0, scale: 1 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.6, duration: 0.5 }}
@@ -97,7 +95,7 @@ export default function Home() {
           </Link>
         </motion.div>
       </section>
-      <section className="w-full md:max-w-4xl md:px-0 mx-auto text-palette-2">
+      <section className="text-palette-2">
         <SplitCard className="mb-20">
           <SplitCardContent side="all">
             <SplitCardHeader>
@@ -114,7 +112,7 @@ export default function Home() {
                 film camera to the intricacies of the 2nd Law of Thermodynamics
                 and everything in between. I&apos;d love to hear your feedback
                 or chat about any of these topics, so feel free to reach out!
-                <EmailToast className=" inline-flex gap-1 text-md text-palette-4 hover:underline focus:outline-none" />
+                <EmailToast className="inline-flex gap-1 text-md text-palette-4 hover:underline focus:outline-none" />
               </p>
             </SplitCardBody>
           </SplitCardContent>
@@ -135,7 +133,7 @@ export default function Home() {
             </SplitCardContent>
           </SplitCard>
         </div>
-        <div className="grid grid-cols-1 gap-3 sm:grid-cols-3 mx-auto p-2 mb-20">
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-3 p-2 mb-20">
           <ProjectCards
             className={cn(
               "transition-all duration-200 ease-in-out",
@@ -194,12 +192,12 @@ export default function Home() {
             <SplitCardBody>
               <p className="text-md px-2 text-center">
                 Feel free to shoot me an email at
-                <EmailToast className=" inline-flex gap-1 text-md text-palette-4 hover:underline focus:outline-none" />
+                <EmailToast className="inline-flex gap-1 text-md text-palette-4 hover:underline focus:outline-none" />
               </p>
             </SplitCardBody>
           </SplitCardContent>
         </SplitCard>
       </section>
-    </>
+    </section>
   );
 }
