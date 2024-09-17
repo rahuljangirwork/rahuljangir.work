@@ -79,7 +79,7 @@ export default function NavBar() {
                     <Socials
                       className="flex ml-14 space-x-3"
                       iconSize={18}
-                      linkClass="p-1.5 border border-palette-1 rounded-full shadow-lg"
+                      linkClass="p-1.5 border border-palette-1 rounded-full shadow-lg hover:text-palette-1 transition-colors"
                     />
                   </motion.div>
                 )}
