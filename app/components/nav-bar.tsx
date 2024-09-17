@@ -34,12 +34,11 @@ export default function NavBar() {
             <Link
               href="/"
               className={clsx(
-                "flex items-center gap-1 text-center font-semibold text-md bg-transparent md:text-xl",
-                "transition-all duration-300 ease-in-out hover:scale-[1.08]",
+                "group flex items-center gap-1 text-center font-semibold text-md bg-transparent md:text-xl",
                 pathname === "/" && "text-palette-4",
               )}
             >
-              <TentTreeIcon className="w-6 h-6" />
+              <TentTreeIcon className="w-6 h-6 group-hover:rotate-[20deg] transition ease-in-out duration-300" />
               Home
             </Link>
           </div>
