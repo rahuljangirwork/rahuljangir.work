@@ -41,7 +41,7 @@ export default function Home() {
             transition={{ delay: 0.2, duration: 0.5 }}
           >
             Mechanical Engineer and freelance Software Developer trained in CAD,
-            robotics, and web development.
+            robotics, and simple web development.
             <span className="hidden sm:inline">
               {" "}
               I love transforming innovative designs to life.
