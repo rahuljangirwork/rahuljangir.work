@@ -10,11 +10,11 @@ coverImage: "/assets/background.jpg"
 There were lots of hurdles I had to hop over when I tried to install Neovim on my WSL 2 environment, so I wrote down a simple guide to look back on. Please note I'm using the Ubuntu distribution, so some of the commands may differ. In any case, let's get started:
 
 1. Installed prerequisites: `sudo apt-get install ninja-build gettext cmake unzip curl build-essential`
-2. Cloned the neovim repository into my `~/repos` folder: `git clone https://github.com/neovim/neovim ~/repos`
+2. Navigate to my `~/repos` folder and clone the neovim repository here: `cd ~/repos && git clone https://github.com/neovim/neovim`
 3. Ran `cd ~/repos/neovim` and checked out the stable branch with `git checkout stable`
 4. I wanted Neovim installed in a specific directory, namely in my own `~/src` directory. Why? I guess simply to keep things organized. The official neovim repo said installing in the default `/usr/local` directory can [complicate](https://github.com/neovim/neovim/blob/master/INSTALL.md#install-from-source) uninstallation. In any case, we have to build it first by running the following command with some cmake flags:
 
-`make CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=$HOME/neovim" CMAKE_BUILD_TYPE=RelWithDebInfo`
+`make CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=$HOME/src/neovim" CMAKE_BUILD_TYPE=RelWithDebInfo`
 
 (Note you can change the build type here, I went with RelWithDebInfo, best of both worlds.)
 
@@ -35,26 +35,4 @@ Now to get started with configuring Neovim to your liking, you should first crea
 
 ### Another quick note on Lua and Luarocks
 
-Since I'm using lazy.nvim, one of the requirements is to have luarocks installed. Here's how I got the default installation of Lua and Luarocks under /usr/local:
-
-1. Ensure you have the build prerequisites: `sudo apt install build-essential libreadline-dev unzip`
-2. Run the following to build and install **Lua** (download package tar ball, extract, build and install) you can use wget too.
-
-```
-curl -R -O http://www.lua.org/ftp/lua-5.3.5.tar.gz
-tar -zxf lua-5.3.5.tar.gz
-cd lua-5.3.5
-make linux test
-sudo make install
-```
-
-3. Run the following to build and install **Luarocks** (same deal as above but with wget, download and extract tar ball, build and install)
-
-```
-wget https://luarocks.org/releases/luarocks-3.11.1.tar.gz
-tar zxpf luarocks-3.11.1.tar.gz
-cd luarocks-3.11.1
-./configure && make && sudo make install
-```
-
-Test you have both with `lua -v` and `luarocks --version`
+Since I'm using [lazy.nvim](https://www.lazyvim.org/), one of the requirements is to have luarocks installed.
