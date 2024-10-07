@@ -1,18 +1,18 @@
 import Image from "next/image";
 import Link from "next/link";
-import CallToAction from "@/app/components/call-to-action";
+import CallToAction from "@/app/components/navigation/call-to-action";
 import {
   SplitCard,
   SplitCardContent,
   SplitCardHeader,
   SplitCardBody,
   SplitCardThumbnail,
-} from "@/app/components/split-card";
-import Carousel from "@/app/components/carousel";
-import Toolkit from "@/app/components/toolkit";
+} from "@/app/components/cards/split-card";
+import Carousel from "@/app/components/media/carousel";
+import Toolkit from "@/app/components/media/toolkit";
 import { cn } from "@/app/lib/utils";
 import EmailToast from "@/app/components/email-toast";
-import ProjectCards from "@/app/components/project-cards";
+import ProjectCards from "@/app/components/cards/project-cards";
 import * as motion from "framer-motion/client";
 import { Aperture, BookOpen, PenTool } from "react-feather";
 

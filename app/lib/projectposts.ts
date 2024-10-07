@@ -4,7 +4,7 @@ import { compileMDX } from "next-mdx-remote/rsc";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
 import "katex/dist/katex.min.css"; // Import KaTeX styles
-import { CustomMDXComponents } from "@/app/components/mdx";
+import { CustomMDXComponents } from "@/app/components/mdx/mdx";
 
 const contentDir = path.join(process.cwd(), "/posts/projects");
 

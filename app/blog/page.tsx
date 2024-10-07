@@ -1,11 +1,11 @@
-import BlogCards from "@/app/components/blog-cards";
+import BlogCards from "@/app/components/cards/blog-cards";
 import { Separator } from "@/app/components/ui/separator";
 import { PenTool } from "lucide-react";
 
 export default async function Blog() {
   return (
     <>
-      <div className="flex flex-col items-center w-ful max-w-5xl mx-auto text-palette-3">
+      <div className="flex flex-col items-center w-full max-w-5xl mx-auto mt-6 text-palette-3">
         <h2 className="flex items-center text-3xl py-2 gap-2">
           <PenTool />
           Blog Posts
