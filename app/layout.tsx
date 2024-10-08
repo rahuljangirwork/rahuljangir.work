@@ -21,7 +21,7 @@ export default function RootLayout({
         className={`${space_grotesk.className} antialiased custom-gradient custom-scrollbar flex flex-col min-h-screen`}
       >
         <NavBar />
-        <main className="flex-grow">{children}</main>
+        <main>{children}</main>
         <Toaster />
         <footer className="bg-palette-2 bg-opacity-10 text-palette-2 text-opacity-50 mt-4 p-2 z-20 relative">
           <div className="flex justify-between items-center">

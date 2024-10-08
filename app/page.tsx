@@ -12,12 +12,18 @@ import { cn } from "@/app/lib/utils";
 import EmailToast from "@/app/components/ui/email-toast";
 import ProjectCards from "@/app/components/cards/project-cards";
 import Hero from "./components/hero";
+// import Scene from "@/app/components/model/scene";
 
 export default function Home() {
   return (
-    <>
+    <main className="max-w-4xl mx-auto">
+      {/*
+      <div className="max-w-xl h-72 mx-auto">
+        <Scene />
+      </div>
+      */}
       <Hero />
-      <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="px-4 sm:px-6 lg:px-8">
         <section className="text-palette-2">
           <SplitCard className="mb-20">
             <SplitCardContent side="all">
@@ -123,6 +129,6 @@ export default function Home() {
           </SplitCard>
         </section>
       </section>
-    </>
+    </main>
   );
 }
