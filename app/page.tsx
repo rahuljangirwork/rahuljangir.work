@@ -9,7 +9,7 @@ import {
 import Carousel from "@/app/components/media/carousel";
 import Toolkit from "@/app/components/media/toolkit";
 import { cn } from "@/app/lib/utils";
-import EmailToast from "@/app/components/email-toast";
+import EmailToast from "@/app/components/ui/email-toast";
 import ProjectCards from "@/app/components/cards/project-cards";
 import Hero from "./components/hero";
 
