@@ -1,12 +1,24 @@
+"use client";
 import * as motion from "framer-motion/client";
 import Scene from "@/app/components/model/scene";
 import Image from "next/image";
+import { Grab, Hand } from "lucide-react";
+import { useState } from "react";
 
 export default function Hero() {
+  const [isClicking, setIsClicking] = useState(false);
+
   return (
     <section className="flex flex-col justify-center items-center my-8 gap-4">
-      <div className="w-[300px] md:w-full h-56">
+      <div
+        className="relative w-full h-56 group"
+        onMouseDown={() => setIsClicking(true)}
+        onMouseUp={() => setIsClicking(false)}
+      >
         <Scene />
+        <span className="absolute bottom-0 right-0 text-palette-2 p-1">
+          {isClicking ? <Grab /> : <Hand />}
+        </span>
       </div>
       <div className="text-palette-2 flex justify-between items-start md:items-center gap-6">
         <div className="flex flex-col gap-2">
