@@ -1,6 +1,5 @@
 import { cn } from "@/app/lib/utils";
 import { ReactNode } from "react";
-import { Separator } from "@/app/components/ui/separator";
 
 export function SplitCard({
   children,
@@ -34,7 +33,6 @@ export function SplitCardContent({
     <div
       className={cn(
         className,
-        "p-4",
         side === "all" ? "w-full" : "w-1/2",
         side === "left" && "border-r border-r-palette-1",
         side === "right" && "border-l border-l-palette-1",
@@ -45,17 +43,24 @@ export function SplitCardContent({
   );
 }
 
-export function SplitCardHeader({ children }: { children: ReactNode }) {
-  return (
-    <>
-      {children}
-      <Separator className="w-[40px] mx-auto mt-1 mb-2 bg-palette-4" />
-    </>
-  );
+export function SplitCardHeader({
+  children,
+  className,
+}: {
+  children: ReactNode;
+  className?: string;
+}) {
+  return <div className={cn(className)}>{children}</div>;
 }
 
-export function SplitCardBody({ children }: { children: ReactNode }) {
-  return <>{children}</>;
+export function SplitCardBody({
+  children,
+  className,
+}: {
+  children: ReactNode;
+  className?: string;
+}) {
+  return <div className={cn(className)}>{children}</div>;
 }
 
 export function SplitCardThumbnail({ children }: { children: ReactNode }) {
