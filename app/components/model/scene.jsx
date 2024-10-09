@@ -15,7 +15,7 @@ export default function Scene() {
         }}
       >
         <Suspense fallback={<Loader />}>
-          <PerspectiveCamera makeDefault position={[0, 10, 40]} />
+          <PerspectiveCamera makeDefault position={[0, 0, 40]} />
           <OrbitControls
             maxPolarAngle={Math.PI / 2}
             enableZoom
@@ -24,8 +24,13 @@ export default function Scene() {
           />
           <directionalLight
             position={[1, 1, 1]}
-            intensity={10}
-            color={0xe8dfca}
+            intensity={8}
+            color={0xffffff}
+          />
+          <directionalLight
+            position={[-1, 1, 1]}
+            intensity={2}
+            color={0xffffff}
           />
           <MyRobot position={[0, -11, 0]} scale={[0.11, 0.11, 0.11]} />
         </Suspense>
