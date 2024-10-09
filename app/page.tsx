@@ -61,7 +61,7 @@ export default function Home() {
             </SplitCardBody>
           </SplitCardContent>
           <SplitCardThumbnail>
-            <Carousel src="/shepherd.jpg" />
+            <Carousel src="/assets/shepherd.jpg" />
           </SplitCardThumbnail>
         </SplitCard>
         <SplitCard className="mb-5">
