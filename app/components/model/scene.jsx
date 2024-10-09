@@ -7,34 +7,27 @@ import { Suspense } from "react";
 
 export default function Scene() {
   return (
-    <div className="w-full h-full">
-      <Canvas
-        className="w-full h-full rounded-md bg-white bg-opacity-10"
-        gl={{
-          alpha: true,
-        }}
-      >
-        <Suspense fallback={<Loader />}>
-          <PerspectiveCamera makeDefault position={[0, 0, 40]} />
-          <OrbitControls
-            maxPolarAngle={Math.PI / 2}
-            enableZoom
-            enablePan
-            enableRotate
-          />
-          <directionalLight
-            position={[1, 1, 1]}
-            intensity={8}
-            color={0xffffff}
-          />
-          <directionalLight
-            position={[-1, 1, 1]}
-            intensity={2}
-            color={0xffffff}
-          />
-          <MyRobot position={[0, -11, 0]} scale={[0.11, 0.11, 0.11]} />
-        </Suspense>
-      </Canvas>
-    </div>
+    <Canvas
+      className="border border-palette-1 rounded-md"
+      gl={{
+        alpha: true,
+      }}
+    >
+      <Suspense fallback={<Loader />}>
+        <PerspectiveCamera makeDefault position={[0, 15, 40]} />
+        <OrbitControls
+          maxPolarAngle={Math.PI / 2}
+          enableZoom
+          enablePan
+          enableRotate
+        />
+        <directionalLight
+          position={[3.3, 1.0, 4.4]}
+          intensity={8}
+          color={0xffffff}
+        />
+        <MyRobot position={[0, -14, 0]} scale={[0.13, 0.13, 0.13]} />
+      </Suspense>
+    </Canvas>
   );
 }
