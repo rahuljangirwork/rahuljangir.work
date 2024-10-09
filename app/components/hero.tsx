@@ -12,8 +12,8 @@ export default function Hero() {
         <div className="flex flex-col gap-2">
           <motion.h1
             className="text-left font-bold text-5xl md:text-6xl"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
           >
             Hi<span className="text-palette-4">,</span> I&apos;m Isai
@@ -31,14 +31,19 @@ export default function Hero() {
             transforming innovative designs to life.
           </motion.p>
         </div>
-        <div className="relative aspect-square w-32 sm:w-56 h-fit">
+        <motion.div
+          className="relative aspect-square w-32 sm:w-56 h-fit"
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5 }}
+        >
           <Image
             src="/assets/mebw.JPG"
             alt="Mirror film selfie"
             fill
             className="border-4 border-palette-1 rounded-full object-cover"
           />
-        </div>
+        </motion.div>
       </div>
     </section>
   );
