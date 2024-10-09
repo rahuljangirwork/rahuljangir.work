@@ -7,9 +7,9 @@ export default function MyRobot({ ...props }) {
 
   const solidModelParts = useMemo(() => {
     const material = new THREE.MeshStandardMaterial({
-      color: 0x888888,
-      metalness: 0.8,
-      roughness: 0.2,
+      color: 0xf28d35,
+      metalness: 0.9,
+      roughness: 0.3,
     });
 
     return Object.entries(nodes)
