@@ -47,7 +47,7 @@ export default function Hero() {
         </div>
         <div className="relative aspect-square w-full max-w-[150px] sm:max-w-[180px] md:max-w-[200px]">
           <Image
-            src="/mebw.JPG"
+            src="/assets/mebw.JPG"
             alt="Mirror film selfie"
             fill
             className={cn(
