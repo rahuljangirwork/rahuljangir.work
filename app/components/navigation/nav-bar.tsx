@@ -29,7 +29,7 @@ export default function NavBar() {
   return (
     <>
       <header className="w-72 md:w-full md:max-w-md mx-auto rounded-full sticky top-2 z-50 bg-primary bg-opacity-25 border-palette-1 border shadow-xl backdrop-blur-sm transition-all duration-200">
-        <nav className="relative flex items-center h-16 px-4 text-palette-3 max-w-7xl mx-auto">
+        <nav className="relative flex items-center h-16 px-4 text-palette-3 mx-auto">
           <div className="flex-1 flex justify-start">
             <Link
               href="/"
