@@ -11,7 +11,7 @@ export default function Hero() {
   return (
     <section className="flex flex-col justify-center items-center my-8 gap-4">
       <div
-        className="relative w-full h-56 group"
+        className="relative w-full max-w-md h-56 group"
         onMouseDown={() => setIsClicking(true)}
         onMouseUp={() => setIsClicking(false)}
       >
@@ -32,7 +32,7 @@ export default function Hero() {
             <span className="text-palette-4">.</span>
           </motion.h1>
           <motion.p
-            className="text-pretty text-sm md:text-lg max-w-2xl"
+            className="text-pretty text-sm md:text-lg max-w-2xl leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.5 }}
