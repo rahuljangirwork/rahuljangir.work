@@ -1,25 +1,11 @@
 "use client";
 import * as motion from "framer-motion/client";
-import Scene from "@/app/components/model/scene";
 import Image from "next/image";
-import { Grab, Pointer } from "lucide-react";
-import { useState } from "react";
+import CallToAction from "@/app/components/navigation/call-to-action";
 
 export default function Hero() {
-  const [isClicking, setIsClicking] = useState(false);
-
   return (
-    <section className="flex flex-col justify-center items-center my-8 gap-4">
-      <div
-        className="relative w-full h-56 group"
-        onMouseDown={() => setIsClicking(true)}
-        onMouseUp={() => setIsClicking(false)}
-      >
-        <Scene />
-        <span className="absolute bottom-0 right-0 text-palette-2 p-1">
-          {isClicking ? <Grab /> : <Pointer />}
-        </span>
-      </div>
+    <section className="flex flex-col justify-center items-center my-20 gap-4">
       <div className="text-palette-2 flex justify-between items-start md:items-center gap-6">
         <div className="flex flex-col gap-2">
           <motion.h1
@@ -32,7 +18,7 @@ export default function Hero() {
             <span className="text-palette-4">.</span>
           </motion.h1>
           <motion.p
-            className="text-pretty text-sm md:text-lg max-w-2xl leading-relaxed"
+            className="text-pretty text-md md:text-lg max-w-2xl leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.5 }}
@@ -57,6 +43,14 @@ export default function Hero() {
           />
         </motion.div>
       </div>
+      <motion.div
+        className="flex flex-1 justify-center"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.2, duration: 0.5 }}
+      >
+        <CallToAction className="text-xs md:text-sm" />
+      </motion.div>
     </section>
   );
 }
