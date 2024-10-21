@@ -8,7 +8,7 @@ import { Suspense } from "react";
 export default function Scene() {
   return (
     <Canvas
-      className="border border-palette-1 rounded-md"
+      className="border border-palette-1 shadow-xl rounded-md"
       gl={{
         alpha: true,
       }}
