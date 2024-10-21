@@ -36,7 +36,7 @@ export default function Home() {
             </SplitCardContent>
           </SplitCard>
         </div>
-        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 py-4 mb-20">
+        <div className="grid grid-cols-1 gap-3 py-4 mb-20">
           <ProjectCards
             className={cn(
               "transition-all duration-200 ease-in-out",
