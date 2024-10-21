@@ -3,7 +3,7 @@ import { useGLTF } from "@react-three/drei";
 import * as THREE from "three";
 
 export default function MyRobot({ ...props }) {
-  const { nodes } = useGLTF("model/robot.gltf");
+  const { nodes } = useGLTF("../../model/robot.gltf");
 
   const solidModelParts = useMemo(() => {
     const material = new THREE.MeshStandardMaterial({
