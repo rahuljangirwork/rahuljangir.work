@@ -1,7 +1,7 @@
 import Link from "next/link";
-import Image, { ImageProps } from "next/image";
 import React from "react";
 import Collapsible from "./collapsible";
+import RobotScene from "./robot-scene";
 
 type TableProps = {
   data: {
@@ -56,4 +56,5 @@ export const CustomMDXComponents = {
   a: CustomLink,
   Table,
   Collapsible,
+  RobotScene,
 };
