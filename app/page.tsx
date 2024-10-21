@@ -16,7 +16,7 @@ import About from "./components/about";
 
 export default function Home() {
   return (
-    <main className="max-w-xl md:max-w-2xl mx-auto px-4 md:px-0">
+    <main className="max-w-2xl mx-auto px-4 md:px-0">
       <Hero />
       <About />
       <section className="text-palette-2">
