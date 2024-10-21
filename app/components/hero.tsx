@@ -2,7 +2,7 @@
 import * as motion from "framer-motion/client";
 import Scene from "@/app/components/model/scene";
 import Image from "next/image";
-import { Grab, Hand } from "lucide-react";
+import { Grab, Pointer } from "lucide-react";
 import { useState } from "react";
 
 export default function Hero() {
@@ -11,13 +11,13 @@ export default function Hero() {
   return (
     <section className="flex flex-col justify-center items-center my-8 gap-4">
       <div
-        className="relative w-full max-w-md h-56 group"
+        className="relative w-full h-56 group"
         onMouseDown={() => setIsClicking(true)}
         onMouseUp={() => setIsClicking(false)}
       >
         <Scene />
         <span className="absolute bottom-0 right-0 text-palette-2 p-1">
-          {isClicking ? <Grab /> : <Hand />}
+          {isClicking ? <Grab /> : <Pointer />}
         </span>
       </div>
       <div className="text-palette-2 flex justify-between items-start md:items-center gap-6">
