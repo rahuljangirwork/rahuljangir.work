@@ -12,7 +12,8 @@ type PostFrontmatter = {
   title: string;
   publishDate: string;
   description: string;
-  coverImage: string;
+  image: string;
+  video: string;
   technologies: {
     name: string;
     color: string;
