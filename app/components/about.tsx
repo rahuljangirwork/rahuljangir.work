@@ -8,7 +8,6 @@ import {
 import EmailToast from "@/app/components/ui/email-toast";
 import { useState } from "react";
 import { cn } from "../lib/utils";
-import CallToAction from "@/app/components/navigation/call-to-action";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function About() {
@@ -25,7 +24,7 @@ export default function About() {
   };
 
   return (
-    <SplitCard className="my-20 text-palette-2">
+    <SplitCard className="my-24 text-palette-2">
       <SplitCardContent side="all">
         <SplitCardHeader className="flex justify-between items-center mb-2">
           <motion.h1
@@ -67,30 +66,28 @@ export default function About() {
             {showTLDR ? (
               <motion.p
                 key="tldr"
-                className="text-md text-left"
+                className="text-md text-pretty text-left"
                 variants={variants}
                 initial="enter"
                 animate="center"
                 transition={{ duration: 0.3 }}
               >
-                Welcome! Long story short is that I&apos;ve always wanted a
-                space to share my projects, notes, and thoughts on various
-                topics from my education, hobbies, and life experiences, so here
-                it is :) Feel free to reach out!
+                Welcome! I&apos;ve always wanted a space to share my projects,
+                notes, and thoughts on various topics from my education,
+                hobbies, and life experiences, so here it is :) Feel free to
+                reach out!
                 <EmailToast className="inline-flex gap-1 text-md text-palette-4 hover:underline focus:outline-none" />
               </motion.p>
             ) : (
               <motion.div
                 key="long-story"
-                className="text-md text-left flex flex-col gap-2"
+                className="text-md text-pretty text-left flex flex-col gap-2"
                 variants={variants}
                 initial="enter"
                 animate="center"
                 transition={{ duration: 0.3 }}
               >
-                <p>
-                  Welcome to my personal website! Here&apos;s the long story.
-                </p>
+                <p>Welcome to my personal website!</p>
                 <p>
                   Like I said, I&apos;ve always wanted an online space dedicated
                   to sharing my efforts, thoughts, and reflections on everything
@@ -107,15 +104,6 @@ export default function About() {
                 </p>
               </motion.div>
             )}
-            <motion.div
-              className="flex flex-1 justify-center"
-              variants={variants}
-              initial="enter"
-              animate="center"
-              transition={{ duration: 0.3 }}
-            >
-              <CallToAction className="text-xs md:text-sm" />
-            </motion.div>
           </AnimatePresence>
         </SplitCardBody>
       </SplitCardContent>
