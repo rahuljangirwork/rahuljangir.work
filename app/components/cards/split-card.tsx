@@ -30,14 +30,7 @@ export function SplitCardContent({
   children: ReactNode;
 }) {
   return (
-    <div
-      className={cn(
-        className,
-        side === "all" ? "w-full" : "w-1/2",
-        side === "left" && "border-r border-r-palette-1",
-        side === "right" && "border-l border-l-palette-1",
-      )}
-    >
+    <div className={cn(className, side === "all" ? "w-full" : "")}>
       {children}
     </div>
   );
