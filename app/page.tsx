@@ -24,19 +24,19 @@ export default function Home() {
           <SplitCard>
             <SplitCardContent side="all">
               <SplitCardHeader>
-                <h1 className="text-center font-bold text-3xl">
-                  Check out my latest selected work
+                <h1 className="text-left font-bold text-3xl">
+                  Projects<span className="text-palette-4">.</span>
                 </h1>
               </SplitCardHeader>
               <SplitCardBody>
-                <p className="text-md text-center">
+                <p className="text-md text-left">
                   Here&apos;s a little bit of what I&apos;ve been working on.
                 </p>
               </SplitCardBody>
             </SplitCardContent>
           </SplitCard>
         </div>
-        <div className="grid grid-cols-1 gap-3 sm:grid-cols-3 p-2 mb-20">
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 py-4 mb-20">
           <ProjectCards
             className={cn(
               "transition-all duration-200 ease-in-out",
