@@ -18,7 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${space_grotesk.className} antialiased custom-gradient custom-scrollbar flex flex-col min-h-screen`}
+        className={`${space_grotesk.className} antialiased bg-primary sm:custom-gradient custom-scrollbar flex flex-col min-h-screen`}
       >
         <NavBar />
         <main>{children}</main>
