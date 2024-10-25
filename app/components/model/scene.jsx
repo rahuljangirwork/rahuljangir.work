@@ -4,11 +4,12 @@ import { Canvas } from "@react-three/fiber";
 import MyRobot from "@/app/components/model/my-robot";
 import Loader from "@/app/components/model/loader";
 import { Suspense } from "react";
+import { cn } from "@/app/lib/utils";
 
-export default function Scene() {
+export default function Scene({ className }) {
   return (
     <Canvas
-      className="border border-palette-1 shadow-xl rounded-md"
+      className={cn(className)}
       gl={{
         alpha: true,
       }}
