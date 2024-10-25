@@ -33,7 +33,7 @@ export default function About() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
           >
-            About<span className="text-palette-4">.</span>
+            About the site<span className="text-palette-4">.</span>
           </motion.h1>
           <motion.div
             className="flex gap-2"
@@ -72,10 +72,10 @@ export default function About() {
                 animate="center"
                 transition={{ duration: 0.3 }}
               >
-                Welcome! I&apos;ve always wanted a space to share my projects,
-                notes, and thoughts on various topics from my education,
-                hobbies, and life experiences, so here it is :) Feel free to
-                reach out!
+                Thanks for stopping by! I&apos;ve always wanted a space to share
+                my projects, notes, and thoughts on various topics from my
+                education, hobbies, and life experiences, so here it is :) Feel
+                free to reach out!
                 <EmailToast className="inline-flex gap-1 text-md text-palette-4 hover:underline focus:outline-none" />
               </motion.p>
             ) : (
@@ -87,7 +87,7 @@ export default function About() {
                 animate="center"
                 transition={{ duration: 0.3 }}
               >
-                <p>Welcome to my personal website!</p>
+                <p>Thanks for stopping by to my personal website!</p>
                 <p>
                   Like I said, I&apos;ve always wanted an online space dedicated
                   to sharing my efforts, thoughts, and reflections on everything
