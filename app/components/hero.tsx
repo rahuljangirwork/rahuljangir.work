@@ -2,13 +2,14 @@
 
 import * as motion from "framer-motion/client";
 import Image from "next/image";
-import CallToAction from "@/app/components/navigation/call-to-action";
+import Link from "next/link";
+import { ChevronRight } from "lucide-react";
 
 export default function Hero() {
   return (
-    <section className="my-10 md:my-20">
+    <section className="my-10 md:my-28">
       <div className="flex flex-col md:flex-row justify-between items-center md:items-start gap-8 md:gap-0 text-palette-2">
-        <div className="flex flex-col gap-2 text-center md:text-left">
+        <div className="flex flex-col gap-2 items-center md:items-start text-center md:text-left">
           <motion.h1
             className="font-bold text-5xl md:text-6xl"
             initial={{ opacity: 0, x: -20 }}
@@ -29,10 +30,18 @@ export default function Hero() {
             trained in CAD, robotics, and simple web development. I love
             transforming innovative designs to life.
           </motion.p>
-          <CallToAction className="mt-4 w-full max-w-xs sm:max-w-lg md:max-w-xl mx-auto" />
+          <Link
+            href="#projects"
+            className="flex items-center justify-between gap-1 my-1 px-2 sm:px-3 py-1 bg-palette-2 bg-opacity-10 text-palette-2 rounded-lg border border-transparent hover:border-palette-4 transition-all duration-300 w-36 hover:w-40"
+          >
+            <span className="text-xs sm:text-sm whitespace-nowrap">
+              View my work
+            </span>
+            <ChevronRight className="h-4 w-4 sm:h-5 sm:w-5 text-palette-4 flex-shrink-0" />
+          </Link>
         </div>
         <motion.div
-          className="relative aspect-square w-60 sm:w-72 md:w-96 h-fit"
+          className="order-first md:order-last relative aspect-square w-60 sm:w-72 md:w-[420px] h-fit"
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5 }}

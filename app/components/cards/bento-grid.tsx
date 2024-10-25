@@ -24,9 +24,9 @@ import SolidWorks from "../media/icons/solidworks";
 export default function BentoGrid() {
   return (
     <div className="w-full mx-auto py-4 transition-colors duration-1000 ease-in-out text-palette-2 my-10 md:my-20">
-      <div className="grid grid-cols-12 gap-4">
+      <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-8 gap-4">
         {/* About Card */}
-        <Card className="col-span-6 row-span-2 px-4 py-6 bg-white/10 backdrop-blur-sm flex flex-col justify-between border-none shadow-xl">
+        <Card className="col-span-full md:col-span-4 row-span-2 px-4 py-6 bg-white/10 backdrop-blur-sm flex flex-col justify-between border-none shadow-xl">
           <div>
             <div className="flex items-center mb-2">
               <Atom className="h-7 w-7 mr-2" />
@@ -43,10 +43,10 @@ export default function BentoGrid() {
         </Card>
 
         {/* Education Card */}
-        <Card className="col-span-6 p-4 border-palette-1 shadow-xl">
+        <Card className="col-span-full sm:col-span-4 p-4 border-palette-1 shadow-xl">
           <div className="flex items-center mb-2">
             <GraduationCap className="h-6 w-6 text-palette-4 mr-2" />
-            <h3 className="text-lg font-semibold whitespace-nowrap">
+            <h3 className="text-md lg:text-lg font-semibold whitespace-nowrap">
               B.S. Mechanical Engineering
             </h3>
           </div>
@@ -59,13 +59,13 @@ export default function BentoGrid() {
           </div>
         </Card>
 
-        {/* Programming Languages Card */}
-        <Card className="col-span-3 p-4 bg-card border-palette-1 shadow-xl">
+        {/* Coding Card */}
+        <Card className="col-span-1 md:col-span-2 p-4 bg-card border-palette-1 shadow-xl">
           <div className="flex items-center mb-2">
-            <Braces className="h-5 w-5 mr-1" />
-            <h3 className="font-semibold">Programming</h3>
+            <Braces className="h-5 w-5 mr-2" />
+            <h3 className="text-md lg:text-lg font-semibold">Coding</h3>
           </div>
-          <div className="flex justify-between">
+          <div className="flex gap-1 justify-start md:justify-between">
             <Cpp className="inline-block w-9 h-9 text-palette-3 bg-white/10 backdrop-blur-sm p-2 rounded-md" />
             <Python className="inline-block w-9 h- text-palette-3 bg-white/10 backdrop-blur-sm p-2 rounded-md" />
             <Numpy className="inline-block w-9 h-9 text-palette-3 bg-white/10 backdrop-blur-sm p-2 rounded-md" />
@@ -73,12 +73,12 @@ export default function BentoGrid() {
         </Card>
 
         {/* Web Development Card */}
-        <Card className="col-span-3 p-4 bg-card border-palette-1 shadow-xl">
+        <Card className="col-span-1 md:col-span-2 p-4 bg-card border-palette-1 shadow-xl">
           <div className="flex items-center mb-2">
             <Code className="h-5 w-5 mr-2" />
             <h3 className="font-semibold">Web Dev</h3>
           </div>
-          <div className="flex gap-2 justify-between">
+          <div className="flex gap-1 justify-start md:justify-between">
             <NextJS className="inline-block w-9 h-9 text-palette-3 bg-white/10 backdrop-blur-sm p-2 rounded-md" />
             <Typescript className="inline-block w-9 h-9 text-palette-3 bg-white/10 backdrop-blur-sm p-2 rounded-md" />
             <TailwindCSS className="inline-block w-9 h-9 text-palette-3 bg-white/10 backdrop-blur-sm p-2 rounded-md" />
@@ -86,7 +86,7 @@ export default function BentoGrid() {
         </Card>
 
         {/* Contact Card */}
-        <Card className="col-span-6 p-4 bg-card border-palette-1 shadow-xl">
+        <Card className="col-span-full sm:col-span-4 order-1 md:order-none p-4 bg-card border-palette-1 shadow-xl">
           <div className="flex items-center mb-2">
             <Mail className="h-5 w-5 mr-2 text-palette-4" />
             <h3 className="text-lg font-semibold">Contact Me</h3>
@@ -98,19 +98,19 @@ export default function BentoGrid() {
         </Card>
 
         {/* Hardware Card */}
-        <Card className="col-span-3 p-4 bg-card border-palette-1 shadow-xl">
+        <Card className="col-span-1 md:col-span-2 p-4 bg-card border-palette-1 shadow-xl">
           <div className="flex items-center mb-2">
             <Cpu className="h-5 w-5 mr-2" />
             <h3 className="font-semibold">Hardware</h3>
           </div>
-          <div className="flex space-x-2">
+          <div className="flex space-x-1">
             <Arduino className="inline-block w-9 h-9 text-palette-3 bg-white/10 backdrop-blur-sm p-1 rounded-md" />
             <Raspbi className="inline-block w-9 h-9 text-palette-3 bg-white/10 backdrop-blur-sm p-1 rounded-md" />
           </div>
         </Card>
 
         {/* CAD Card */}
-        <Card className="col-span-3 p-4 bg-card border-palette-1 shadow-xl">
+        <Card className="col-span-1 md:col-span-2 p-4 bg-card border-palette-1 shadow-xl">
           <div className="flex items-center mb-2">
             <Cog className="h-5 w-5 mr-2" />
             <h3 className="font-semibold">CAD</h3>
