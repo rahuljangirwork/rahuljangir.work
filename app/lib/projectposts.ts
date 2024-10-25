@@ -12,11 +12,13 @@ type PostFrontmatter = {
   title: string;
   publishDate: string;
   description: string;
-  image: string;
-  video: string;
+  src: {
+    image?: string;
+    video?: string;
+    scene?: boolean;
+  };
   technologies: {
     name: string;
-    color: string;
   }[];
 };
 
