@@ -12,7 +12,7 @@ const RobotScene = () => {
       onMouseDown={() => setIsClicking(true)}
       onMouseUp={() => setIsClicking(false)}
     >
-      <Scene />
+      <Scene className="border border-palette-1 rounded-md" />
       <span className="absolute bottom-0 right-2 text-palette-2 p-1">
         {isClicking ? <Grab /> : <Pointer />}
       </span>
