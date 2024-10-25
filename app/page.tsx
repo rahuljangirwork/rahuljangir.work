@@ -4,7 +4,6 @@ import {
   SplitCardHeader,
   SplitCardBody,
 } from "@/app/components/cards/split-card";
-import { cn } from "@/app/lib/utils";
 import ProjectCards from "@/app/components/cards/project-cards";
 import Hero from "./components/hero";
 import About from "./components/about";
@@ -30,13 +29,8 @@ export default function Home() {
             </SplitCardBody>
           </SplitCardContent>
         </SplitCard>
-        <div className="grid grid-cols-1 gap-3 py-4 mb-20">
-          <ProjectCards
-            className={cn(
-              "transition-all duration-200 ease-in-out",
-              "hover:scale-[1.01] hover:shadow-[0_10px_60px_25px_rgba(79,111,82,0.3)]",
-            )}
-          />
+        <div className="grid grid-cols-2 gap-3 py-4 mb-20">
+          <ProjectCards />
         </div>
       </section>
       <About />
