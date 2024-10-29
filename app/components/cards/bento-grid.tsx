@@ -96,7 +96,9 @@ export default function BentoGrid() {
           </div>
           <p className="text-sm text-balance">
             Shoot me an email!
-            <EmailToast className="inline-flex gap-1 text-sm text-palette-4 hover:underline focus:outline-none" />
+            <EmailToast className="inline-flex gap-1 text-sm text-palette-4 hover:underline focus:outline-none">
+              isaisanchezcc@gmail.com
+            </EmailToast>
           </p>
         </Card>
 
