@@ -35,9 +35,12 @@ export default function BentoGrid() {
               </h2>
             </div>
             <p className="text-sm">
-              My technical proficiencies span advanced CAD software, robotics
-              systems, high-level math & physics, computer programming, and
-              hardware integration.
+              I grew up playing soccer & piano in the beautiful state of Utah.
+              Throughout my education I was blessed to have mentors that
+              challenged me and sparked my interest in subjects relating to
+              engineering. It was tough but I loved the journey.
+              <br /> Some of my hobbies include taking pictures with my film
+              camera, chess, skateboarding, hiking and reading.
             </p>
           </div>
         </Card>
@@ -65,7 +68,7 @@ export default function BentoGrid() {
             <Braces className="h-5 w-5 mr-2" />
             <h3 className="text-md lg:text-lg font-semibold">Coding</h3>
           </div>
-          <div className="flex gap-1 justify-start md:justify-between">
+          <div className="flex gap-1 justify-start">
             <Cpp className="inline-block w-9 h-9 text-palette-3 bg-white/10 backdrop-blur-sm p-2 rounded-md" />
             <Python className="inline-block w-9 h- text-palette-3 bg-white/10 backdrop-blur-sm p-2 rounded-md" />
             <Numpy className="inline-block w-9 h-9 text-palette-3 bg-white/10 backdrop-blur-sm p-2 rounded-md" />
@@ -76,9 +79,9 @@ export default function BentoGrid() {
         <Card className="col-span-1 md:col-span-2 p-4 bg-primary border-palette-1 shadow-xl">
           <div className="flex items-center mb-2">
             <Code className="h-5 w-5 mr-2" />
-            <h3 className="font-semibold">Web Dev</h3>
+            <h3 className="text-lg font-semibold">Web Dev</h3>
           </div>
-          <div className="flex gap-1 justify-start md:justify-between">
+          <div className="flex gap-1 justify-start">
             <NextJS className="inline-block w-9 h-9 text-palette-3 bg-white/10 backdrop-blur-sm p-2 rounded-md" />
             <Typescript className="inline-block w-9 h-9 text-palette-3 bg-white/10 backdrop-blur-sm p-2 rounded-md" />
             <TailwindCSS className="inline-block w-9 h-9 text-palette-3 bg-white/10 backdrop-blur-sm p-2 rounded-md" />
@@ -101,7 +104,7 @@ export default function BentoGrid() {
         <Card className="col-span-1 md:col-span-2 p-4 bg-primary border-palette-1 shadow-xl">
           <div className="flex items-center mb-2">
             <Cpu className="h-5 w-5 mr-2" />
-            <h3 className="font-semibold">Hardware</h3>
+            <h3 className="text-lg font-semibold">Hardware</h3>
           </div>
           <div className="flex space-x-1">
             <Arduino className="inline-block w-9 h-9 text-palette-3 bg-white/10 backdrop-blur-sm p-1 rounded-md" />
@@ -113,7 +116,7 @@ export default function BentoGrid() {
         <Card className="col-span-1 md:col-span-2 p-4 bg-primary border-palette-1 shadow-xl">
           <div className="flex items-center mb-2">
             <Cog className="h-5 w-5 mr-2" />
-            <h3 className="font-semibold">CAD</h3>
+            <h3 className="text-lg font-semibold">CAD</h3>
           </div>
           <div className="flex space-x-2">
             <SolidWorks className="inline-block w-9 h-9 text-palette-3 bg-white/10 backdrop-blur-sm p-2 rounded-md" />
