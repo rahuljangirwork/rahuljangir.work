@@ -2,6 +2,7 @@ import {
   Card,
   CardContent,
   CardFooter,
+  CardDescription,
   CardHeader,
   CardTitle,
 } from "@/app/components/ui/card";
@@ -27,7 +28,7 @@ export default async function ProjectCards({
             key={slug}
             className={cn(
               className,
-              "flex flex-col overflow-hidden border h-full border-palette-1 bg-palette-2/10 backdrop-blur-md shadow-xl",
+              "flex flex-col overflow-hidden border h-full border-palette-1 bg-palette-2/5 backdrop-blur-md shadow-xl",
             )}
           >
             {frontmatter.src && frontmatter.src.image && (
@@ -60,22 +61,25 @@ export default async function ProjectCards({
             )}
             <Link href={`/projects/${slug}`}>
               <CardHeader className="px-2">
-                <div className="flex flex-col p-1">
-                  <CardTitle className="mt-1 text-lg">
+                <div className="my-1 flex items-center justify-between p-1">
+                  <CardTitle className="text-lg md:text-xl">
                     {frontmatter.title}
                   </CardTitle>
-                  <time className="font-sans text-xs text-palette-1">
+                  <time className="text-xs text-palette-1">
                     {frontmatter.publishDate}
                   </time>
                 </div>
               </CardHeader>
-              <CardContent className="mt-auto flex flex-row px-3 pb-3">
+              <CardContent className="mt-auto flex flex-col px-3 pb-3">
+                <CardDescription className="text-palette-2/60 mb-2">
+                  {frontmatter.description}
+                </CardDescription>
                 {frontmatter.technologies &&
                   frontmatter.technologies.length > 0 && (
                     <div className="mt-2 flex flex-wrap gap-1">
                       {frontmatter.technologies?.map((tag) => (
                         <Badge
-                          className="px-1 py-0 text-[10px] bg-white/10 shadow-sm hover:bg-primary"
+                          className="px-1 py-0 text-palette-2 text-[10px] bg-white/10 shadow-sm hover:bg-primary"
                           key={tag.name}
                         >
                           {tag.name}
