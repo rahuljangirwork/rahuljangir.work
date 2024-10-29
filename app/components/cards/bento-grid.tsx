@@ -26,7 +26,7 @@ export default function BentoGrid() {
     <div className="w-full mx-auto py-4 transition-colors duration-1000 ease-in-out text-palette-2 my-10 md:my-20">
       <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-8 gap-4">
         {/* About Card */}
-        <Card className="col-span-full md:col-span-4 row-span-2 px-4 py-6 bg-white/10 backdrop-blur-sm flex flex-col justify-between border-none shadow-xl">
+        <Card className="col-span-full md:col-span-4 row-span-2 px-4 py-6 bg-palette-2/10 backdrop-blur-md flex flex-col justify-between border-none shadow-xl">
           <div>
             <div className="flex items-center mb-2">
               <Atom className="h-7 w-7 mr-2" />
@@ -60,7 +60,7 @@ export default function BentoGrid() {
         </Card>
 
         {/* Coding Card */}
-        <Card className="col-span-1 md:col-span-2 p-4 bg-card border-palette-1 shadow-xl">
+        <Card className="col-span-1 md:col-span-2 p-4 bg-primary border-palette-1 shadow-xl">
           <div className="flex items-center mb-2">
             <Braces className="h-5 w-5 mr-2" />
             <h3 className="text-md lg:text-lg font-semibold">Coding</h3>
@@ -73,7 +73,7 @@ export default function BentoGrid() {
         </Card>
 
         {/* Web Development Card */}
-        <Card className="col-span-1 md:col-span-2 p-4 bg-card border-palette-1 shadow-xl">
+        <Card className="col-span-1 md:col-span-2 p-4 bg-primary border-palette-1 shadow-xl">
           <div className="flex items-center mb-2">
             <Code className="h-5 w-5 mr-2" />
             <h3 className="font-semibold">Web Dev</h3>
@@ -86,7 +86,7 @@ export default function BentoGrid() {
         </Card>
 
         {/* Contact Card */}
-        <Card className="col-span-full sm:col-span-4 order-1 md:order-none p-4 bg-card border-palette-1 shadow-xl">
+        <Card className="col-span-full sm:col-span-4 order-1 md:order-none p-4 bg-primary border-palette-1 shadow-xl">
           <div className="flex items-center mb-2">
             <Mail className="h-5 w-5 mr-2 text-palette-4" />
             <h3 className="text-lg font-semibold">Contact Me</h3>
@@ -98,7 +98,7 @@ export default function BentoGrid() {
         </Card>
 
         {/* Hardware Card */}
-        <Card className="col-span-1 md:col-span-2 p-4 bg-card border-palette-1 shadow-xl">
+        <Card className="col-span-1 md:col-span-2 p-4 bg-primary border-palette-1 shadow-xl">
           <div className="flex items-center mb-2">
             <Cpu className="h-5 w-5 mr-2" />
             <h3 className="font-semibold">Hardware</h3>
@@ -110,7 +110,7 @@ export default function BentoGrid() {
         </Card>
 
         {/* CAD Card */}
-        <Card className="col-span-1 md:col-span-2 p-4 bg-card border-palette-1 shadow-xl">
+        <Card className="col-span-1 md:col-span-2 p-4 bg-primary border-palette-1 shadow-xl">
           <div className="flex items-center mb-2">
             <Cog className="h-5 w-5 mr-2" />
             <h3 className="font-semibold">CAD</h3>

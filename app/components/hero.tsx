@@ -32,7 +32,7 @@ export default function Hero() {
           </motion.p>
           <Link
             href="#projects"
-            className="flex items-center justify-between gap-1 my-1 px-2 sm:px-3 py-1 bg-palette-2 bg-opacity-10 text-palette-2 rounded-lg border border-transparent hover:border-palette-4 transition-all duration-300 w-36 hover:w-40"
+            className="flex items-center justify-between gap-1 my-1 px-2 sm:px-3 py-1 bg-palette-2/10 backdrop-blur-md text-palette-2 rounded-lg border border-transparent hover:border-palette-4 transition-all duration-300 w-36 hover:w-40"
           >
             <span className="text-xs sm:text-sm whitespace-nowrap">
               View my work

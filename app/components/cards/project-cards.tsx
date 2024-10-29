@@ -27,7 +27,7 @@ export default async function ProjectCards({
             key={slug}
             className={cn(
               className,
-              "flex flex-col overflow-hidden border h-full border-palette-1",
+              "flex flex-col overflow-hidden border h-full border-palette-1 bg-palette-2/10 backdrop-blur-md",
             )}
           >
             {frontmatter.src && frontmatter.src.image && (
@@ -54,7 +54,7 @@ export default async function ProjectCards({
             )}
             {frontmatter.src && frontmatter.src.scene && (
               <div className="relative w-full aspect-[5/3] overflow-hidden">
-                <Scene className="border-b border-b-palette-1 bg-white/5" />
+                <Scene className="border-b border-b-palette-1 bg-primary" />
                 <Move className="absolute right-1 bottom-1" />
               </div>
             )}
@@ -75,7 +75,7 @@ export default async function ProjectCards({
                     <div className="mt-2 flex flex-wrap gap-1">
                       {frontmatter.technologies?.map((tag) => (
                         <Badge
-                          className="px-1 py-0 text-[10px] bg-white/10"
+                          className="px-1 py-0 text-[10px] bg-white/10 shadow-md"
                           key={tag.name}
                         >
                           {tag.name}
