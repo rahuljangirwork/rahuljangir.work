@@ -3,8 +3,17 @@
 import { useToast } from "@/app/components/ui/use-toast";
 import { Copy } from "lucide-react";
 import { cn } from "@/app/lib/utils";
+import { ReactNode } from "react";
 
-export default function EmailToast({ className }: { className?: string }) {
+export default function EmailToast({
+  className,
+  iconSize = 16,
+  children,
+}: {
+  className?: string;
+  iconSize?: number;
+  children?: ReactNode;
+}) {
   const { toast } = useToast();
 
   const email = "isaisanchezcc@gmail.com";
@@ -26,8 +35,8 @@ export default function EmailToast({ className }: { className?: string }) {
 
   return (
     <button className={cn(className, "pl-1")} onClick={handleCopyEmail}>
-      {email}
-      <Copy className="w-4" />
+      {children}
+      <Copy size={iconSize} />
     </button>
   );
 }
