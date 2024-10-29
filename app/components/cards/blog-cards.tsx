@@ -1,27 +1,40 @@
 import {
-  Card,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/app/components/ui/card";
-import { getSortedPostsMetaData } from "@/app/lib/blogposts";
+  SplitCard,
+  SplitCardContent,
+  SplitCardHeader,
+  SplitCardBody,
+} from "@/app/components/cards/split-card";
 import Link from "next/link";
 
-export default async function BlogCards() {
-  const allPostsData = await getSortedPostsMetaData();
+interface PostData {
+  id: string;
+  title: string;
+  date: string;
+  description: string;
+}
+
+export default function BlogCards({ posts }: { posts: PostData[] }) {
   return (
     <div className="w-full max-w-4xl mx-auto px-4 text-palette-3">
       <ul className="flex flex-col gap-3">
-        {allPostsData.map(({ id, date, title }) => (
-          <li key={id}>
-            <Link href={`/blog/${id}`}>
-              <Card className="flex flex-col h-full">
-                <CardHeader className="flex-grow">
-                  <CardTitle>{title}</CardTitle>
-                  <CardDescription>{date}</CardDescription>
-                </CardHeader>
-              </Card>
+        {posts.map((post, index) => (
+          <li key={post.id}>
+            <Link href={`/blog/${post.id}`}>
+              <SplitCard className="flex flex-col h-full">
+                <SplitCardContent className="flex-grow">
+                  <SplitCardHeader>
+                    <time className="text-palette-4 text-sm">{post.date}</time>
+                    <h1 className="text-left font-bold text-3xl ">
+                      {post.title}
+                    </h1>
+                  </SplitCardHeader>
+                  <p className="text-palette-2 mb-2">{post.description}</p>
+                </SplitCardContent>
+              </SplitCard>
             </Link>
+            {index < posts.length - 1 && (
+              <div className="border-b border-dotted border-gray-300 my-2"></div>
+            )}
           </li>
         ))}
       </ul>
