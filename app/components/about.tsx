@@ -45,7 +45,7 @@ export default function About() {
               onClick={toggleView}
               className={cn(
                 showTLDR ? "border border-palette-4" : "",
-                "text-sm rounded-md px-2 py-1 bg-white bg-opacity-10",
+                "text-sm rounded-md px-2 py-1 bg-palette-2/10 backdrop-blur-md",
               )}
             >
               TL;DR
@@ -54,7 +54,7 @@ export default function About() {
               onClick={toggleView}
               className={cn(
                 !showTLDR ? "border border-palette-4" : "",
-                "text-sm rounded-md px-2 py-1 bg-white bg-opacity-10",
+                "text-sm rounded-md px-2 py-1 bg-palette-2/10 backdrop-blur-md",
               )}
             >
               Long Story
