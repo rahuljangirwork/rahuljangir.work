@@ -27,7 +27,7 @@ export default async function ProjectCards({
             key={slug}
             className={cn(
               className,
-              "flex flex-col overflow-hidden border h-full border-palette-1 bg-palette-2/10 backdrop-blur-md",
+              "flex flex-col overflow-hidden border h-full border-palette-1 bg-palette-2/10 backdrop-blur-md shadow-xl",
             )}
           >
             {frontmatter.src && frontmatter.src.image && (
@@ -75,7 +75,7 @@ export default async function ProjectCards({
                     <div className="mt-2 flex flex-wrap gap-1">
                       {frontmatter.technologies?.map((tag) => (
                         <Badge
-                          className="px-1 py-0 text-[10px] bg-white/10 shadow-md"
+                          className="px-1 py-0 text-[10px] bg-white/10 shadow-sm hover:bg-primary"
                           key={tag.name}
                         >
                           {tag.name}
