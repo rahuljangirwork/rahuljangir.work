@@ -30,15 +30,21 @@ export default function Hero() {
             trained in CAD, robotics, and simple web development. I love
             transforming innovative designs to life.
           </motion.p>
-          <Link
-            href="#projects"
-            className="flex items-center justify-between gap-1 my-3 px-2 sm:px-3 py-1 bg-palette-2/10 backdrop-blur-md text-palette-2 rounded-lg border border-transparent hover:border-palette-4 transition-all duration-300 w-36 hover:w-40"
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
           >
-            <span className="text-xs sm:text-sm whitespace-nowrap">
-              View my work
-            </span>
-            <ChevronRight className="h-4 w-4 sm:h-5 sm:w-5 text-palette-4 flex-shrink-0" />
-          </Link>
+            <Link
+              href="#projects"
+              className="flex items-center justify-between gap-1 my-3 px-2 sm:px-3 py-1 bg-palette-2/10 backdrop-blur-md text-palette-2 rounded-lg border border-transparent hover:border-palette-4 transition-all duration-300 w-36 hover:w-40"
+            >
+              <span className="text-xs sm:text-sm whitespace-nowrap">
+                View my work
+              </span>
+              <ChevronRight className="h-4 w-4 sm:h-5 sm:w-5 text-palette-4 flex-shrink-0" />
+            </Link>
+          </motion.div>
         </div>
         <motion.div
           className="order-first md:order-last relative aspect-square w-60 sm:w-72 md:w-[470px] h-fit"
