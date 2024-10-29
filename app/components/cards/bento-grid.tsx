@@ -66,7 +66,7 @@ export default function BentoGrid() {
         <Card className="col-span-1 md:col-span-2 p-4 bg-primary border-palette-1 shadow-xl">
           <div className="flex items-center mb-2">
             <Braces className="h-5 w-5 mr-2" />
-            <h3 className="text-md lg:text-lg font-semibold">Coding</h3>
+            <h3 className="text-lg font-semibold">Coding</h3>
           </div>
           <div className="flex gap-1 justify-start">
             <Cpp className="inline-block w-9 h-9 text-palette-3 bg-white/10 backdrop-blur-sm p-2 rounded-md" />
