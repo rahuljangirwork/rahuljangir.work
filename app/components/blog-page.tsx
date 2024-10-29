@@ -6,6 +6,7 @@ import BlogCards from "@/app/components/cards/blog-cards";
 import { Mail } from "lucide-react";
 import { cn } from "../lib/utils";
 import Socials from "./navigation/socials";
+import EmailToast from "@/app/components/ui/email-toast";
 
 interface PostData {
   id: string;
@@ -28,7 +29,7 @@ export default function BlogPage({
   };
   return (
     <>
-      <section className="bg-transparent pb-20 text-left text-palette-2 w-full md:w-1/3 flex flex-col gap-2">
+      <section className="bg-transparent pb-8 text-left text-palette-2 w-full md:w-1/3 flex flex-col gap-2 px-4 md:px-0">
         <div>
           <h1 className="text-4xl font-extrabold">
             Blog Posts<span className="text-palette-4">.</span>
@@ -38,42 +39,36 @@ export default function BlogPage({
           </p>
         </div>
 
-        <div className="mt-2">
-          <h2 className="text-2xl font-semibold mb-2">Filter by Tags</h2>
-          <div className="flex flex-wrap gap-2">
-            {tags.map((tag) => (
-              <Badge
-                key={tag}
-                className={cn(
-                  "text-palette-2 bg-palette-2/10 backdrop-blur-md",
-                  selectedTags.includes(tag)
-                    ? "border border-palette-4"
-                    : "border border-palette-1",
-                )}
-                onClick={() => toggleTag(tag)}
-              >
-                {tag}
-              </Badge>
-            ))}
+        <div className="flex md:flex-col">
+          <div className="mt-2 max-w-sm">
+            <h2 className="text-2xl font-semibold mb-2">Filter by Tags</h2>
+            <div className="flex flex-wrap gap-2">
+              {tags.map((tag) => (
+                <Badge
+                  key={tag}
+                  className={cn(
+                    "text-palette-2 bg-palette-2/10 backdrop-blur-md hover:bg-primary hover:cursor-pointer",
+                    selectedTags.includes(tag)
+                      ? "border border-palette-4"
+                      : "border border-palette-1",
+                  )}
+                  onClick={() => toggleTag(tag)}
+                >
+                  {tag}
+                </Badge>
+              ))}
+            </div>
           </div>
-        </div>
 
-        <div className="mt-2">
-          <h2 className="text-2xl font-semibold mb-2">Quick Links</h2>
-          <ul className="space-y-2">
-            <li>
-              <Socials className="flex gap-2" iconSize={20} />
-            </li>
-            <li>
-              <Link
-                href="/contact"
-                className="flex items-center hover:text-palette-4 transition-colors"
-              >
-                <Mail className="mr-2 h-4 w-4" />
-                Contact Me
-              </Link>
-            </li>
-          </ul>
+          <div className="hidden mt-6 md:flex flex-grow justify-between pr-3">
+            <Socials className="flex gap-2" iconSize={20} />
+            <EmailToast
+              className="inline-flex items-center gap-1 text-xs text-palette-2 hover:text-palette-4 hover:underline focus:outline-none transition-all duration-300 ease-in-out"
+              iconSize={12}
+            >
+              isaisanchezcc@gmail.com
+            </EmailToast>
+          </div>
         </div>
       </section>
       <section className="w-full mx-auto md:w-2/3">
