@@ -9,6 +9,7 @@ import EmailToast from "@/app/components/ui/email-toast";
 import { useState } from "react";
 import { cn } from "../lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
 
 export default function About() {
   const [showTLDR, setShowTLDR] = useState(true);
@@ -64,22 +65,48 @@ export default function About() {
         <SplitCardBody className="flex flex-col gap-3">
           <AnimatePresence mode="wait">
             {showTLDR ? (
-              <motion.p
+              <motion.div
                 key="tldr"
-                className="text-md text-pretty text-left"
                 variants={variants}
                 initial="enter"
                 animate="center"
                 transition={{ duration: 0.3 }}
               >
-                Thanks for stopping by! I&apos;ve always wanted a space to share
-                my projects, notes, and thoughts on various topics from my
-                education, hobbies, and life experiences, so here it is :) Feel
-                free to reach out!
-                <EmailToast className="inline-flex gap-1 text-md text-palette-4 hover:underline focus:outline-none items-center">
-                  isaisanchezcc@gmail.com
-                </EmailToast>
-              </motion.p>
+                <p className="text-md text-pretty text-left mb-1">
+                  Thanks for stopping by! I&apos;ve always wanted a space to
+                  share my projects, notes, and thoughts on various topics from
+                  my education, hobbies, and life experiences, so here it is :)
+                  Feel free to reach out!
+                  <EmailToast className="inline-flex gap-1 text-md text-palette-4 hover:underline focus:outline-none items-center">
+                    isaisanchezcc@gmail.com
+                  </EmailToast>
+                </p>
+                <p className="text-md text-pretty text-left">
+                  The site was built with{" "}
+                  <Link
+                    href="https://nextjs.org/"
+                    className="text-palette-4 hover:underline"
+                  >
+                    Next.js
+                  </Link>{" "}
+                  and uses Typescript, Tailwind CSS for styling, and some simple
+                  and neat{" "}
+                  <Link
+                    href="https://ui.shadcn.com/"
+                    className="text-palette-4 hover:underline"
+                  >
+                    shadcn
+                  </Link>{" "}
+                  components too. Source code is{" "}
+                  <Link
+                    href="https://github.com/isai7710/isai-portfolio"
+                    className="text-palette-4 hover:underline"
+                  >
+                    here
+                  </Link>
+                  .
+                </p>
+              </motion.div>
             ) : (
               <motion.div
                 key="long-story"
@@ -105,6 +132,30 @@ export default function About() {
                   <EmailToast className="inline-flex gap-1 text-md text-palette-4 hover:underline focus:outline-none items-center">
                     isaisanchezcc@gmail.com
                   </EmailToast>
+                </p>
+                <p>
+                  The site was built with{" "}
+                  <Link
+                    href="https://nextjs.org/"
+                    className="text-palette-4 hover:underline"
+                  >
+                    Next.js
+                  </Link>{" "}
+                  and uses Typescript, Tailwind CSS for styling, and some simple
+                  and neat{" "}
+                  <Link
+                    href="https://ui.shadcn.com/"
+                    className="text-palette-4 hover:underline"
+                  >
+                    shadcn
+                  </Link>{" "}
+                  components too. Source code is{" "}
+                  <Link
+                    href="https://github.com/isai7710/isai-portfolio"
+                    className="text-palette-4 hover:underline"
+                  >
+                    here
+                  </Link>
                 </p>
               </motion.div>
             )}
