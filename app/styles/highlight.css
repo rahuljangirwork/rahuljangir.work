@@ -1,0 +1,124 @@
+/* Base style for code blocks */
+.hljs {
+  background: #1a4d2e; /* primary - dark forest green */
+  color: #f5e5e6; /* palette-3 - off-white for default text */
+  padding: 1em;
+  border-radius: 0.5rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+}
+
+/* Keywords and control flow */
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-built_in,
+.hljs-meta-keyword,
+.hljs-deletion {
+  color: #f28d35; /* palette-4 - vibrant orange */
+  font-weight: 500;
+}
+
+/* Function names and declarations */
+.hljs-function .hljs-title,
+.hljs-class .hljs-title,
+.hljs-title.class_,
+.hljs-title.function_ {
+  color: #ffb562; /* lighter orange - derived from palette-4 */
+}
+
+/* Types, classes, and interfaces */
+.hljs-type,
+.hljs-class,
+.hljs-interface,
+.hljs-typename {
+  color: #8b9a7d; /* lighter variant of palette-1 */
+}
+
+/* Strings and template literals */
+.hljs-string,
+.hljs-regexp,
+.hljs-addition,
+.hljs-attribute,
+.hljs-meta-string {
+  color: #e8dfca; /* palette-2 - light beige */
+}
+
+/* Numbers and boolean values */
+.hljs-number,
+.hljs-literal,
+.hljs-symbol,
+.hljs-bullet {
+  color: #ffcba5; /* peachy color - complementing palette-4 */
+}
+
+/* Comments and documentation */
+.hljs-comment,
+.hljs-quote,
+.hljs-meta {
+  color: #4f6f52; /* palette-1 - lighter muted forest green */
+  font-style: italic;
+}
+
+/* Variables and parameters */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-params {
+  color: #f5e5e6; /* palette-3 - off-white */
+}
+
+/* Object properties and keys */
+.hljs-property,
+.hljs-attr {
+  color: #dac5a7; /* darker variant of palette-2 */
+}
+
+/* Operators and punctuation */
+.hljs-operator,
+.hljs-punctuation {
+  color: #b8c4b9; /* muted light color - derived from palette-1 */
+}
+
+/* Tags and markup */
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class {
+  color: #f28d35; /* palette-4 - vibrant orange */
+}
+
+/* Markup attributes */
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+/* Links and references */
+.hljs-link {
+  text-decoration: underline;
+  color: #f28d35; /* palette-4 - vibrant orange */
+}
+
+/* Section headers in markup */
+.hljs-section,
+.hljs-doctag {
+  color: #e8dfca; /* palette-2 - light beige */
+  font-weight: bold;
+}
+
+/* Special highlights */
+.hljs-subst {
+  color: #f5e5e6; /* palette-3 - off-white */
+}
+
+/* Import/export statements */
+.hljs-meta .hljs-keyword {
+  color: #f28d35; /* palette-4 - vibrant orange */
+}
+
+/* Template expressions */
+.hljs-template-tag {
+  color: #dac5a7; /* darker variant of palette-2 */
+}
