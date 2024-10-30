@@ -76,7 +76,9 @@ export default function About() {
                 my projects, notes, and thoughts on various topics from my
                 education, hobbies, and life experiences, so here it is :) Feel
                 free to reach out!
-                <EmailToast className="inline-flex gap-1 text-md text-palette-4 hover:underline focus:outline-none" />
+                <EmailToast className="inline-flex gap-1 text-md text-palette-4 hover:underline focus:outline-none items-center">
+                  isaisanchezcc@gmail.com
+                </EmailToast>
               </motion.p>
             ) : (
               <motion.div
@@ -100,7 +102,9 @@ export default function About() {
                   camera to the intricacies of the 2nd Law of Thermodynamics and
                   everything in between. I&apos;d love to hear your feedback or
                   chat about any of these topics, so feel free to reach out!
-                  <EmailToast className="inline-flex gap-1 text-md text-palette-4 hover:underline focus:outline-none" />
+                  <EmailToast className="inline-flex gap-1 text-md text-palette-4 hover:underline focus:outline-none items-center">
+                    isaisanchezcc@gmail.com
+                  </EmailToast>
                 </p>
               </motion.div>
             )}
