@@ -1,4 +1,5 @@
 import { getPostBySlug, getAllPostsSlug } from "@/app/lib/projectposts";
+import "@/app/styles/highlight.css";
 
 export async function generateStaticParams() {
   const slugs = getAllPostsSlug();
