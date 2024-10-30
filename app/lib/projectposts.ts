@@ -3,6 +3,7 @@ import path from "path";
 import { compileMDX } from "next-mdx-remote/rsc";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
+import rehypeHighlight from "rehype-highlight";
 import "katex/dist/katex.min.css"; // Import KaTeX styles
 import { CustomMDXComponents } from "@/app/components/mdx/mdx";
 
@@ -32,7 +33,7 @@ export async function getPostBySlug(slug: string) {
     options: {
       mdxOptions: {
         remarkPlugins: [remarkMath],
-        rehypePlugins: [rehypeKatex],
+        rehypePlugins: [rehypeKatex, rehypeHighlight],
       },
       parseFrontmatter: true,
     },
