@@ -69,14 +69,21 @@ const config = {
               fontWeight: "400",
             },
             pre: {
-              backgroundColor: "#1A4D2E",
+              padding: "0", // Remove padding as highlight.js adds its own
+              backgroundColor: "transparent", // Let highlight.js handle background
+              margin: "0", // Remove default margins
+              border: "1px solid #4F6F52",
+              borderRadius: "0.5rem",
+              overflow: "hidden",
             },
-            "pre code": {
-              color: "#F28D35", // Accent color for code block text
-              backgroundColor: "transparent", // Remove background from code inside pre
-              padding: "0",
-              borderRadius: "0",
-              fontWeight: "400",
+            "pre code.hljs": {
+              display: "block",
+              padding: "1em",
+              overflowX: "auto",
+              fontSize: "0.875rem",
+              lineHeight: "1.7142857",
+              fontFamily:
+                'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
             },
 
             "--tw-prose-body": "#F5E5E6", // palette-3
