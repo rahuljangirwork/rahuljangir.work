@@ -16,7 +16,7 @@ technologies:
 
 I designed a 4 revolute joint robot arm and wrote forward kinematic algorithms in C++ to display the end effector position relative to the base (1st joint) and inverse kinematic algorithms in Python that allows us to input a desired position and in return fetch the required joint angles to reach that position.
 
-The design was done in SolidWorks and converted to .gltf so that I could use the Three.js library to display it below. Regular panning, zooming, and rotating controls work in the outlined canvas.
+I designed the base and arms in SolidWorks and converted the model to .gltf so that I could use the Three.js library along with [react-three-fiber](https://github.com/pmndrs/react-three-fiber) to display it below. Regular panning, zooming, and rotating controls work in the outlined canvas.
 
 <RobotScene />
 
@@ -34,3 +34,178 @@ Improvements to be made:
   - When motors were drawing current under heavier loads they would struggle a lot. A better power supply design is definitely needed to smoothen out these spikes.
 - More integrated algorithm and UI
   - The NumPy python library was used to write algorithms for inverse kinematics. So the desired end effector position would be inputed in the python script, required joint angles would be manually inputed using Potentiometters and the Robot would move there. A more integrated yet simple UI such as a number pad for each xyz coordinate would definitely be an improvement to the project.
+
+## C++/Arduino Code
+
+Library includes and variable set up:
+
+```cpp
+#include <LiquidCrystal.h>
+#include <Servo.h>
+#include <Math.h>
+
+LiquidCrystal lcd(13, 12, 7, 4, 3, 2);
+Servo servos[5];
+int const numOfServos = 5;
+
+int const pot1Pin = A0;
+int const pot2Pin = A1;
+int const pot3Pin = A2;
+int const pot4Pin = A3;
+int const pot5Pin = A4;
+
+int potValues[5];
+int angles[5];
+int dh_angles[4];
+const double pi = 3.1415927;
+
+double const d1 = 42.25;
+double const a2 = 100.0;
+double const a3 = 81.4;
+double const a4 = 125.0;
+double x_ee(double q1, double q2, double q3, double q4);
+double y_ee(double q1, double q2, double q3, double q4);
+double z_ee(double q1, double q2, double q3, double q4);
+
+```
+
+```cpp
+
+#include <LiquidCrystal.h>
+#include <Servo.h>
+#include <Math.h>
+
+LiquidCrystal lcd(13, 12, 7, 4, 3, 2);
+Servo servos[5];
+int const numOfServos = 5;
+
+int const pot1Pin = A0;
+int const pot2Pin = A1;
+int const pot3Pin = A2;
+int const pot4Pin = A3;
+int const pot5Pin = A4;
+
+int potValues[5];
+int angles[5];
+int dh_angles[4];
+const double pi = 3.1415927;
+
+double const d1 = 42.25;
+double const a2 = 100.0;
+double const a3 = 81.4;
+double const a4 = 125.0;
+double x_ee(double q1, double q2, double q3, double q4);
+double y_ee(double q1, double q2, double q3, double q4);
+double z_ee(double q1, double q2, double q3, double q4);
+
+void setup() {
+  lcd.begin(16, 2);
+  servos[0].attach(11);
+  servos[1].attach(10);
+  servos[2].attach(9);
+  servos[3].attach(6);
+  servos[4].attach(5);
+
+  Serial.begin(9600);
+}
+
+void loop() {
+  // read in potentiometer values
+  potValues[0] = analogRead(pot1Pin);
+  potValues[1] = analogRead(pot2Pin);
+  potValues[2] = analogRead(pot3Pin);
+  potValues[3] = analogRead(pot4Pin);
+  potValues[4] = analogRead(pot5Pin);
+
+  // angle values for servos
+  for (int i(0); i < numOfServos - 1; i++)
+  {
+    angles[i] = map(potValues[i], 0, 1023, 0, 180);
+  }
+  // for claw servo
+  angles[4] = map(potValues[4], 0, 1023, 0, 65);
+
+  // DH joint angles
+  dh_angles[0]= angles[0];
+  dh_angles[1] = angles[1];
+  dh_angles[2] = map(angles[2], 0, 180, 90, -90);
+  dh_angles[3] = map(angles[3], 0, 180, -90, 90);
+
+  // printing servo angles and dh angles to Serial monitor
+  for(int i(0); i < numOfServos-1; i++)
+  {
+    Serial.print(dh_angles[i]);
+    Serial.print("\t");
+  }
+  for(int i(0); i < numOfServos-1; i++)
+  {
+    Serial.print(angles[i]);
+    Serial.print("\t");
+    if (i == 3)
+    {
+      Serial.println("");
+    }
+  }
+
+  // printing dh angles to LCD
+  /*
+  lcd.setCursor(0, 0);
+  lcd.print("dh joint angles: ");
+  lcd.setCursor(0, 1);
+  for (int i(0); i < numOfServos-1; i++)
+  {
+    lcd.print(dh_angles[i]);
+    lcd.print(" ");
+  }
+  */
+
+  // printing xyz coordinates relative to base frame to LCD
+  int x_ee_int = x_ee(dh_angles[0],dh_angles[1],dh_angles[2],dh_angles[3]);
+  int y_ee_int = y_ee(dh_angles[0],dh_angles[1],dh_angles[2],dh_angles[3]);
+  int z_ee_int = z_ee(dh_angles[0],dh_angles[1],dh_angles[2],dh_angles[3]);
+  lcd.setCursor(0, 0);
+  lcd.print("xyz coordinates:");
+  lcd.setCursor(0, 1);
+  lcd.print(x_ee_int);
+  lcd.print(" ");
+  lcd.print(y_ee_int);
+  lcd.print(" ");
+  lcd.print(z_ee_int);
+  lcd.print(" ");
+
+  // writing to servos
+  for(int i(0); i < numOfServos; i++)
+  {
+    servos[i].write(angles[i]);
+  }
+  delay(15);
+}
+
+double x_ee(double q1, double q2, double q3, double q4)
+{
+  q1 = q1 * (pi/180);
+  q2 = q2 * (pi/180);
+  q3 = q3 * (pi/180);
+  q4 = q4 * (pi/180);
+  return a2*cos(q1)*cos(q2)-a3*sin(q2)*sin(q3)*cos(q1)+a3*cos(q1)*cos(q2)*cos(q3)+a4*(-sin(q2)*sin(q3)*cos(q1)+cos(q1)*cos(q2)*cos(q3))*cos(q4)+
+    a4*(-sin(q2)*cos(q1)*cos(q3)-sin(q3)*cos(q1)*cos(q2))*sin(q4);
+}
+double y_ee(double q1, double q2, double q3, double q4)
+{
+  q1 = q1 * (pi/180);
+  q2 = q2 * (pi/180);
+  q3 = q3 * (pi/180);
+  q4 = q4 * (pi/180);
+  return a2*sin(q1)*cos(q2)-a3*sin(q1)*sin(q2)*sin(q3)+a3*sin(q1)*cos(q2)*cos(q3)+a4*(-sin(q1)*sin(q2)*sin(q3)+sin(q1)*cos(q2)*cos(q3))*cos(q4)+
+    a4*(-sin(q1)*sin(q2)*cos(q3)-sin(q1)*sin(q3)*cos(q2))*sin(q4);
+}
+double z_ee(double q1, double q2, double q3, double q4)
+{
+  q1 = q1 * (pi/180);
+  q2 = q2 * (pi/180);
+  q3 = q3 * (pi/180);
+  q4 = q4 * (pi/180);
+  return a2*sin(q2)+a3*sin(q2)*cos(q3)+a3*sin(q3)*cos(q2)+a4*(-sin(q2)*sin(q3)+cos(q2)*cos(q3))*sin(q4)+a4*(sin(q2)*cos(q3)+sin(q3)*cos(q2))*cos(q4)+d1;
+}
+
+```
