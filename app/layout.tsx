@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { space_grotesk } from "@/app/lib/fonts";
-import "@/app/globals.css";
+import "@/app/styles/globals.css";
 import NavBar from "@/app/components/navigation/nav-bar";
 import Footer from "./components/footer";
 import { Toaster } from "@/app/components/ui/toaster";
