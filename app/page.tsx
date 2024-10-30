@@ -8,12 +8,19 @@ import ProjectCards from "@/app/components/cards/project-cards";
 import Hero from "./components/hero";
 import About from "./components/about";
 import BentoGrid from "./components/cards/bento-grid";
+import { Suspense } from "react";
+import HeroSkeleton from "./components/skeletons/hero-skeleton";
+import BentoGridSkeleton from "./components/skeletons/bento-skeleton";
 
 export default function Home() {
   return (
     <main className="max-w-3xl mx-auto px-4 md:px-0">
-      <Hero />
-      <BentoGrid />
+      <Suspense fallback={<HeroSkeleton />}>
+        <Hero />
+      </Suspense>
+      <Suspense fallback={<BentoGridSkeleton />}>
+        <BentoGrid />
+      </Suspense>
       <section id="projects" className="scroll-mt-24 text-palette-2">
         <SplitCard>
           <SplitCardContent side="all">
