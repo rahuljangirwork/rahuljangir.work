@@ -1,5 +1,5 @@
 ---
-title: "Modular Robot Arm"
+title: "CHEWY RRRR Robot Arm"
 publishDate: "March 2023"
 description: "Complex modular arm designed in Solidworks and programmed in C++."
 src: { image: "", video: "", scene: true }
@@ -10,25 +10,27 @@ technologies:
   - { name: "Arduino" }
 ---
 
-# Modular Robot Arm
+# CHEWY
+
+## My RRRR Modular Robot Arm
+
+I designed a 4 revolute joint robot arm and wrote forward kinematic algorithms in C++ to display the end effector position relative to the base (1st joint) and inverse kinematic algorithms in Python that allows us to input a desired position and in return fetch the required joint angles to reach that position.
+
+The design was done in SolidWorks and converted to .gltf so that I could use the Three.js library to display it below. Regular panning, zooming, and rotating controls work in the outlined canvas.
 
 <RobotScene />
 
-The general form of the heat equation is:
+Features:
 
-$$
-\frac{\partial u}{\partial t} = \alpha \nabla^2 u
-$$
+- LCD Screen Displaying
+  - xyz coordinates of end effector
+  - $q_1$, $q_2$, $q_3$, $q_4$ joint angles
+- Simple Potentiometer controls
+- Ability to grab small/lightweight objects
 
-where:
+Improvements to be made:
 
-- $u = u(x,t)$ represents the temperature distribution as a function of position $x$ and time $t$.
-- $\alpha$ is the thermal diffusivity of the material, defined as $\alpha = \frac{k}{\rho c_p}$, where:
-  - $k$ is the thermal conductivity,
-  - $\rho$ is the density,
-  - $c_p$ is the specific heat capacity at constant pressure.
-- $\nabla^2$ is the Laplace operator, which in one-dimensional form is:
-
-$$
-\nabla^2 u = \frac{\partial^2 u}{\partial x^2}
-$$
+- Better power supply.
+  - When motors were drawing current under heavier loads they would struggle a lot. A better power supply design is definitely needed to smoothen out these spikes.
+- More integrated algorithm and UI
+  - The NumPy python library was used to write algorithms for inverse kinematics. So the desired end effector position would be inputed in the python script, required joint angles would be manually inputed using Potentiometters and the Robot would move there. A more integrated yet simple UI such as a number pad for each xyz coordinate would definitely be an improvement to the project.
