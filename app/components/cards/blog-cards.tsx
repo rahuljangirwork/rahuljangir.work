@@ -2,28 +2,23 @@ import {
   SplitCard,
   SplitCardContent,
   SplitCardHeader,
-  SplitCardBody,
 } from "@/app/components/cards/split-card";
 import Link from "next/link";
+import { PostMetadata } from "@/app/lib/posts";
 
-interface PostData {
-  id: string;
-  title: string;
-  date: string;
-  description: string;
-}
-
-export default function BlogCards({ posts }: { posts: PostData[] }) {
+export default function BlogCards({ posts }: { posts: PostMetadata[] }) {
   return (
     <div className="w-full max-w-4xl mx-auto px-4 text-palette-3">
       <ul className="flex flex-col gap-3">
         {posts.map((post, index) => (
-          <li key={post.id}>
-            <Link href={`/blog/${post.id}`}>
+          <li key={post.slug}>
+            <Link href={`/blog/${post.slug}`}>
               <SplitCard className="flex flex-col h-full">
                 <SplitCardContent className="flex-grow">
                   <SplitCardHeader>
-                    <time className="text-palette-4 text-sm">{post.date}</time>
+                    <time className="text-palette-4 text-sm">
+                      {post.publishDate}
+                    </time>
                     <h1 className="text-left font-bold text-3xl ">
                       {post.title}
                     </h1>

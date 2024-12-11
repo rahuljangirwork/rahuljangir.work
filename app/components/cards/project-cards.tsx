@@ -6,7 +6,7 @@ import {
   CardTitle,
 } from "@/app/components/ui/card";
 import { Badge } from "@/app/components/ui/badge";
-import { getSortedPosts } from "@/app/lib/projectposts";
+import { getSortedPostsMetaData } from "@/app/lib/posts";
 import Link from "next/link";
 import Image from "next/image";
 import { cn } from "@/app/lib/utils";
@@ -18,32 +18,33 @@ export default async function ProjectCards({
 }: {
   className?: string;
 }) {
-  const posts = await getSortedPosts();
+  const posts = await getSortedPostsMetaData();
   return (
     <>
-      {posts.map(({ slug, frontmatter }) => {
-        return (
+      {posts
+        .filter((post) => post.project)
+        .map((post) => (
           <Card
-            key={slug}
+            key={post.slug}
             className={cn(
               className,
               "flex flex-col overflow-hidden border h-full border-palette-1 bg-palette-2/5 backdrop-blur-md shadow-xl",
             )}
           >
-            {frontmatter.src && frontmatter.src.image && (
+            {post.src && post.src.image && (
               <div className="relative w-full aspect-[5/3] overflow-hidden">
                 <Image
-                  src={frontmatter.src.image}
-                  alt={frontmatter.title}
+                  src={post.src.image}
+                  alt={post.title}
                   fill
                   className="object-top"
                 />
               </div>
             )}
-            {frontmatter.src && frontmatter.src.video && (
+            {post.src && post.src.video && (
               <div className="relative w-full aspect-[5/3] overflow-hidden">
                 <video
-                  src={frontmatter.src.video}
+                  src={post.src.video}
                   autoPlay
                   loop
                   muted
@@ -52,45 +53,43 @@ export default async function ProjectCards({
                 />
               </div>
             )}
-            {frontmatter.src && frontmatter.src.scene && (
+            {post.src && post.src.scene && (
               <div className="relative w-full aspect-[5/3] overflow-hidden">
                 <Scene className="border-b border-b-palette-1 bg-primary" />
                 <Move className="absolute right-1 bottom-1" />
               </div>
             )}
-            <Link href={`/projects/${slug}`}>
+            <Link href={`/blog/${post.slug}`}>
               <CardHeader className="px-2">
                 <div className="my-1 flex items-center justify-between p-1">
                   <CardTitle className="text-lg md:text-xl">
-                    {frontmatter.title}
+                    {post.title}
                   </CardTitle>
                   <time className="text-xs text-palette-1">
-                    {frontmatter.publishDate}
+                    {post.publishDate}
                   </time>
                 </div>
               </CardHeader>
               <CardContent className="mt-auto flex flex-col px-3 pb-3">
                 <CardDescription className="text-palette-2/60 mb-2">
-                  {frontmatter.description}
+                  {post.description}
                 </CardDescription>
-                {frontmatter.technologies &&
-                  frontmatter.technologies.length > 0 && (
-                    <div className="mt-2 flex flex-wrap gap-1">
-                      {frontmatter.technologies?.map((tag) => (
-                        <Badge
-                          className="px-1 py-0 text-palette-2 text-[10px] bg-white/10 shadow-sm hover:bg-primary"
-                          key={tag.name}
-                        >
-                          {tag.name}
-                        </Badge>
-                      ))}
-                    </div>
-                  )}
+                {post.technologies && post.technologies.length > 0 && (
+                  <div className="mt-2 flex flex-wrap gap-1">
+                    {post.technologies?.map((tag) => (
+                      <Badge
+                        className="px-1 py-0 text-palette-2 text-[10px] bg-white/10 shadow-sm hover:bg-primary"
+                        key={tag}
+                      >
+                        {tag}
+                      </Badge>
+                    ))}
+                  </div>
+                )}
               </CardContent>
             </Link>
           </Card>
-        );
-      })}
+        ))}
     </>
   );
 }
