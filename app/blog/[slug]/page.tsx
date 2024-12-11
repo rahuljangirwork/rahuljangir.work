@@ -1,26 +1,31 @@
-import Markdown from "react-markdown";
-import remarkMath from "remark-math";
-import rehypeKatex from "rehype-katex";
-import remarkGfm from "remark-gfm";
-import "katex/dist/katex.min.css";
-import { getPostData } from "@/app/lib/blogposts";
+import { getPostContentBySlug, getAllPostsSlug } from "@/app/lib/posts";
+import "@/app/styles/highlight.css";
 import { TracingBeam } from "@/app/components/ui/tracing-beam";
 
-export default async function Post({ params }: { params: { slug: string } }) {
-  const postData = await getPostData(params.slug);
+export async function generateStaticParams() {
+  const slugs = getAllPostsSlug();
+
+  return slugs.map(({ slug }) => ({
+    slug,
+  }));
+}
+
+export default async function PostPage({
+  params,
+}: {
+  params: { slug: string };
+}) {
+  const post = await getPostContentBySlug(params.slug);
 
   return (
     <TracingBeam className="px-6">
-      <div
-        key={postData.title}
-        className="mx-auto prose prose-offwhite w-full mt-8 px-6"
-      >
-        <Markdown
-          remarkPlugins={[remarkMath, remarkGfm]}
-          rehypePlugins={[rehypeKatex]}
+      <div className="flex flex-col justify-center items-center text-palette-2 mt-12">
+        <article
+          key={post.frontmatter.title}
+          className="prose prose-offwhite w-full m-2"
         >
-          {postData.content}
-        </Markdown>
+          {post.content}
+        </article>
       </div>
     </TracingBeam>
   );
