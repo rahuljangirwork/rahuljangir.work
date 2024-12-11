@@ -1,25 +1,13 @@
 "use client";
 import { useState } from "react";
-import Link from "next/link";
 import { Badge } from "@/app/components/ui/badge";
 import BlogCards from "@/app/components/cards/blog-cards";
-import { Mail } from "lucide-react";
-import { cn } from "../lib/utils";
-import Socials from "./navigation/socials";
+import { cn } from "@/app/lib/utils";
+import Socials from "@/app/components/navigation/socials";
 import EmailToast from "@/app/components/ui/email-toast";
+import { PostMetadata } from "@/app/lib/posts";
 
-interface PostData {
-  id: string;
-  title: string;
-  date: string;
-  description: string;
-}
-
-export default function BlogPage({
-  initialPosts,
-}: {
-  initialPosts: PostData[];
-}) {
+export default function BlogPage({ posts }: { posts: PostMetadata[] }) {
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const tags = ["Engineering", "Life", "Technology", "Science", "Personal"];
   const toggleTag = (tag: string) => {
@@ -72,7 +60,7 @@ export default function BlogPage({
         </div>
       </section>
       <section className="w-full mx-auto md:w-2/3">
-        <BlogCards posts={initialPosts} />
+        <BlogCards posts={posts} />
       </section>
     </>
   );
