@@ -29,9 +29,7 @@ export default function Home() {
             </SplitCardBody>
           </SplitCardContent>
         </SplitCard>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 py-4 px-2 md:px-0 mb-20">
-          <ProjectCards />
-        </div>
+        <ProjectCards />
       </section>
       <About />
     </main>
