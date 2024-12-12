@@ -17,9 +17,10 @@ export type PostMetadata = {
   publishDate: string;
   project: boolean;
   src: {
-    image?: string;
+    image?: { path: string; alt: string };
     video?: string;
     scene?: boolean;
+    link?: string;
   };
   technologies?: string[];
 };
@@ -47,9 +48,10 @@ export async function getSortedPostsMetaData(): Promise<PostMetadata[]> {
         publishDate: matterResult.data.publishDate,
         project: matterResult.data.project ?? false, // Default to false if not specified
         src: {
-          image: matterResult.data.src?.image ?? "",
+          image: matterResult.data.src?.image ?? {},
           video: matterResult.data.src?.video ?? "",
           scene: matterResult.data.src?.scene ?? false,
+          link: matterResult.data.src?.link ?? "",
         },
         technologies: matterResult.data.technologies ?? [],
       };
