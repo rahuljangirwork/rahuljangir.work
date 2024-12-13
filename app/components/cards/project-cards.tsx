@@ -38,19 +38,16 @@ function ProjectCard({ post }: { post: PostMetadata }) {
       </CardHeader>
       <Link href={`/blog/${post.slug}`} className="flex-grow">
         <CardContent className="p-3">
-          <div className="flex items-center justify-between mb-2">
-            <CardTitle className="text-lg sm:text-xl font-semibold line-clamp-1">
+          <CardTitle className="flex items-baseline justify-between mb-3">
+            <h1 className="text-lg sm:text-2xl font-semibold line-clamp-1">
               {post.title}
-            </CardTitle>
-            <time className="text-xs text-palette-2/50">
-              {post.publishDate}
-            </time>
-          </div>
+            </h1>
+          </CardTitle>
           <CardDescription className="text-sm text-palette-2/50 line-clamp-2 mb-2">
             {post.description}
           </CardDescription>
           {post.technologies && post.technologies.length > 0 && (
-            <div className="flex flex-wrap gap-2 mb-4">
+            <div className="flex flex-wrap gap-2 mb-3">
               {post.technologies.map((tag) => (
                 <Badge
                   key={tag}
@@ -64,7 +61,7 @@ function ProjectCard({ post }: { post: PostMetadata }) {
           )}
         </CardContent>
       </Link>
-      <CardFooter className="flex items-center justify-between text-sm px-3 pb-3">
+      <CardFooter className="flex items-center justify-between px-3 pb-3 text-sm">
         <Link
           href={`/blog/${post.slug}`}
           className="flex items-center gap-1 px-2 py-1 border border-palette-1 rounded-md bg-palette-1/80 backdrop-blur-lg hover:scale-105 transition-transform ease-in-out"
