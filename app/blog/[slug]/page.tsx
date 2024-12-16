@@ -19,8 +19,8 @@ export default async function PostPage({
 
   return (
     <TracingBeam className="px-6">
-      <div className="flex flex-col justify-center items-center text-palette-2 mt-12">
-        <header className="w-full max-w-3xl mb-4">
+      <div className="w-full max-w-4xl flex flex-col justify-center items-center text-palette-2 mt-12 px-4 md:px-0">
+        <header className="w-full mb-4">
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
             {post.frontmatter.title}
           </h1>
@@ -67,7 +67,7 @@ export default async function PostPage({
 
         <article
           key={post.frontmatter.title}
-          className="min-h-dvh prose prose-offwhite w-full max-w-3xl m-2"
+          className="min-h-dvh prose prose-offwhite w-full"
         >
           {post.content}
         </article>
