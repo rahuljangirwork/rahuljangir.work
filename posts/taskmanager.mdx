@@ -124,8 +124,8 @@ export type TaskAction =
 
 A couple of notes on typescript features here.
 
-- Omit<TaskItem, "id" | "createdAt"> tells TypeScript to use TaskItem's type but leave out the id and createdAt fields (since we'll generate those when adding a task)
-- Partial<TasksState["errors"]> means we can provide some or all of the error fields with this action's payload.
+- `Omit<TaskItem, "id" | "createdAt">` tells TypeScript to use TaskItem's type but leave out the id and createdAt fields (since we'll generate those when adding a task)
+- `Partial<TasksState["errors"]>` means we can provide some or all of the error fields with this action's payload.
 - Using string literal types (like "ADD_TASK") gives the IDE autocompletion features (if supported) whenever we dispatch these actions in our components code.
 
 ## Reducer Function Implementation
