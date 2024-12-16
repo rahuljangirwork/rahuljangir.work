@@ -38,10 +38,8 @@ function ProjectCard({ post }: { post: PostMetadata }) {
       </CardHeader>
       <Link href={`/blog/${post.slug}`} className="flex-grow">
         <CardContent className="p-3">
-          <CardTitle className="flex items-baseline justify-between mb-3">
-            <h1 className="text-lg sm:text-2xl font-semibold line-clamp-1">
-              {post.title}
-            </h1>
+          <CardTitle className="flex items-baseline justify-between mb-3 text-lg sm:text-2xl font-semibold line-clamp-1">
+            {post.title}
           </CardTitle>
           <CardDescription className="text-sm text-palette-2/50 line-clamp-2 mb-2">
             {post.description}
