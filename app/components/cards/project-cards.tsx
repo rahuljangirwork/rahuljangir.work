@@ -38,14 +38,14 @@ function ProjectCard({ post }: { post: PostMetadata }) {
       </CardHeader>
       <Link href={`/blog/${post.slug}`} className="flex-grow">
         <CardContent className="p-3">
-          <CardTitle className="flex items-baseline justify-between mb-3 text-lg sm:text-2xl font-semibold line-clamp-1">
+          <CardTitle className="flex items-baseline justify-between mb-2 text-lg sm:text-2xl font-semibold line-clamp-1">
             {post.title}
           </CardTitle>
           <CardDescription className="text-sm text-palette-2/50 line-clamp-2 mb-2">
             {post.description}
           </CardDescription>
           {post.technologies && post.technologies.length > 0 && (
-            <div className="flex flex-wrap gap-2 mb-3">
+            <div className="flex flex-wrap gap-2 mb-6">
               {post.technologies.map((tag) => (
                 <Badge
                   key={tag}
@@ -82,7 +82,7 @@ function ProjectCard({ post }: { post: PostMetadata }) {
   );
 }
 
-function ProjectMedia({ src }: { src: PostMetadata["src"] }) {
+export function ProjectMedia({ src }: { src: PostMetadata["src"] }) {
   if (src && src.image) {
     return (
       <div className="relative w-full aspect-video">
