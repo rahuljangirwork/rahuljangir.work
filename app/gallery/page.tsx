@@ -1,5 +1,4 @@
-// app/gallery/page.tsx
-import { getAllGalleryImages } from "@/app/lib/gallery"; // Adjust path based on your structure
+import { getAllGalleryImages } from "@/app/lib/gallery";
 import Image from "next/image";
 
 type ImageData = {
