@@ -2,6 +2,7 @@ import { getPostContentBySlug, getAllPostsSlug } from "@/app/lib/posts";
 import "@/app/styles/highlight.css";
 import { TracingBeam } from "@/app/components/ui/tracing-beam";
 import { CalendarDays, Clock, Tag } from "lucide-react"; // Import icons
+import { ProjectMedia } from "@/app/components/cards/project-cards";
 
 export async function generateStaticParams() {
   const slugs = getAllPostsSlug();
@@ -19,8 +20,11 @@ export default async function PostPage({
 
   return (
     <TracingBeam className="px-6">
-      <div className="w-full max-w-4xl flex flex-col justify-center items-center text-palette-2 mt-12 px-4 md:px-0">
+      <div className="w-full max-w-4xl flex flex-col justify-center items-center text-palette-2 mt-10 px-4 md:px-0">
         <header className="w-full mb-4">
+          <div className="w-full max-w-xl mx-auto mb-6 border border-palette-1 rounded-md overflow-hidden">
+            <ProjectMedia src={post.frontmatter.src} />
+          </div>
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
             {post.frontmatter.title}
           </h1>
