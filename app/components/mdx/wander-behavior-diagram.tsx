@@ -1,7 +1,7 @@
 import { InlineMath } from "react-katex";
 import "katex/dist/katex.min.css";
 
-const WanderBehaviorDiagram = () => {
+export default function WanderBehaviorDiagram() {
   return (
     <>
       <div className="border border-palette-2 bg-palette-2/10 backdrop-blur-sm rounded-md w-full max-w-md mx-auto">
@@ -185,6 +185,4 @@ const WanderBehaviorDiagram = () => {
       </p>
     </>
   );
-};
-
-export default WanderBehaviorDiagram;
+}
