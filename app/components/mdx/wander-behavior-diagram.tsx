@@ -1,3 +1,6 @@
+import { InlineMath } from "react-katex";
+import "katex/dist/katex.min.css";
+
 const WanderBehaviorDiagram = () => {
   return (
     <>
@@ -39,7 +42,7 @@ const WanderBehaviorDiagram = () => {
                 refY="3.5"
                 orient="auto"
               >
-                <polygon points="0 0, 10 3.5, 0 7" fill="#2563eb" />
+                <polygon points="0 0, 10 3.5, 0 7" fill="#5483eb" />
               </marker>
               <marker
                 id="arrowhead-accent"
@@ -65,13 +68,19 @@ const WanderBehaviorDiagram = () => {
               y1="200"
               x2="170"
               y2="162"
-              stroke="#2563eb"
+              stroke="#5483eb"
               strokeWidth="2"
               markerEnd="url(#arrowhead-blue)"
             />
-            <text x="160" y="155" className="text-sm font-bold" fill="#2563eb">
-              v
-            </text>
+            <foreignObject
+              x="160"
+              y="135"
+              width="50"
+              height="50"
+              className="text-sm text-[#5483eb]"
+            >
+              <InlineMath>{`\\vec{v}`}</InlineMath>
+            </foreignObject>
 
             {/* Wander circle */}
             <circle
@@ -99,9 +108,15 @@ const WanderBehaviorDiagram = () => {
               strokeDasharray="4"
               markerEnd="url(#arrowhead)"
             />
-            <text x="220" y="148" className="text-xs">
-              dw
-            </text>
+            <foreignObject
+              x="220"
+              y="138"
+              width="50"
+              height="50"
+              className="text-xs text-black"
+            >
+              <InlineMath>{`\\vec{d}_w`}</InlineMath>
+            </foreignObject>
 
             {/* Wander target */}
             <circle cx="290" cy="160" r="4" fill="#F28D35" />
@@ -119,21 +134,27 @@ const WanderBehaviorDiagram = () => {
               strokeWidth="1"
               markerEnd="url(#arrowhead-accent)"
             />
-            <text x="265" y="131" className="text-xs" fill="#F28D35">
-              wt
-            </text>
+            <foreignObject
+              x="270"
+              y="120"
+              width="50"
+              height="50"
+              className="text-xs text-palette-4"
+            >
+              <InlineMath>{`\\vec{w}_t`}</InlineMath>
+            </foreignObject>
 
             {/* Jitter circle */}
             <circle
               cx="290"
               cy="160"
               r="12"
-              stroke="#dc2626"
+              stroke="#d65454"
               strokeWidth="1"
               strokeDasharray="2"
               fill="none"
             />
-            <text x="285" y="185" className="text-xs" fill="#dc2626">
+            <text x="285" y="185" className="text-xs" fill="#d65454">
               Jitter circle
             </text>
 
@@ -147,9 +168,15 @@ const WanderBehaviorDiagram = () => {
               strokeWidth="1"
               markerEnd="url(#arrowhead-white)"
             />
-            <text x="200" y="200" className="text-sm" fill="#E8DFCA">
-              a
-            </text>
+            <foreignObject
+              x="200"
+              y="182"
+              width="50"
+              height="50"
+              className="text-xs text-palette-2"
+            >
+              <InlineMath>{`\\vec{a}`}</InlineMath>
+            </foreignObject>
           </svg>
         </div>
       </div>
