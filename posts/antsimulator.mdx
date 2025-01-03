@@ -1,19 +1,136 @@
 ---
 title: "Ant Colony Simulator"
-publishDate: "December 2022"
-description: "A simulated ant colony written in C++"
+publishDate: "Dec 2022"
+description: "Simulation of an ant colony written in C++ using the SFML library"
 project: true
 src:
   {
-    image: { path: "/assets/background.jpg", alt: "default background image" },
+    image:
+      {
+        path: "/assets/SFML-ant-sim-screenshot.png",
+        alt: "SFML Screenshot of Ant Colony",
+      },
     video: "",
     scene: false,
   }
 technologies:
   - "C++"
-  - "QT Tools"
-  - "Path Finding Algorithms"
+  - "SFML"
+  - "Seeking Behaviors"
   - "OOP"
 ---
 
-# Header
+This project was inspired by Craig W. Reynold's [paper](https://www.red3d.com/cwr/steer/gdc99/) on steering behaviors and Sebastian Lague's [video](https://www.youtube.com/watch?v=X-iSQQgOd1A&t=118s) on ant and slime simulations. I originally wrote this in college using Qt tools but was never satisfied with how it turned out. This year I decided to port it over to SFML and finish the features I was itching to implement using Neovim as my C++ code editor. This workflow was much lighter on my laptop whose age is starting to catch up to it. The source code is [here](https://github.com/isai7710/ant-sim). Now let's go over the project.
+
+## Overview
+
+I've broken down the project into different classes to help separate concerns and keep things organized. Here's a quick visualization of the project tree:
+
+```
+ant-sim/
+ ├── CMakeLists.txt # CMake configuration file
+ ├── main.cpp    # Main entry point of the application
+ ├── assets/     # Directory for assets (e.g., textures, fonts, etc.)
+ ├── include/    # Header files for the project
+ └── src/        # Source files for the project
+```
+
+The entry point of the application starts in `main.cpp` where it initializes an SFML window and instantiates the `world` object. The World class handles setting up the food, home, pheromones, and most importantly, our ants, while also managing updates to the simulation's entities and drawing them in the SFML window. There's also a small button to add ants to the world. The `Food` and `Home` objects are simple SFML shapes and drawable entities to place in the world, but the magic happens with the `Ant` and `Pheromone` classes.
+
+## The `Ant` Class
+
+Take a look at the `Ant.h` file and you'll find regular setters and getters many C++ classes define. In this post I want to touch on the following private members of the `Ant` class:
+
+- `sf::Vector2f position`
+- `sf::Vector2f velocity`
+- `sf::Clock clock`
+- `std::unique_ptr<IMovementBehavior> movementBehavior`
+
+These members are at the heart of the Ant's behaviors in the simulation. When spawned, ants begin at the center of the world and are given randomized velocities, but most importantly, they are initialized with the wandering behavior. This wandering behavior (and other behaviors) uses a simplified 2D model for point particle physics which combines steering algorithms with discrete time integration to adjust the ant's velocity and achieve the desired behavior. Let's go over how I implemented this movement using basic physics principles. I'll assume you have a grasp of particle kinematics (motion of point particles).
+
+### Position and Velocity
+
+In continuous time, position $\vec{p}(t)$ and velocity $\vec{v}(t)$ are related by:
+
+$$
+\vec{v}(t) = \frac{d\vec{p}(t)}{dt}
+$$
+
+However, computers and programs like SFML don't run on continuous time, but rather on really fast discrete time intervals that make the simulation look continuous. We have to modify this relationship to account for every frame rerender that SFML relies on to give our simulation life. To do so we use the discrete time relationship for position and velocity, using $\Delta t$ as our timestep:
+
+$$
+\vec{v}(t) = \frac{\vec{p}(t + \Delta t) - \vec{p}(t)}{\Delta t}
+$$
+
+Rearranging to get the new position after a timestep $\Delta t$ gives us:
+
+$$
+\vec{p}(t + \Delta t) = \vec{p}(t) + \vec{v}(t)\Delta t
+$$
+
+This is implemented in the code with the following line in the Ant's `update` method:
+
+```cpp
+position += velocity * deltaTime
+```
+
+But wait, if velocity were constant, the ant would simply move in a straight line and wouldn't display any wandering behavior at all, I mean what kind of ant wanders in a straight line, right? This is where steering behaviors come in. They are algorithms that change the velocity of an ant through a calculated and applied **steering acceleration**.
+
+### Steering Acceleration
+
+The wandering movement algorithm calculates a **steering acceleration** that modifies the ant's velocity to achieve a natural-looking wandering behavior. While Craig Reynolds' original paper describes this in terms of steering forces (refer to his paper [here](https://www.red3d.com/cwr/steer/gdc99/), particularly in the section describing **Wandering**) our implementation uses a simplified point-particle model where we work directly with acceleration.
+
+The algorithm works by maintaining a "wander target" point that moves along a circular path in front of the ant. Here's how it works step by step:
+
+1. We maintain a wander target vector $\vec{w}_t$ that points to a position on a circle of radius $r_c$ (the wander circle)
+2. On each frame, we add a small random displacement vector of length $r_j$ (jitter radius) to $\vec{w}_t$
+3. This perturbed vector is reprojected back onto onto the wander circle by normalizing it and multiplying by $r_c$
+4. The wander circle itself is positioned at a distance $d_w$ in front of the ant in the direction of its current velocity. We calculate this offset vector $\vec{d}_w$ by normalizing the velocity (which gives us the ant's direction vector) and multiplying by $d_w$
+5. The steering acceleration vector is then calculated with the following:
+   $$
+   \vec{a}_s = \vec{d}_w + \vec{w}_t
+   $$
+
+This produces an acceleration vector that changes smoothly over time, creating a natural-looking wandering behavior. Using Euler integration, we apply this steering acceleration to the ant's current velocity with the discrete time relationship
+
+$$
+\vec{v}(t + \Delta t) = \vec{v}(t) + \vec{a}(t)\Delta t
+$$
+
+This is implemented as:
+
+```cpp
+velocity += steeringAcceleration * deltaTime
+```
+
+Of course we don't want the ant to pass a certain velocity threshold, so we clamp the new velocity using the clamp method:
+
+```cpp
+// from Ant.cpp
+    velocity = Vector2Utils::clamp(velocity, MAX_SPEED);
+// from Vector2Utils.h
+  static sf::Vector2f clamp(const sf::Vector2f &v, float maxLength) {
+    float sqrMag = squaredMagnitude(v);
+    if (sqrMag > maxLength * maxLength) {
+      float scale = maxLength / std::sqrt(sqrMag);
+      return v * scale;
+    }
+    return v;
+  }
+```
+
+### Boundary Handling
+
+As the Ant wanders it'll eventually reach the boundary of the window, at which point we want to make sure it reverts its path and doesn't escape our simulation (Good afternoon, Good evening, and Good night!). So when an ant hits the window boundaries, its velocity component normal to the boundary is reversed:
+
+$$
+v_x = -v_x \text{ when } x < 0 \text{ or when } x > \text{windowWidth}
+$$
+
+$$
+v_y = -v_y \text{ when } y < 0 \text{ or when } y > \text{windowHeight}
+$$
+
+And that's the wandering behavior in a nutshell. The next step in the simulation is to have ants deposit pheromones and follow them based on the pheromone type! So let's take a look at the `Pheromone` class.
+
+## The `Pheromone` class
