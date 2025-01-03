@@ -1,6 +1,7 @@
 import Link from "next/link";
 import React from "react";
 import Collapsible from "./collapsible";
+import WanderBehaviorDiagram from "./wander-behavior-diagram";
 import RobotScene from "./robot-scene";
 
 type TableProps = {
@@ -57,4 +58,5 @@ export const CustomMDXComponents = {
   Table,
   Collapsible,
   RobotScene,
+  WanderBehaviorDiagram,
 };
