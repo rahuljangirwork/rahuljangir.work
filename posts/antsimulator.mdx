@@ -20,6 +20,8 @@ technologies:
   - "OOP"
 ---
 
+import WanderBehaviorDiagram from "@/app/components/mdx/wander-behavior-svg";
+
 This project was inspired by Craig W. Reynold's [paper](https://www.red3d.com/cwr/steer/gdc99/) on steering behaviors and Sebastian Lague's [video](https://www.youtube.com/watch?v=X-iSQQgOd1A&t=118s) on ant and slime simulations. I originally wrote this in college using Qt tools but was never satisfied with how it turned out. This year I decided to port it over to SFML and finish the features I was itching to implement using Neovim as my C++ code editor. This workflow was much lighter on my laptop whose age is starting to catch up to it. The source code is [here](https://github.com/isai7710/ant-sim). Now let's go over the project.
 
 ## Overview
@@ -80,7 +82,9 @@ But wait, if velocity were constant, the ant would simply move in a straight lin
 
 The wandering movement algorithm calculates a **steering acceleration** that modifies the ant's velocity to achieve a natural-looking wandering behavior. While Craig Reynolds' original paper describes this in terms of steering forces (refer to his paper [here](https://www.red3d.com/cwr/steer/gdc99/), particularly in the section describing **Wandering**) our implementation uses a simplified point-particle model where we work directly with acceleration.
 
-The algorithm works by maintaining a "wander target" point that moves along a circular path in front of the ant. Here's how it works step by step:
+<WanderBehaviorDiagram />
+
+The algorithm works by maintaining a "wander target" point that moves along a set circular path called the "wander circle" placed directly in front of the ant. Here's how the acceleration vector is calculated step by step:
 
 1. We maintain a wander target vector $\vec{w}_t$ that points to a position on a circle of radius $r_c$ (the wander circle)
 2. On each frame, we add a small random displacement vector of length $r_j$ (jitter radius) to $\vec{w}_t$
@@ -91,7 +95,7 @@ The algorithm works by maintaining a "wander target" point that moves along a ci
    \vec{a}_s = \vec{d}_w + \vec{w}_t
    $$
 
-This produces an acceleration vector that changes smoothly over time, creating a natural-looking wandering behavior. Using Euler integration, we apply this steering acceleration to the ant's current velocity with the discrete time relationship
+This produces an acceleration vector that changes smoothly over each time step, creating a natural-looking wandering behavior. Using Euler integration, we apply this steering acceleration to the ant's current velocity with the discrete time relationship
 
 $$
 \vec{v}(t + \Delta t) = \vec{v}(t) + \vec{a}(t)\Delta t
