@@ -79,7 +79,7 @@ function ProjectCard({ post }: { post: PostMetadata }) {
           <Link
             href={post.src.link}
             target="_blank"
-            className="flex items-center gap-1 px-3 py-1.5 border border-palette-2/60 rounded-md hover:scale-105 transition-transform ease-in-out"
+            className="flex items-center gap-1 px-3 py-1.5 border border-palette-4 text-palette-4 rounded-md hover:scale-105 transition-transform ease-in-out"
           >
             View Demo
             <ArrowUpRight className="w-4 h-4" />
