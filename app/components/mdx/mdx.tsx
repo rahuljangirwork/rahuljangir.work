@@ -3,6 +3,7 @@ import React from "react";
 import Collapsible from "./collapsible";
 import WanderBehaviorDiagram from "./wander-behavior-diagram";
 import RobotScene from "./robot-scene";
+import WorkInProgress from "./work-in-progress";
 
 type TableProps = {
   data: {
@@ -59,4 +60,5 @@ export const CustomMDXComponents = {
   Collapsible,
   RobotScene,
   WanderBehaviorDiagram,
+  WorkInProgress,
 };
