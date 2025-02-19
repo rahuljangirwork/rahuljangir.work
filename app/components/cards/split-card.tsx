@@ -12,7 +12,7 @@ export function SplitCard({
     <section
       className={cn(
         className,
-        "flex flex-col md:flex-row w-full max-w-4xl rounded-md overflow-hidden",
+        "flex w-full max-w-4xl rounded-md overflow-hidden",
       )}
     >
       {children}
@@ -56,6 +56,12 @@ export function SplitCardBody({
   return <div className={cn(className)}>{children}</div>;
 }
 
-export function SplitCardThumbnail({ children }: { children: ReactNode }) {
-  return <div className="w-full md:w-1/2">{children}</div>;
+export function SplitCardThumbnail({
+  children,
+  className,
+}: {
+  children: ReactNode;
+  className?: string;
+}) {
+  return <div className={cn(className)}>{children}</div>;
 }
