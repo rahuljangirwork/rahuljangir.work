@@ -14,6 +14,7 @@ import { Badge } from "@/app/components/ui/badge";
 import { getSortedPostsMetaData, PostMetadata } from "@/app/lib/posts";
 import Scene from "@/app/components/model/scene";
 import ProjectCardSkeleton from "@/app/components/cards/project-card-skeleton";
+import { cn } from "@/app/lib/utils";
 
 export default async function ProjectCards() {
   const posts = await getSortedPostsMetaData();
@@ -90,10 +91,16 @@ function ProjectCard({ post }: { post: PostMetadata }) {
   );
 }
 
-export function ProjectMedia({ src }: { src: PostMetadata["src"] }) {
+export function ProjectMedia({
+  src,
+  className,
+}: {
+  src: PostMetadata["src"];
+  className?: string;
+}) {
   if (src && src.image) {
     return (
-      <div className="relative w-full aspect-video">
+      <div className={cn("relative w-full aspect-video", className)}>
         <Image
           src={src.image.path}
           alt={src.image.alt}
@@ -107,7 +114,7 @@ export function ProjectMedia({ src }: { src: PostMetadata["src"] }) {
 
   if (src && src.video) {
     return (
-      <div className="relative w-full aspect-video">
+      <div className={cn("relative w-full aspect-video", className)}>
         <video
           src={src.video}
           autoPlay
@@ -122,7 +129,7 @@ export function ProjectMedia({ src }: { src: PostMetadata["src"] }) {
 
   if (src && src.scene) {
     return (
-      <div className="relative w-full aspect-video bg-primary">
+      <div className={cn("relative w-full aspect-video bg-primary", className)}>
         <Scene className="w-full h-full" />
         <Move
           className="absolute right-2 bottom-2 text-primary-foreground"

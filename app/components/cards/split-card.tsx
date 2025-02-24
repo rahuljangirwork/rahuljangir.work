@@ -9,12 +9,7 @@ export function SplitCard({
   className?: string;
 }) {
   return (
-    <section
-      className={cn(
-        className,
-        "flex w-full max-w-4xl rounded-md overflow-hidden",
-      )}
-    >
+    <section className={cn(className, "flex w-full max-w-4xl overflow-hidden")}>
       {children}
     </section>
   );
