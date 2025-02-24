@@ -10,11 +10,11 @@ export default async function Blog() {
 
   return (
     <main className="mt-8 flex flex-col md:flex-row md:items-start w-full max-w-4xl gap-2 px-4 lg:px-0 mx-auto text-palette-3 min-h-[70vh]">
-      <section className="pb-2 text-palette-2 w-full md:w-1/3 flex flex-col items-start">
+      <section className="pb-2 text-palette-2 w-full md:w-1/4 flex flex-col items-start gap-1">
         <h1 className="text-4xl font-extrabold">
           Blog Posts<span className="text-palette-4">.</span>
         </h1>
-        <p className="text-lg mt-2">
+        <p className="text-md mb-2">
           Personal insights on small worlds within engineering and my life
           <span className="text-palette-4">.</span>
         </p>
@@ -26,10 +26,10 @@ export default async function Blog() {
           </EmailToast>
         </p>
         */}
+        {/*<FilterDropdown posts={allPostsData} />*/}
       </section>
 
-      <section className="w-full mx-auto md:w-2/3">
-        <FilterDropdown posts={allPostsData} />
+      <section className="w-full mx-auto md:w-3/4">
         <BlogCards posts={allPostsData} />
       </section>
     </main>
