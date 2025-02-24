@@ -37,11 +37,13 @@ export default function FilterDropdown({ posts }: FilterDropdownProps) {
   return (
     <div className="mb-4">
       <Select onValueChange={handleCategoryChange} defaultValue="all">
-        <SelectTrigger className="w-[180px] h-8 bg-transparent border border-palette-4">
+        <SelectTrigger className="w-[180px] h-8 bg-primary bg-opacity-10 backdrop-blur-sm border border-palette-1">
           <SelectValue placeholder="Select a category" />
         </SelectTrigger>
-        <SelectContent>
-          <SelectItem value="all">All Categories</SelectItem>
+        <SelectContent className="bg-primary bg-opacity-60 backdrop-blur-sm text-palette-2 border-palette-2">
+          <SelectItem value="all" className="">
+            All Categories
+          </SelectItem>
           <SelectItem value="project">Projects</SelectItem>
           <SelectItem value="guides">Guides</SelectItem>
           <SelectItem value="other">Other Thoughts</SelectItem>
