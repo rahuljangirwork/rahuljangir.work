@@ -23,9 +23,9 @@ export default function RootLayout({
         <main style={{ backgroundImage: `url('/assets/grainy-texture.png')` }}>
           <NavBar />
           {children}
+          <Footer />
         </main>
         <Toaster />
-        <Footer />
       </body>
     </html>
   );
