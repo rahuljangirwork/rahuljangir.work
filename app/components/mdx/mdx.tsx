@@ -1,6 +1,6 @@
 import Link from "next/link";
 import React from "react";
-import Collapsible from "./collapsible";
+import Dropdown from "./dropdown";
 import WanderBehaviorDiagram from "./wander-behavior-diagram";
 import RobotScene from "./robot-scene";
 import WorkInProgress from "./work-in-progress";
@@ -57,7 +57,7 @@ const CustomLink: React.FC<CustomLinkProps> = (props) => {
 export const CustomMDXComponents = {
   a: CustomLink,
   Table,
-  Collapsible,
+  Dropdown,
   RobotScene,
   WanderBehaviorDiagram,
   WorkInProgress,

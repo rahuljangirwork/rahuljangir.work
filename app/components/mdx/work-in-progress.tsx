@@ -1,9 +1,7 @@
 "use client";
 
 import React from "react";
-import { Construction, Mail } from "lucide-react";
-import { Card, CardFooter, CardHeader } from "@/app/components/ui/card";
-import { Button } from "@/app/components/ui/button";
+import { Construction } from "lucide-react";
 
 interface WorkInProgressProps {
   width?: string;
@@ -15,29 +13,16 @@ const WorkInProgress: React.FC<WorkInProgressProps> = ({
   height = "auto",
 }) => {
   return (
-    <Card className="mx-auto overflow-hidden" style={{ width, height }}>
-      <div className="p-4 flex flex-col items-center text-center">
-        <Construction className="w-10 h-10 text-palette-4" />
-        <h2 className="text-2xl font-bold mb-2 text-palette-2">
-          This section is a work in progress
-        </h2>
-        <p className="text-md mb-6 text-muted-foreground text-balance">
-          This section is currently under construction. I&apos;m working
-          diligently to finish this post according to my time.
-        </p>
-      </div>
-      <CardFooter className="justify-center pb-6">
-        <Button asChild className="bg-palette-1/80 backdrop-blur-sm">
-          <a
-            href="mailto:contact@example.com"
-            className="inline-flex items-center"
-          >
-            <Mail className="w-4 h-4 mr-2" />
-            Contact Me for Updates
-          </a>
-        </Button>
-      </CardFooter>
-    </Card>
+    <div
+      className="flex flex-col items-center justify-between border border-palette-2 rounded-md p-2 my-8 mx-auto text-center bg-palette-1/50 backdrop-blur-md"
+      style={{ width, height }}
+    >
+      <Construction className="w-8 h-8 text-palette-4" />
+      <h3 className="text-lg font-medium mb-2">Work in progress</h3>
+      <p className="text-sm max-w-md">
+        I&apos;m still working on this section. Check back soon for updates!
+      </p>
+    </div>
   );
 };
 
