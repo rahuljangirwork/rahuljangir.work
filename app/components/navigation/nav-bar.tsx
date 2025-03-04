@@ -52,7 +52,7 @@ export default function NavBar() {
                       "text-md font-semibold px-3 py-2 rounded-md transition-all duration-200",
                       pathname === link.href
                         ? "text-palette-4 bg-palette-2 bg-opacity-10 underline underline-offset-2"
-                        : "text-palette-3 hover:underline hover:bg-palette-2 hover:bg-opacity-10 hover:underline-offset-2 hover:shadow-xl",
+                        : "text-palette-3 hover:bg-palette-2 hover:bg-opacity-10 hover:shadow-xl",
                     )}
                   >
                     {link.name}
@@ -78,7 +78,7 @@ export default function NavBar() {
                     <Socials
                       className="flex ml-14 space-x-3"
                       iconSize={18}
-                      linkClass="p-1.5 border border-palette-1 rounded-full shadow-lg hover:text-palette-1 transition-colors"
+                      linkClass="p-1.5 border border-palette-1 rounded-full shadow-lg hover:text-palette-4 transition-colors bg-palette-1/10 backdrop-blur-sm duration-200"
                     />
                   </motion.div>
                 )}
