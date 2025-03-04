@@ -11,7 +11,7 @@ import BentoGrid from "./components/cards/bento-grid";
 
 export default function Home() {
   return (
-    <main className="max-w-3xl mx-auto px-4 md:px-0">
+    <div className="max-w-3xl mx-auto px-4 md:px-0">
       <Hero />
       <BentoGrid />
       <section id="projects" className="scroll-mt-24 text-palette-2">
@@ -32,6 +32,6 @@ export default function Home() {
         <ProjectCards />
       </section>
       <About />
-    </main>
+    </div>
   );
 }
