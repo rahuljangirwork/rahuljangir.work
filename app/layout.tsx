@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { space_grotesk } from "@/app/lib/fonts";
 import "@/app/styles/globals.css";
-import NavBar from "@/app/components/navigation/nav-bar";
-import Footer from "./components/footer";
+import Footer from "@/app/components/footer";
 import { Toaster } from "@/app/components/ui/toaster";
+import NavBar from "@/app/components/navigation/nav-bar";
 
 export const metadata: Metadata = {
   title: "Isai Portfolio",
@@ -18,10 +18,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${space_grotesk.className} antialiased bg-primary bg-grid-white/[0.04] sm:custom-gradient custom-scrollbar flex flex-col min-h-screen`}
+        className={`${space_grotesk.className} antialiased bg-primary bg-grid-white/[0.07] sm:custom-gradient custom-scrollbar flex flex-col min-h-screen`}
       >
-        <NavBar />
-        <main>{children}</main>
+        <main style={{ backgroundImage: `url('/assets/grainy-texture.png')` }}>
+          <NavBar />
+          {children}
+        </main>
         <Toaster />
         <Footer />
       </body>
