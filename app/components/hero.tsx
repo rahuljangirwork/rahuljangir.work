@@ -47,7 +47,7 @@ export default function Hero() {
           </motion.div>
         </div>
         <motion.div
-          className="order-first md:order-last relative aspect-square w-60 sm:w-72 md:w-[470px] h-fit"
+          className="relative order-first md:order-last aspect-square w-60 sm:w-72 md:w-[470px] h-fit"
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5 }}
@@ -56,8 +56,12 @@ export default function Hero() {
             src="/assets/mebw.JPG"
             alt="Mirror film selfie"
             fill
-            className="border-4 border-palette-1 rounded-full object-cover shadow-2xl"
+            className="border-4 border-palette-1 rounded-full object-cover shadow-2xl z-20"
           />
+          <div className="absolute -top-4 -right-4 w-24 h-24 bg-palette-1/50 rounded-full blur-xl z-10" />
+          <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-palette-1/50 rounded-full blur-xl z-10" />
+          <div className="absolute -top-6 -left-6 w-32 h-32 bg-primary/80 rounded-full blur-xl z-10" />
+          <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-primary/80 rounded-full blur-xl z-10" />
         </motion.div>
       </div>
     </section>
