@@ -98,7 +98,7 @@ export function ProjectMedia({
   src: PostMetadata["src"];
   className?: string;
 }) {
-  if (src && src.image) {
+  if (src.image && src.image.path) {
     return (
       <div className={cn("relative w-full aspect-video", className)}>
         <Image
@@ -114,15 +114,22 @@ export function ProjectMedia({
 
   if (src && src.video) {
     return (
-      <div className={cn("relative w-full aspect-video", className)}>
+      <div
+        className={cn(
+          "relative w-full aspect-video overflow-hidden",
+          className,
+        )}
+      >
         <video
-          src={src.video}
           autoPlay
           loop
           muted
           playsInline
-          className="w-full h-full object-cover"
-        />
+          className="w-full -h-[99%] object-cover scale-x-[1.005]"
+        >
+          <source src={src.video} type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
       </div>
     );
   }
