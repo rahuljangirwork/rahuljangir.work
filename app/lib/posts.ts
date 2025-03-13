@@ -7,23 +7,9 @@ import rehypeKatex from "rehype-katex";
 import rehypeHighlight from "rehype-highlight";
 import "katex/dist/katex.min.css"; // Import KaTeX styles
 import { CustomMDXComponents } from "@/app/components/mdx/mdx";
+import { PostMetadata } from "@/app/lib/types";
 
 const postsDirectory = path.join(process.cwd(), "/posts");
-
-export type PostMetadata = {
-  slug: string;
-  title: string;
-  description: string;
-  publishDate: string;
-  project: boolean;
-  src: {
-    image?: { path: string; alt: string };
-    video?: string;
-    scene?: boolean;
-    link?: string;
-  };
-  technologies?: string[];
-};
 
 export async function getSortedPostsMetaData(): Promise<PostMetadata[]> {
   // Get file names under /posts
@@ -46,7 +32,7 @@ export async function getSortedPostsMetaData(): Promise<PostMetadata[]> {
         title: matterResult.data.title,
         description: matterResult.data.description,
         publishDate: matterResult.data.publishDate,
-        project: matterResult.data.project ?? false, // Default to false if not specified
+        type: matterResult.data.type,
         src: {
           image: matterResult.data.src?.image ?? {},
           video: matterResult.data.src?.video ?? "",
