@@ -25,8 +25,24 @@ I gracefully struggled through this simulation during college in a controls cour
 The system above has two degrees of freedom, so our generalized coordinates will be: **$q_1 = \theta$ and $q_2 = z$**  
 There are two bodies, so we'll have 2 equations of motion. Let's start by writing the position vectors to the center of mass of each body.
 
-For the pendulum, which we'll assume here is a slender arm of mass $m_1$, we have:  
-**$\vec{r}_1 = (z + \frac{l}{2}\sin\theta)\hat{i} + \frac{l}{2}\cos\theta\hat{j}$**
+Modeling the pendulum as a slender arm (1) and the cart as a solid body (2) we get:
 
-The cart will simply have:  
-**$\vec{r}_2 = z\hat{i}$**
+$$
+\vec{r}_1 = (z + \frac{l}{2}\sin\theta)\hat{i} + \frac{l}{2}\cos\theta\hat{j}
+$$
+
+$$
+\vec{r}_2 = z\hat{i}
+$$
+
+Take the derivative of both to get:
+
+$$
+\dot{\vec{r}_1} = (\dot{z} + \frac{l}{2}\dot{\theta}\cos\theta)\hat{i} - \frac{l}{2}\dot{\theta}\sin\theta\hat{j}
+$$
+
+$$
+\dot{\vec{r}_2} = \dot{z}\hat{i}
+$$
+
+<WorkInProgress width="50%" />
