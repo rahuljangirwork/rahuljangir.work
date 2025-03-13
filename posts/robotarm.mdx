@@ -32,42 +32,9 @@ Improvements to be made:
 - More integrated algorithm and UI
   - The NumPy python library was used to write algorithms for inverse kinematics. So the desired end effector position would be inputed in the python script, required joint angles would be manually inputed using Potentiometters and the Robot would move there. A more integrated yet simple UI such as a number pad for each xyz coordinate would definitely be an improvement to the project.
 
-## C++/Arduino Code
-
-Library includes and variable set up:
+<Dropdown label="C++ Arduino Code">
 
 ```cpp
-#include <LiquidCrystal.h>
-#include <Servo.h>
-#include <Math.h>
-
-LiquidCrystal lcd(13, 12, 7, 4, 3, 2);
-Servo servos[5];
-int const numOfServos = 5;
-
-int const pot1Pin = A0;
-int const pot2Pin = A1;
-int const pot3Pin = A2;
-int const pot4Pin = A3;
-int const pot5Pin = A4;
-
-int potValues[5];
-int angles[5];
-int dh_angles[4];
-const double pi = 3.1415927;
-
-double const d1 = 42.25;
-double const a2 = 100.0;
-double const a3 = 81.4;
-double const a4 = 125.0;
-double x_ee(double q1, double q2, double q3, double q4);
-double y_ee(double q1, double q2, double q3, double q4);
-double z_ee(double q1, double q2, double q3, double q4);
-
-```
-
-```cpp
-
 #include <LiquidCrystal.h>
 #include <Servo.h>
 #include <Math.h>
@@ -144,7 +111,7 @@ void loop() {
     }
   }
 
-  // printing dh angles to LCD
+  // uncomment to print dh angles to LCD
   /*
   lcd.setCursor(0, 0);
   lcd.print("dh joint angles: ");
@@ -206,3 +173,5 @@ double z_ee(double q1, double q2, double q3, double q4)
 }
 
 ```
+
+</Dropdown>
