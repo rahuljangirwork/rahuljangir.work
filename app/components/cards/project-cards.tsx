@@ -1,7 +1,6 @@
 import { Suspense } from "react";
 import Link from "next/link";
-import Image from "next/image";
-import { ArrowRight, ArrowUpRight, Move, Calendar } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Calendar } from "lucide-react";
 import {
   Card,
   CardContent,
@@ -11,23 +10,25 @@ import {
   CardTitle,
 } from "@/app/components/ui/card";
 import { Badge } from "@/app/components/ui/badge";
-import { getSortedPostsMetaData, PostMetadata } from "@/app/lib/posts";
-import Scene from "@/app/components/model/scene";
-import ProjectCardSkeleton from "@/app/components/cards/project-card-skeleton";
-import { cn } from "@/app/lib/utils";
+import { getSortedPostsMetaData } from "@/app/lib/posts";
+import { PostMetadata } from "@/app/lib/types";
+import ProjectCardsSkeleton from "@/app/components/cards/project-card-skeleton";
+import Thumbnail from "@/app/components/media/thumbnail";
 
 export default async function ProjectCards() {
   const posts = await getSortedPostsMetaData();
-  const projectPosts = posts.filter((post) => post.project);
+  const projectPosts = posts.filter((post) => post.type === "project");
 
   return (
-    <Suspense fallback={<ProjectCardsSkeleton count={projectPosts.length} />}>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 py-4 px-2 md:px-0 mb-20">
-        {projectPosts.map((post) => (
-          <ProjectCard key={post.slug} post={post} />
-        ))}
-      </div>
-    </Suspense>
+    <>
+      <Suspense fallback={<ProjectCardsSkeleton count={projectPosts.length} />}>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 py-4 px-2 md:px-0 mb-20">
+          {projectPosts.map((post) => (
+            <ProjectCard key={post.slug} post={post} />
+          ))}
+        </div>
+      </Suspense>
+    </>
   );
 }
 
@@ -35,7 +36,7 @@ function ProjectCard({ post }: { post: PostMetadata }) {
   return (
     <Card className="flex flex-col overflow-hidden rounded-xl border-2 border-palette-1 bg-palette-2/5 backdrop-blur-md shadow-xl hover:shadow-xl transition-all duration-300 ease-in-out">
       <CardHeader className="p-0">
-        <ProjectMedia src={post.src} />
+        <Thumbnail src={post.src} />
       </CardHeader>
       <Link href={`/blog/${post.slug}`} className="flex-grow">
         <CardContent className="p-3">
@@ -88,73 +89,5 @@ function ProjectCard({ post }: { post: PostMetadata }) {
         )}
       </CardFooter>
     </Card>
-  );
-}
-
-export function ProjectMedia({
-  src,
-  className,
-}: {
-  src: PostMetadata["src"];
-  className?: string;
-}) {
-  if (src.image && src.image.path) {
-    return (
-      <div className={cn("relative w-full aspect-video", className)}>
-        <Image
-          src={src.image.path}
-          alt={src.image.alt}
-          fill
-          className="object-cover"
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-        />
-      </div>
-    );
-  }
-
-  if (src && src.video) {
-    return (
-      <div
-        className={cn(
-          "relative w-full aspect-video overflow-hidden",
-          className,
-        )}
-      >
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="w-full -h-[99%] object-cover scale-x-[1.005]"
-        >
-          <source src={src.video} type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-      </div>
-    );
-  }
-
-  if (src && src.scene) {
-    return (
-      <div className={cn("relative w-full aspect-video bg-primary", className)}>
-        <Scene className="w-full h-full" />
-        <Move
-          className="absolute right-2 bottom-2 text-primary-foreground"
-          aria-hidden="true"
-        />
-      </div>
-    );
-  }
-
-  return null;
-}
-
-function ProjectCardsSkeleton({ count }: { count: number }) {
-  return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 py-8 px-4 sm:px-6 lg:px-8">
-      {Array.from({ length: count }).map((_, index) => (
-        <ProjectCardSkeleton key={index} />
-      ))}
-    </div>
   );
 }
