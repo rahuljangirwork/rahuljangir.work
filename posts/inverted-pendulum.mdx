@@ -45,4 +45,53 @@ $$
 \dot{\vec{r}_2} = \dot{z}\hat{i}
 $$
 
+Cool, now there's a couple more things we need before writing down the total kinetic energy. Notice that the slender arm will also have an angular velocity defined by: $\vec{\omega}_1 = -\dot{\theta}\hat{k}$ and an inertia matrix of:
+
+$$
+I_{G_1} = \begin{bmatrix}
+0 & 0 & 0 \\
+0 & \frac{1}{12} m_1 l^2 & 0 \\
+0 & 0 & \frac{1}{12} m_1 l^2
+\end{bmatrix}
+$$
+
+Now we can get the total kinetic energy, which, in our case, is defined by the following:
+
+$$
+T = \frac{1}{2} m_1 \dot{\vec{r}}_1 \cdot \dot{\vec{r}}_1 + \frac{1}{2} \vec{\omega}_1^\top I_{G_1} \vec{\omega}_1 + \frac{1}{2} m_2 \dot{\vec{r}}_2 \cdot \dot{\vec{r}}_2
+$$
+
+Click the dropdown below if you want to see the plugging and chugging. Otherwise, just trust me and skip ahead.
+
+<Dropdown label="KE derivation">
+    <div className="bg-primary/50 backdrop-blur-md border border-palette-1 rounded-md p-2">
+$$
+\dot{\vec{r}}_1 \cdot \dot{\vec{r}}_1 =
+\left(\dot{z} + \frac{l}{2}\dot{\theta}\cos\theta\right)^2 + \left(-\frac{l}{2}\dot{\theta}\sin\theta\right)^2
+$$
+
+$$
+T = \frac{1}{2} m_1 \left(\dot{z}^2 + l\dot{z} \dot{\theta} \cos\theta + \frac{l^2}{4} \dot{\theta}^2 \right) + \frac{1}{2} \left( \frac{1}{12} m_1 l^2 \dot{\theta}^2 \right) + \frac{1}{2} m_2 \dot{z}^2
+$$
+
+$$
+T = \frac{1}{2} m_1 \dot{z}^2 + \frac{1}{2} m_1 l\dot{z} \dot{\theta} \cos\theta + \frac{1}{8} m_1 l^2 \dot{\theta}^2 + \frac{1}{24} m_1 l^2 \dot{\theta}^2 + \frac{1}{2} m_2 \dot{z}^2
+$$
+
+combine like terms to get
+
+$$
+T = \frac{1}{2} (m_1 + m_2) \dot{z}^2 + \frac{1}{6} m_1 l^2 \dot{\theta}^2 + \frac{1}{2} m_1 l\dot{z} \dot{\theta} \cos\theta
+$$
+
+    </div>
+
+</Dropdown>
+
+In the end, we get the following:
+
+$$
+T = \frac{1}{2} (m_1 + m_2) \dot{z}^2 + \frac{1}{6} m_1 l^2 \dot{\theta}^2 + \frac{1}{2} m_1 l\dot{z} \dot{\theta} \cos\theta
+$$
+
 <WorkInProgress width="50%" />
