@@ -7,7 +7,7 @@ src:
   {
     image:
       {
-        path: "/assets/shepherd.jpg",
+        path: "/assets/inverted_pendulum_matplotlib.png",
         alt: "the alchemist shepherd ai picture",
       },
     video: "",
@@ -21,6 +21,8 @@ technologies:
 ---
 
 I gracefully struggled through this simulation during college in a controls course that ended up being one of my favorite classes. Controls theory and the possibilities we are able to achieve are fascinating. I want to give a quick shout out to the following public resource which was the principal material we studied in that class and where a lot of my code comes from. The github repo can be found [here](https://github.com/byu-controlbook/controlbook_public). I also want to shout out my professor Dr. Killpack who did a phenomenal job instilling a continous curiosity in engineering and especially in controls. Throughout this post I will assume you have some knowledge with **Euler-Lagrange Equations**, **Python**, **Linear Algebra** and **ODE's**.
+
+<PendulumSimulation />
 
 The system above has two degrees of freedom, so our generalized coordinates will be: **$q_1 = \theta$ and $q_2 = z$**  
 There are two bodies, so we'll have 2 equations of motion. Let's start by writing the position vectors to the center of mass of each body.
