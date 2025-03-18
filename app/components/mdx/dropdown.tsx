@@ -3,7 +3,6 @@
 import React, { useState, ReactNode } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/app/lib/utils";
-import { ArrowUp } from "lucide-react";
 
 interface DropdownProps {
   label: string;
@@ -81,13 +80,7 @@ const Dropdown: React.FC<DropdownProps> = ({
             transition={{ duration: 0.2 }}
             className="mt-2 overflow-hidden"
           >
-            <div className="relative p-0 m-0">{children}</div>
-            <div
-              onClick={() => setIsOpen(!isOpen)}
-              className="absolute right-8 bottom-2 p-1 rounded-full bg-palette-4"
-            >
-              <ArrowUp className="w-6 h-6" />
-            </div>
+            {children}
           </motion.div>
         )}
       </AnimatePresence>
