@@ -47,7 +47,7 @@ $$
 \dot{\vec{r}_2} = \dot{z}\hat{i}
 $$
 
-Cool, now there's a couple more things we need before writing down the total kinetic energy. Notice that the slender arm will also have an angular velocity defined by: $\vec{\omega}_1 = -\dot{\theta}\hat{k}$ and an inertia matrix of:
+Cool, now there's a couple more things we need before writing down the total kinetic energy. Notice that the slender arm will also have an angular velocity defined by: $\vec{\omega}_1 = -\dot{\theta}\hat{k}$, and an inertia matrix of:
 
 $$
 I_{G_1} = \begin{bmatrix}
@@ -67,23 +67,43 @@ Click the dropdown below if you want to see the plugging and chugging. Otherwise
 
 <Dropdown label="KE derivation">
     <div className="bg-primary/50 backdrop-blur-md border border-palette-1 rounded-md p-2">
+compute the first dot product:
 $$
 \dot{\vec{r}}_1 \cdot \dot{\vec{r}}_1 =
 \left(\dot{z} + \frac{l}{2}\dot{\theta}\cos\theta\right)^2 + \left(-\frac{l}{2}\dot{\theta}\sin\theta\right)^2
 $$
 
 $$
-T = \frac{1}{2} m_1 \left(\dot{z}^2 + l\dot{z} \dot{\theta} \cos\theta + \frac{l^2}{4} \dot{\theta}^2 \right) + \frac{1}{2} \left( \frac{1}{12} m_1 l^2 \dot{\theta}^2 \right) + \frac{1}{2} m_2 \dot{z}^2
+= \dot{z}^2 + l \dot{z} \dot{\theta} \cos\theta + \frac{l^2}{4} \dot{\theta}^2 \cos^2\theta + \frac{l^2}{4} \dot{\theta}^2 \sin^2\theta
 $$
 
 $$
-T = \frac{1}{2} m_1 \dot{z}^2 + \frac{1}{2} m_1 l\dot{z} \dot{\theta} \cos\theta + \frac{1}{8} m_1 l^2 \dot{\theta}^2 + \frac{1}{24} m_1 l^2 \dot{\theta}^2 + \frac{1}{2} m_2 \dot{z}^2
+= \dot{z}^2 + l \dot{z} \dot{\theta} \cos\theta + \frac{l^2}{4} \dot{\theta}^2
 $$
 
-combine like terms to get
+now let's compute the omega and inertia matrix multiplication:
 
 $$
-T = \frac{1}{2} (m_1 + m_2) \dot{z}^2 + \frac{1}{6} m_1 l^2 \dot{\theta}^2 + \frac{1}{2} m_1 l\dot{z} \dot{\theta} \cos\theta
+\vec{\omega}_1^\top I_{G_1} \vec{\omega}_1 =
+\begin{bmatrix} 0 & -\dot{\theta} & 0 \end{bmatrix}
+\begin{bmatrix} 0 & 0 & 0 \\ 0 & \frac{1}{12} m_1 l^2 & 0 \\ 0 & 0 & \frac{1}{12} m_1 l^2 \end{bmatrix}
+\begin{bmatrix} 0 \\ -\dot{\theta} \\ 0 \end{bmatrix} = \frac{1}{12} m_1 l^2 \dot{\theta}^2
+$$
+
+Plug everything back in to the kinetic energy equation:
+
+$$
+T = \frac{1}{2} m_1 \left( \dot{z}^2 + l \dot{z} \dot{\theta} \cos\theta + \frac{l^2}{4} \dot{\theta}^2 \right) + \frac{1}{2} \cdot \frac{1}{12} m_1 l^2 \dot{\theta}^2 + \frac{1}{2} m_2 \dot{z}^2
+$$
+
+$$
+T = \frac{1}{2} m_1 \dot{z}^2 + \frac{l}{2} m_1 \dot{z} \dot{\theta} \cos\theta + \frac{l^2}{8} m_1 \dot{\theta}^2 + \frac{l^2}{24} m_1 \dot{\theta}^2 + \frac{1}{2} m_2 \dot{z}^2
+$$
+
+which simplifies to:
+
+$$
+T = \frac{1}{2} (m_1 + m_2) \dot{z}^2 + \frac{l}{2} m_1 \dot{z} \dot{\theta} \cos\theta + \frac{l^2}{6} m_1 \dot{\theta}^2
 $$
 
     </div>
@@ -93,7 +113,19 @@ $$
 In the end, we get the following:
 
 $$
-T = \frac{1}{2} (m_1 + m_2) \dot{z}^2 + \frac{1}{6} m_1 l^2 \dot{\theta}^2 + \frac{1}{2} m_1 l\dot{z} \dot{\theta} \cos\theta
+T = \frac{1}{2} (m_1 + m_2) \dot{z}^2 + \frac{l^2}{6} m_1 \dot{\theta}^2 + \frac{l}{2} m_1 \dot{z} \dot{\theta} \cos\theta
+$$
+
+Defining the initial potential energy at the center of the cart, our potential energy is given by the gravitational potential energy of the center of mass of the slender rod, which is:
+
+$$
+V = \frac{l}{2} m_1 g \cos\theta
+$$
+
+Now we can write out the Lagrangian $L = T - V$:
+
+$$
+L = \frac{1}{2} (m_1 + m_2) \dot{z}^2 + \frac{l^2}{6} m_1 \dot{\theta}^2 + \frac{l}{2} m_1 \dot{z} \dot{\theta} \cos\theta - \frac{l}{2} m_1 g \cos\theta
 $$
 
 <WorkInProgress width="50%" />
