@@ -1,33 +1,29 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import {
-  PlayCircle,
-  Pause,
-  ArrowLeftRight,
-  GaugeCircle,
-  AlertCircle,
-} from "lucide-react";
+import { RotateCcw, PauseIcon, PlayIcon } from "lucide-react";
 
 // Define types for the system state and parameters
 type SystemState = [number, number, number, number]; // [theta, z, thetaDot, zDot]
 type DerivativeValues = [number, number, number, number];
 
-interface PendulumSimulationProps {
+interface InvertedPendulumSimulationProps {
   initialAngle?: number;
   width?: number;
   height?: number;
+  autoPlay?: boolean;
 }
 
-const PendulumSimulation: React.FC<PendulumSimulationProps> = ({
+const InvertedPendulumSimulation: React.FC<InvertedPendulumSimulationProps> = ({
   initialAngle = 0.3,
   width = 400,
   height = 200,
+  autoPlay = false,
 }) => {
   // Simulation parameters
   const [theta, setTheta] = useState<number>(initialAngle); // Pendulum angle in radians
   const [cartPosition, setCartPosition] = useState<number>(0); // Cart position in simulation units
-  const [running, setRunning] = useState<boolean>(false);
+  const [running, setRunning] = useState<boolean>(autoPlay);
 
   // Physical parameters
   const g: number = 9.8; // Gravity (m/s^2)
@@ -159,33 +155,6 @@ const PendulumSimulation: React.FC<PendulumSimulationProps> = ({
   const cartX: number =
     svgCartCenterX - cartWidth / 2 + cartPosition * pixelsPerUnit;
 
-  // Handle keyboard controls
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent): void => {
-      if (e.key === "ArrowLeft") {
-        applyForce(-2.0);
-      } else if (e.key === "ArrowRight") {
-        applyForce(2.0);
-      } else if (e.key === " ") {
-        setRunning((prev) => !prev);
-      }
-    };
-
-    const handleKeyUp = (e: KeyboardEvent): void => {
-      if (e.key === "ArrowLeft" || e.key === "ArrowRight") {
-        applyForce(0);
-      }
-    };
-
-    window.addEventListener("keydown", handleKeyDown);
-    window.addEventListener("keyup", handleKeyUp);
-
-    return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-      window.removeEventListener("keyup", handleKeyUp);
-    };
-  }, []);
-
   // Reset function
   const resetSimulation = (): void => {
     stateRef.current = [initialAngle, 0, 0, 0];
@@ -194,151 +163,237 @@ const PendulumSimulation: React.FC<PendulumSimulationProps> = ({
   };
 
   return (
-    <div className="flex flex-col md:flex-row gap-2 items-center">
-      <div className="flex flex-col items-center">
-        <div className="mb-2">
-          <button
-            className="bg-primary hover:bg-palette-1 transition-colors duration-300 text-palette-4 border border-palette-4 font-bold py-1 px-4 rounded mr-2"
-            onClick={() => setRunning(!running)}
-          >
-            {running ? "Pause" : "Start"}
-          </button>
-          <button
-            className="bg-palette-2/10 backdrop-blur-md hover:bg-palette-3 text-palette-2 font-bold py-1 px-4 rounded mr-2"
-            onClick={resetSimulation}
-          >
-            Reset
-          </button>
-        </div>
-        <div className="bg-primary border border-palette-2 shadow-lg rounded p-4">
-          <svg
-            width={svgWidth}
-            height={svgHeight}
-            viewBox={`0 0 ${svgWidth} ${svgHeight}`}
-          >
-            {/* Ground line */}
-            <line
-              x1={svgWidth * 0.125}
-              y1={svgCartCenterY + wheelRadius}
-              x2={svgWidth * 0.875}
-              y2={svgCartCenterY + wheelRadius}
-              stroke="#0000AA"
-              strokeWidth="2"
-              strokeDasharray="5,5"
-            />
-
-            {/* Cart */}
-            <rect
-              id="cart"
-              x={cartX}
-              y={svgCartCenterY - cartHeight / 2}
-              width={cartWidth}
-              height={cartHeight}
-              fill="#3366CC"
-              stroke="black"
-              strokeWidth="2"
-            />
-
-            {/* Wheels */}
-            <circle
-              id="wheel-left"
-              cx={cartX + cartWidth * 0.2}
-              cy={svgCartCenterY + cartHeight / 2}
-              r={wheelRadius}
-              fill="#32CD32"
-              stroke="black"
-              strokeWidth="2"
-            />
-            <circle
-              id="wheel-right"
-              cx={cartX + cartWidth * 0.8}
-              cy={svgCartCenterY + cartHeight / 2}
-              r={wheelRadius}
-              fill="#32CD32"
-              stroke="black"
-              strokeWidth="2"
-            />
-
-            {/* Pendulum rod */}
-            <line
-              id="pendulum-rod"
-              x1={cartX + cartWidth / 2}
-              y1={svgCartCenterY}
-              x2={rodEndX}
-              y2={rodEndY}
-              stroke="#8B4513"
-              strokeWidth="10"
-              strokeLinecap="round"
-            />
-          </svg>
-        </div>
-      </div>
-
-      <div>
-        {/* Controls section */}
-        <div className="rounded-lg">
-          <h3 className="text-lg font-semibold text-palette-4 flex items-center mb-3">
-            <PlayCircle className="mr-2" size={20} />
-            Simulation Controls
-          </h3>
-
-          <div className="grid grid-cols-1 gap-2 mb-4">
-            <div className="flex items-center text-palette-2">
-              <ArrowLeftRight className="text-blue-500 mr-2" size={18} />
-              <span className="text-palette-2">
-                Use{" "}
-                <span className="px-2 py-1 bg-primary/50 backdrop-blur-sm rounded text-sm mx-1">
-                  ←
-                </span>{" "}
-                <span className="px-2 py-1 bg-primary/50 backdrop-blur-sm rounded text-sm mx-1">
-                  →
-                </span>{" "}
-                arrow keys to apply force
+    <div className="aspect-video relative bg-primary shadow-lg rounded p-4">
+      {!autoPlay ? (
+        <>
+          <div className="absolute top-0 left-0 flex gap-2 m-2">
+            <button
+              className="bg-primary hover:bg-palette-1 transition-colors duration-300 text-palette-4 border border-palette-4 font-bold py-1 px-4 rounded mr-2"
+              onClick={() => setRunning(!running)}
+            >
+              {running ? <PauseIcon /> : <PlayIcon />}
+            </button>
+            <button
+              className="bg-palette-2/10 backdrop-blur-md hover:bg-palette-2/20 text-palette-2 font-bold py-1 px-4 rounded mr-2"
+              onClick={resetSimulation}
+            >
+              <RotateCcw />
+            </button>
+          </div>
+          <div className="absolute bottom-0 left-0 flex gap-2 justify-around text-sm m-2">
+            <div>
+              <span className="text-palette-2">Angle:</span>
+              <span className="ml-2 font-mono">
+                {((theta * 180) / Math.PI).toFixed(1)}°
               </span>
             </div>
-
-            <div className="flex items-center text-palette-2">
-              <Pause className="text-blue-500 mr-2" size={18} />
-              <span>
-                Press{" "}
-                <span className="px-2 py-1 bg-primary/50 backdrop-blur-sm rounded text-sm mx-1">
-                  Space
-                </span>{" "}
-                to pause/resume
-              </span>
+            <div>
+              <span className="text-palette-2">Cart Position:</span>
+              <span className="ml-2 font-mono">{cartPosition.toFixed(2)}m</span>
             </div>
           </div>
+        </>
+      ) : (
+        <></>
+      )}
+      <svg
+        width={svgWidth}
+        height={svgHeight}
+        viewBox={`0 0 ${svgWidth} ${svgHeight}`}
+        className="w-full h-full"
+      >
+        {/* Ground line */}
+        <line
+          x1={svgWidth * 0.125}
+          y1={svgCartCenterY + wheelRadius}
+          x2={svgWidth * 0.875}
+          y2={svgCartCenterY + wheelRadius}
+          stroke="#0000AA"
+          strokeWidth="2"
+          strokeDasharray="5,5"
+        />
 
-          {/* Measurements section */}
-          <div>
-            <h3 className="text-lg font-semibold text-palette-4 flex items-center mb-3">
-              <GaugeCircle className="mr-1" size={20} />
-              Current Measurements
-            </h3>
-            <div className="flex gap-2 justify-around text-sm">
-              <div>
-                <span className="text-palette-2">Angle:</span>
-                <span className="ml-2 font-mono">
-                  {((theta * 180) / Math.PI).toFixed(1)}°
-                </span>
-              </div>
-              <div>
-                <span className="text-palette-2">Cart Position:</span>
-                <span className="ml-2 font-mono">
-                  {cartPosition.toFixed(2)}m
-                </span>
-              </div>
-            </div>
-          </div>
+        {/* Cart */}
+        <rect
+          id="cart"
+          x={cartX}
+          y={svgCartCenterY - cartHeight / 2}
+          width={cartWidth}
+          height={cartHeight}
+          fill="#3366CC"
+          stroke="black"
+          strokeWidth="2"
+        />
 
-          <p className="text-xs text-palette-2 mt-2 italic flex items-center">
-            <AlertCircle size={12} className="mr-1 text-palette-4" />
-            This simulation is still a work in progress
-          </p>
-        </div>
-      </div>
+        {/* Wheels */}
+        <circle
+          id="wheel-left"
+          cx={cartX + cartWidth * 0.2}
+          cy={svgCartCenterY + cartHeight / 2}
+          r={wheelRadius}
+          fill="#32CD32"
+          stroke="black"
+          strokeWidth="2"
+        />
+        <circle
+          id="wheel-right"
+          cx={cartX + cartWidth * 0.8}
+          cy={svgCartCenterY + cartHeight / 2}
+          r={wheelRadius}
+          fill="#32CD32"
+          stroke="black"
+          strokeWidth="2"
+        />
+
+        {/* Pendulum rod */}
+        <line
+          id="pendulum-rod"
+          x1={cartX + cartWidth / 2}
+          y1={svgCartCenterY}
+          x2={rodEndX}
+          y2={rodEndY}
+          stroke="#8B4513"
+          strokeWidth="10"
+          strokeLinecap="round"
+        />
+      </svg>
     </div>
   );
 };
 
-export default PendulumSimulation;
+const InvertedPendulumSVG = () => {
+  return (
+    <div className="flex justify-start my-0">
+      <svg
+        viewBox="0 0 300 200"
+        className="w-full max-w-sm bg-primary border border-palette-2 rounded-md"
+      >
+        {/* Coordinate system - smaller and centered */}
+        <g id="coordinates" className="text-gray-400">
+          {/* x-axis (i-hat) - passing through center of cart */}
+          <line
+            x1="30"
+            y1="100"
+            x2="60"
+            y2="100"
+            stroke="currentColor"
+            strokeWidth="1"
+          />
+          <polygon points="60,100 55,97 55,103" fill="currentColor" />
+          <text x="62" y="103" fontSize="10" fill="currentColor">
+            î
+          </text>
+
+          {/* y-axis (j-hat) */}
+          <line
+            x1="30"
+            y1="100"
+            x2="30"
+            y2="70"
+            stroke="currentColor"
+            strokeWidth="1"
+          />
+          <polygon points="30,70 27,75 33,75" fill="currentColor" />
+          <text x="32" y="68" fontSize="10" fill="currentColor">
+            ĵ
+          </text>
+        </g>
+
+        {/* Track (dotted line) */}
+        <line
+          x1="30"
+          y1="115"
+          x2="270"
+          y2="115"
+          stroke="#0000AA"
+          strokeWidth="1.5"
+          strokeDasharray="4,4"
+        />
+
+        {/* Cart */}
+        <rect
+          id="cart"
+          x="125"
+          y="85"
+          width="50"
+          height="30"
+          fill="#3366CC"
+          stroke="#000"
+          strokeWidth="1.5"
+        />
+
+        {/* Pendulum rod (at slight angle) - starting from center of cart */}
+        <line
+          x1="150"
+          y1="100"
+          x2="165"
+          y2="40"
+          stroke="#8B4513"
+          strokeWidth="4"
+          strokeLinecap="round"
+        />
+
+        {/* Vertical reference line */}
+        <line
+          x1="150"
+          y1="100"
+          x2="150"
+          y2="40"
+          stroke="#888"
+          strokeWidth="0.75"
+          strokeDasharray="2,2"
+        />
+
+        {/* Force arrow */}
+        <line
+          x1="175"
+          y1="100"
+          x2="195"
+          y2="100"
+          stroke="#FF4500"
+          strokeWidth="1.5"
+        />
+        <polygon points="195,100 190,97 190,103" fill="#FF4500" />
+        <text x="185" y="95" fontSize="10" fill="#FF4500">
+          F
+        </text>
+
+        {/* Generalized coordinates */}
+        {/* Theta angle */}
+        <text x="152" y="50" fontSize="10" fill="#009900">
+          θ
+        </text>
+
+        {/* Cart position */}
+        <line
+          x1="30"
+          y1="125"
+          x2="150"
+          y2="125"
+          stroke="#009900"
+          strokeWidth="1"
+          markerEnd="url(#arrowhead)"
+        />
+        <text x="105" y="135" fontSize="10" fill="#009900">
+          z
+        </text>
+
+        {/* Arrowhead marker definition */}
+        <defs>
+          <marker
+            id="arrowhead"
+            markerWidth="8"
+            markerHeight="6"
+            refX="8"
+            refY="3"
+            orient="auto"
+          >
+            <polygon points="0 0, 8 3, 0 6" fill="#009900" />
+          </marker>
+        </defs>
+      </svg>
+    </div>
+  );
+};
+
+export { InvertedPendulumSimulation, InvertedPendulumSVG };

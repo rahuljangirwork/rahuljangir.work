@@ -4,7 +4,10 @@ import Dropdown from "./dropdown";
 import WanderBehaviorDiagram from "./wander-behavior-diagram";
 import RobotScene from "./robot-scene";
 import WorkInProgress from "./work-in-progress";
-import PendulumSimulation from "./inverted-pendulum";
+import {
+  InvertedPendulumSimulation,
+  InvertedPendulumSVG,
+} from "./inverted-pendulum";
 
 type TableProps = {
   data: {
@@ -62,5 +65,6 @@ export const CustomMDXComponents = {
   RobotScene,
   WanderBehaviorDiagram,
   WorkInProgress,
-  PendulumSimulation,
+  InvertedPendulumSimulation,
+  InvertedPendulumSVG,
 };
