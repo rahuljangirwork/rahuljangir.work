@@ -24,7 +24,7 @@ function BlogCard({ post }: { post: PostMetadata }) {
     >
       <SplitCard className="flex flex-col sm:flex-row gap-4 text-palette-3">
         <SplitCardThumbnail className="w-full sm:w-2/5 flex-shrink-0 border border-palette-1 rounded-md overflow-hidden">
-          <Thumbnail src={post.src} className="h-full" />
+          <Thumbnail src={post.src} autoPlay={true} className="h-full" />
         </SplitCardThumbnail>
         <Link href={`/blog/${post.slug}`}>
           <SplitCardContent className="w-full flex flex-col">
