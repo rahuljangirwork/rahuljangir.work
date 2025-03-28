@@ -3,13 +3,16 @@ import { Move } from "lucide-react";
 import { PostMetadata } from "@/app/lib/types";
 import { cn } from "@/app/lib/utils";
 import Scene from "@/app/components/model/scene";
+import { InvertedPendulumSimulation } from "../mdx/inverted-pendulum";
 
 export default function Thumbnail({
   src,
   className,
+  autoPlay,
 }: {
   src: PostMetadata["src"];
   className?: string;
+  autoPlay?: boolean;
 }) {
   // Base container class for all thumbnail types
   const containerClasses = cn(
@@ -51,12 +54,20 @@ export default function Thumbnail({
   if (src && src.scene) {
     return (
       <div className={containerClasses}>
-        <Scene className="w-full h-full" />
-        <Move
-          className="absolute right-2 bottom-2 text-primary-foreground z-10"
-          size={18}
-          aria-hidden="true"
-        />
+        {src.scene === "robot-arm" ? (
+          <>
+            <Scene className="w-full h-full" />
+            <Move
+              className="absolute right-2 bottom-2 text-primary-foreground z-10"
+              size={18}
+              aria-hidden="true"
+            />
+          </>
+        ) : src.scene === "inverted-pendulum" ? (
+          <InvertedPendulumSimulation autoPlay={autoPlay} />
+        ) : (
+          <></>
+        )}
       </div>
     );
   }
