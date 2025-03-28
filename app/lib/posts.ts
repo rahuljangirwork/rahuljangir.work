@@ -36,7 +36,7 @@ export async function getSortedPostsMetaData(): Promise<PostMetadata[]> {
         src: {
           image: matterResult.data.src?.image ?? {},
           video: matterResult.data.src?.video ?? "",
-          scene: matterResult.data.src?.scene ?? false,
+          scene: matterResult.data.src?.scene ?? "",
           link: matterResult.data.src?.link ?? "",
         },
         technologies: matterResult.data.technologies ?? [],

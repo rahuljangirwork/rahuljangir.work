@@ -7,7 +7,7 @@ export type PostMetadata = {
   src: {
     image?: { path: string; alt: string };
     video?: string;
-    scene?: boolean;
+    scene?: string;
     link?: string;
   };
   technologies?: string[];
