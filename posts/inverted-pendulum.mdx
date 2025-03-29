@@ -23,9 +23,11 @@ When we use Euler-Lagrange to determine the equations of motion for a given syst
 <InvertedPendulumSVG />
 
 The system has two degrees of freedom, one for the angle of the bar and another for the horizontal position of the cart, so I'll define our generalized coordinates as such: **$q_1 = \theta$ and $q_2 = z$**  
-There are two bodies, so we'll have 2 equations of motion. Let's kick things off by writing the position vectors to the center of mass of each body.
+There are two bodies, so we'll have 2 equations of motion.
 
-Modeling the pendulum as a slender arm (1) and the cart as a solid body (2) we get:
+## Deriving the Lagrangian
+
+Let's kick things off by writing the position vectors to the center of mass of each body. Modeling the pendulum as a slender arm (1) and the cart as a solid body (2) we get:
 
 $$
 \vec{r}_1 = (z + \frac{l}{2}\sin\theta)\hat{i} + \frac{l}{2}\cos\theta\hat{j}
@@ -55,6 +57,8 @@ I_{G_1} = \begin{bmatrix}
 \end{bmatrix}
 $$
 
+### Kinetic Energy: $T$
+
 Now we can get the total kinetic energy, which, in our case, is defined by the following:
 
 $$
@@ -64,7 +68,7 @@ $$
 Click the dropdown below if you want to see some good old plugging and chugging. Otherwise, feel free to trust my algebra skills and skip ahead.
 
 <Dropdown label="KE derivation">
-    <div className="bg-primary/50 backdrop-blur-md border border-palette-1 rounded-md p-2">
+    <div className="bg-primary/50 backdrop-blur-md border border-palette-1 rounded-md px-3">
 compute the first dot product:
 $$
 \dot{\vec{r}}_1 \cdot \dot{\vec{r}}_1 =
@@ -79,7 +83,7 @@ $$
 = \dot{z}^2 + l \dot{z} \dot{\theta} \cos\theta + \frac{l^2}{4} \dot{\theta}^2
 $$
 
-now let's compute the omega and inertia matrix multiplication:
+now let's compute the angular velocity and inertia matrix multiplication:
 
 $$
 \vec{\omega}_1^\top I_{G_1} \vec{\omega}_1 =
@@ -88,7 +92,7 @@ $$
 \begin{bmatrix} 0 \\ -\dot{\theta} \\ 0 \end{bmatrix} = \frac{1}{12} m_1 l^2 \dot{\theta}^2
 $$
 
-Plug everything back in to the kinetic energy equation:
+Plug everything back in to the kinetic energy equation and simplify:
 
 $$
 T = \frac{1}{2} m_1 \left( \dot{z}^2 + l \dot{z} \dot{\theta} \cos\theta + \frac{l^2}{4} \dot{\theta}^2 \right) + \frac{1}{2} \cdot \frac{1}{12} m_1 l^2 \dot{\theta}^2 + \frac{1}{2} m_2 \dot{z}^2
@@ -98,7 +102,7 @@ $$
 T = \frac{1}{2} m_1 \dot{z}^2 + \frac{l}{2} m_1 \dot{z} \dot{\theta} \cos\theta + \frac{l^2}{8} m_1 \dot{\theta}^2 + \frac{l^2}{24} m_1 \dot{\theta}^2 + \frac{1}{2} m_2 \dot{z}^2
 $$
 
-which simplifies to:
+finally, combine like terms to get:
 
 $$
 T = \frac{1}{2} (m_1 + m_2) \dot{z}^2 + \frac{l}{2} m_1 \dot{z} \dot{\theta} \cos\theta + \frac{l^2}{6} m_1 \dot{\theta}^2
@@ -114,7 +118,9 @@ $$
 T = \frac{1}{2} (m_1 + m_2) \dot{z}^2 + \frac{l^2}{6} m_1 \dot{\theta}^2 + \frac{l}{2} m_1 \dot{z} \dot{\theta} \cos\theta
 $$
 
-Defining the initial potential energy at the center of the cart, our potential energy is given by the gravitational potential energy of the center of mass of the slender rod, which is:
+### Potential Energy: $V$
+
+Defining the initial potential energy at the center of the cart, our total potential energy is given by the **gravitational potential energy** of the center of mass of the slender rod, which is:
 
 $$
 V = \frac{l}{2} m_1 g \cos\theta
@@ -126,4 +132,49 @@ $$
 L = \frac{1}{2} (m_1 + m_2) \dot{z}^2 + \frac{l^2}{6} m_1 \dot{\theta}^2 + \frac{l}{2} m_1 \dot{z} \dot{\theta} \cos\theta - \frac{l}{2} m_1 g \cos\theta
 $$
 
+## Deriving the Euler-Lagrange Equation
+
+$$
+\frac{d}{dt} \left( \frac{\partial L}{\partial \dot{q}_k} \right) - \frac{\partial L}{\partial q_k} = Q_k
+$$
+
+See the little subscript $k$ in the Euler-Lagrange equation? That represents the number of generalized coordinates, and since we have two ($q_1 = \theta$ and $q_2 = z$) we're going to apply this equation twice.
+
+Once again, there's going to be lots of plugging and chugging, so click the dropdowns below if you want to see that happen. Otherwise, you can trust my partial derivative skills and skip ahead for the final result.
+
+<Dropdown label="θ" >
+    <div className="bg-primary/50 backdrop-blur-md border border-palette-1 rounded-md px-3">
+    Recall the Lagrangian we derived:
+
+$$
+L = \frac{1}{2} (m_1 + m_2) \dot{z}^2 + \frac{l^2}{6} m_1 \dot{\theta}^2 + \frac{l}{2} m_1 \dot{z} \dot{\theta} \cos\theta - \frac{l}{2} m_1 g \cos\theta
+$$
+
+    Let's start with the partial derivative in the first term of the equation $\frac{d}{dt}(\frac{\partial L}{\partial \dot{\theta}})$:
+
+$$
+\frac{\partial L}{\partial \dot{\theta}} = \frac{l^2}{3} m_1 \dot{\theta} + \frac{l}{2} m_1 \dot{z}\cos{\theta}
+$$
+
+    Okay, easy enough. Now take the derivative of that with respect to time and we get:
+
+$$
+\frac{d}{dt} \left( \frac{\partial L}{\partial \dot{\theta}} \right) = \frac{l^2}{3} m_1 \ddot{\theta} + \frac{l}{2} m_1 (-\dot{z} \dot{\theta} \sin{\theta} + \ddot{z} \cos{\theta})
+$$
+
+$$
+    = \frac{l^2}{3} m_1 \ddot{\theta} - \frac{l}{2} m_1 \dot{z} \dot{\theta} \sin{\theta} + \frac{l}{2} m_1 \ddot{z} \cos{\theta}
+$$
+
+    The second term of the equation becomes:
+
+$$
+\frac{\partial L}{\partial \theta} = - \frac{l}{2} m_1 \dot{z} \dot{\theta} \sin{\theta} + \frac{l}{2} m_1 g \sin{\theta}
+$$
+
+    </div>
+
+</Dropdown>
+
 <WorkInProgress width="50%" />
+$$
