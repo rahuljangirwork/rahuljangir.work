@@ -6,8 +6,50 @@ import { Toaster } from "@/app/components/ui/toaster";
 import NavBar from "@/app/components/navigation/nav-bar";
 
 export const metadata: Metadata = {
-  title: "Isai Portfolio",
-  description: "isai's portfolio website",
+  title: {
+    template: "%s | Isai's Portfolio",
+    default: "Isai's Portfolio",
+  },
+  description:
+    "A portfolio website for Isai Sanchez, a mechanical engineer and freelance software developer",
+  keywords: [
+    "mechanical engineer",
+    "software developer",
+    "CAD",
+    "robotics",
+    "Next.js",
+    "React",
+    "TailwindCSS",
+    "web development",
+    "portfolio",
+  ],
+  authors: [{ name: "Isai" }],
+  creator: "Isai",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://www.isais.dev",
+    siteName: "Isai's Portfolio",
+    title: "Isai - Engineer & Developer",
+    description: "A portfolio of experiences and projects",
+    images: [
+      {
+        url: "/assets/mebw.JPG",
+        width: 1200,
+        height: 630,
+        alt: "Black and White mirror film selfie",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Isai - Mechanical Engineer & Software Developer",
+    description: "An engineer's portfolio of experiences and projects",
+    images: ["/assets/mebw.JPG"],
+  },
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({
@@ -18,7 +60,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${space_grotesk.className} antialiased bg-primary bg-grid-white/[0.07] sm:custom-gradient custom-scrollbar flex flex-col min-h-screen`}
+        className={`${space_grotesk.className} antialiased bg-primary sm:custom-gradient custom-scrollbar flex flex-col min-h-screen`}
       >
         <main style={{ backgroundImage: `url('/assets/grainy-texture.png')` }}>
           <NavBar />
