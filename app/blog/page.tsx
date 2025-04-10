@@ -1,6 +1,11 @@
+import type { Metadata } from "next";
 import { getSortedPostsMetaData } from "@/app/lib/posts";
 import BlogCards from "@/app/components/cards/blog-cards";
 import type { PostMetadata } from "@/app/lib/types";
+
+export const metadata: Metadata = {
+  title: "Posts",
+};
 
 export default async function Blog() {
   const allPostsData: PostMetadata[] = await getSortedPostsMetaData();
