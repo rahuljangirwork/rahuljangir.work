@@ -29,31 +29,36 @@ To better understand the functionality of the `useReducer` hook, I decided to bu
 
 ## useReducer TL;DR
 
-`useReducer` follows a simple pattern: when something happens in your app - we call this an action, which you define and can be anything from a button clicked to a slider moving - it goes through a reducer function that knows exactly how to update your state based on that action. The basic syntax is as follows:
+`useReducer` follows a simple pattern: when something happens to change the state in your app - we call this an action, anything from a button click to a slider moving - it goes through a reducer function that knows exactly how to update your state based on that action. The basic syntax is as follows:
 
 ```typescript
 const [state, dispatch] = useReducer(reducer, initialState);
 ```
 
-Take note of the reducer argument in the hook, this is a function that receives the **current state** and an **action**, and promptly returns a **new** state based on what that action is trying to do. We'll go over the reducer function's implementation soon.
+The arguments of the `useReducer` hook include:
 
-The dispatch function is how we send actions to the reducer. It sends **declarative** instructions to the reducer that tell it how to update the state. For example:
+- **reducer**: A pure function that receives the current **state** and an **action**, and promptly returns a **new** state based on what that action is trying to do. We'll go over the reducer function's implementation soon.
+- **initialState**: the initial state of your application
+
+The `useReducer` hook returns the following:
+
+- **state**: The current state of your application
+- **dispatch**: The function that sends actions to the **reducer**. It sends _declarative_ instructions to the **reducer** that tell it how to update the state. For example:
 
 ```typescript
-// Instead of setState({ ...state, wish: [...state.wishes, newWish] })
 dispatch({
   type: "ADD_WISH",
   payload: { wish: "Buy a pair of earbuds", priority: "High" },
 });
 ```
 
-Instead of directly manipulating the state, we describe what we want to happen to the state (and provide an optional payload object that can aid state operations), and the reducer handles returning and setting a new state. The reducer takes care of the "how" while our ui components will take care of the "what".
+Instead of directly manipulating the current state, the **reducer** returns and sets a new state in our app based on our action and an optional payload object that can aid in state operations (we'll dive more into this soon). The reducer takes care of the "how" while our ui components take care of the "what," specifically through the **dispatch**.
 
 ## Initial Design Steps and State Breakdown
 
 Before we dive in to the state of our app, let's begin by visualizing how each wish item will be structured. Since we're using Typescript, let's take advantage of that!
 
-First, what information will potential users want to see and modify? The simple answer is the wish description, whether the wish has been completed or not, and maybe even a priority level. Cool, now off the top of my head, what are some basic functionality a wishlist app will need to have for each wish item? Well, completion toggling, a unique identifier for each wish and basic chronological operations sound like a good start. So let's put it all together in the WishItem interface:
+First, what information will potential users want to see and modify? The simple answer is the wish description (what are they wishing for?), whether the wish has been completed or not, and a priority level. Cool, now off the top of my head, what basic functionality will the app require for each wish item? Well, completion toggling, a unique identifier for each wish and basic chronological operations sounds like a good start. So let's put it all together in the WishItem interface:
 
 ```typescript
 export interface WishItem {
@@ -65,14 +70,16 @@ export interface WishItem {
 }
 ```
 
-Awesome, let's move on to the overall application state. When thinking about an app's state, it's important to not only consider our current wish items, but also the UI state that affects how users will be able to interact with them. On an app that displays a wishlist, should we include filtering options, and what should we filter by? What if a user wants to use bulk actions on a selected amount of wishes, where do we store the selected wishes? What about basic error messages? We need to track:
+Awesome, let's move on to the overall application state. When thinking about an app's state, it's important to not only consider our current wish items, but also the components that handles user interactivity, the UI! On an app that displays a wishlist, should we include filtering options, and what should we filter by? What if a user wants to use bulk actions on a selected amount of wishes, where do we store those selected wishes? What about basic error messages? Our state needs to track:
 
 - **wishItems**: all the wish items
 - **filters**: what filters are active
 - **errors**: any error messages we want to show
 - **selectedWishes**: which wishes are currently selected for bulk actions
+- **dark or light mode**: the ui mode to display can be added here
+- **bulk selection mode**: whether we are in bulk selection mode or not
 
-This led me to the following WishlistState interface:
+This led me to write the following WishlistState interface:
 
 ```typescript
 export interface WishlistState {
@@ -87,14 +94,20 @@ export interface WishlistState {
     prompt?: string;
   };
   selectedWishes: string[];
+  ui: {
+    darkMode: boolean;
+    bulkSelectionMode: boolean;
+  };
 }
 ```
 
-The filter object is structured to handle both priority and status filtering options. For priority filtering, the `Array<"Low" | "Medium" | "High">` syntax lets us set multiple options for the priority level, and the errors object uses optional properties (that's what the `?` is for) to set specific error messages when needed.
+The **filter** object is structured to handle both priority and status filtering options. For priority filtering, the `Array<"Low" | "Medium" | "High">` syntax lets us set multiple options for the priority level. The errors object uses optional properties (that's what the `?` is for) to set specific error messages when needed.
 
-Alright. Now it's important to define what actions a user will be able to take on the state of our wishlist. Actions in `useReducer` serve as the 'events' that trigger state changes. Each action has a type (string defining the intent) and an optional payload (additional data needed to carry out the operation). Defining actions upfront makes the reducer more predictable and easier to debug.
+Alright. Now it's important to define what actions a user will be able to take on the state of our wishlist. Like we talked about before, actions serve as the events that trigger state updates. Each action has a type (a string defining the intent) and an optional payload (additional data needed to carry out the operation). Defining actions upfront makes the reducer much more predictable and easier to debug.
 
 I can think of quite a few actions we would need, like toggling completion of a wish, changing the priority level, deleting a wish, marking it as complete, modifying the description, etc. That's just for a single wish, what about bulk actions? Bulk deletion, update, marking as complete, and more should also be actions that we define. Therefore, I defined the following `WishlistAction` type, with appropriate type strings and payload objects. It is usually good practice to have these defined.
+
+<Dropdown label="WishlistAction type">
 
 ```typescript
 export type WishlistAction =
@@ -122,6 +135,8 @@ export type WishlistAction =
   | { type: "SET_FILTER"; payload: Partial<WishlistState["filter"]> };
 ```
 
+</Dropdown>
+
 A couple of notes on typescript features here.
 
 - `Omit<WishItem, "id" | "createdAt">` tells TypeScript to use WishItem's type but leave out the id and createdAt fields (since we'll generate those when adding a wish)
@@ -138,7 +153,7 @@ Let's implement the reducer function. This function was defined in a `reducer.ts
 export function wishlistReducer(state: WishlistState, action: WishlistAction): WishlistState {...}
 ```
 
-As explained before, it receives the current state and an action to take on that state. A concept that is crucial to understand is that this reducer function must be a pure function, meaning it must never modify the existing state but return a new state object. This concept is known as immutability and it tripped me up on a couple of occasions. Let's see this concept in action with one of the simplest examples, the "ADD_WISH" action type.
+As explained before, it receives the current state and an action to take on that state, and returns a new state. A concept that is crucial to understand is that this reducer function must be a pure function, meaning it must never modify the existing state but return a new state object. This concept is known as immutability and it tripped me up on a couple of occasions. Let's see this concept in action with one of the simplest examples, the "ADD_WISH" action type.
 
 ```typescript
 export function wishlistReducer(
@@ -165,7 +180,7 @@ export function wishlistReducer(
 }
 ```
 
-First off, notice the switch statement here? It's used quite often with reducers to ensure we implement only the logic on the right action type, super useful for debugging! Next, notice the immediate return statement after we enter the "ADD_WISH" case, immutability is immediately shown here. We are going to return a NEW state object, so let's dive in to how we do that.
+First off, notice the switch statement here? It's used quite often with reducers to ensure we implement only the logic on the right action type, super useful for debugging! Next, notice the immediate return statement after we enter the "ADD_WISH" case, immutability is immediately shown here. We are going to return a NEW state object.
 
 First, we spread the properties of the previous state with the spread operator `...state` to ensure we preserve properties we won't modify in this case. Next, because this is the "ADD_WISH" action, we must return a `WishlistState` object with a new element in the wishItems array by spreading the previous wishItems with `...state.wishItems` and adding the new `WishItem` object with the payload's properties! Recall how we defined this action:
 
@@ -192,17 +207,16 @@ And that's how we define actions in the reducer function! Let's take a look at o
       };
 ```
 
-Again, notice that we're spreading the previous state's properties. However, this time we will iterate over the `wishItems` array with `map` and check if each wish's `id` is included in the `selectedWishes` array. If it is, we return a new wish object with the updated priority (while keeping previous properties) otherwise we return the wish object unchanged.
+Again, notice that we're spreading the previous state's properties. However, this time we will iterate over the `wishItems` array with `map` and check if each wish's `id` is included in the `selectedWishes` array. If it is, we return a new wish object with the updated priority (while keeping previous properties) otherwise we return the wish object unchanged. The logic in this `map` method allows us to return a new wishItems array!
 
-There it is, the other cases follow similar processes, using appropriate Javascript methods where necessary such as the `.forEach()` and `.filter()` methods. Feel free to take a look at the implementation of the other cases in the reducer function [here](https://github.com/isai7710/wishlist-app/blob/main/src/lib/wishes/reducer.ts) and make sure you understand how immutability is ensured in ever case, it's important!
+That's the main gist of it, the other cases follow similar processes, using appropriate Javascript methods where necessary such as the `.forEach()` and `.filter()` methods, which I'll leave to you to understand. Feel free to take a look at the implementation of the other cases in the reducer function [here](https://github.com/isai7710/wishlist-app/blob/main/src/lib/wishes/reducer.ts) and make sure you understand how immutability is ensured in ever case, it's important!
 
 ## Wiring up the reducer with the UI components
 
-Now, with our state structure and reducer function in place you may be asking yourself: **How do we initialize the `useReducer` hook and interact with it in our ui?** Let's take a look at the first lines of code in the `WishlistApp` component, the root component of the app.
+Now, with our state structure and reducer function in place you may be asking yourself: **How do we initialize the `useReducer` hook and interact with it in our ui?** In short, I define the `INITIAL_STATE` of our app as an empty `WishlistState` object.
 
 ```typescript
-export default function WishlistApp() {
-  const initialState: WishlistState = {
+  const INITIAL_STATE: WishlistState = {
     wishItems: [],
     filter: {
       priorities: [],
@@ -211,12 +225,16 @@ export default function WishlistApp() {
     errors: {},
     selectedWishes: [],
   };
-  const [state, dispatch] = useReducer(wishlistReducer, initialState);
-  // ... the rest of code
 }
 ```
 
-Simple, we first create an empty `initialState` object of the `WishlistState` type, this ensures the state has the necessary properties (like the `wishItems` array, `filter` object, etc.) to match the structure our reducer is expecting. Make sure you import these types at the top of the file! Setting up `useReducer` involves the following:
+Then, I pass it, along with our `wishlistReducer` function, in the `useReducer` hook as such:
+
+```typescript
+const [state, dispatch] = useReducer(wishlistReducer, INITIAL_STATE);
+```
+
+Once again, our `useReducer` setup involves the following:
 
 - **Hook Arguments**:
   - `wishlistReducer` - our reducer function
@@ -247,9 +265,9 @@ const handleSubmit = async (e: React.FormEvent) => {
 };
 ```
 
-When the user submits the form with correct values in the text input and select fields, we call the `dispatch` function to send an action of type "ADD*ACTION" to the reducer with the appropriate data in the payload. After dispatching that action, we reset the \_local* state of the form inputs (the ones used to store wish description and priority level) and reset the errors by sending a separate "CLEAR_ERRORS" action.
+When the user submits the form with correct values in the text input and select fields, we call the `dispatch` function to send an action of type **"ADD_ACTION"** to the reducer with the appropriate data in the payload. After dispatching that action, we reset the local state of the form inputs (the ones used to store wish description and priority level) and reset the errors by sending a separate **"CLEAR_ERRORS"** action.
 
-Because `WishlistForm` was a separate component declared in a different file (for organizational purposes), we need to pass the dispatch function as a prop to this component, so that we could interact with the global state managed by the reducer. Here's how we define the dispatch function as a prop with Typescript:
+Because `WishlistForm` was a separate component declared in a different file (for organizational purposes), we would need to pass the dispatch function as a prop to this component, so that we could interact with the global state managed by the reducer. Here's how we define the dispatch function as a prop with Typescript:
 
 ```typescript
 interface WishlistFormProps {
@@ -258,7 +276,9 @@ interface WishlistFormProps {
 }
 ```
 
-So there you go. Local state variables for the wish's text input and priority level were used to pass data to the reducer through the dispatch in the payload, and that's how we centralized state management and enforced predictable state changes with the `useReducer` hook! This pattern becomes very useful as the app grows in complexity and features are added. The github [repo](https://github.com/isai7710/wishlist-app/) should outline the implementation of the rest of the action types using the dispatch function which, so make sure you check it out for further review.
+However, looking ahead the question becomes, do we really want to pass down state and dispatch props to every single component we create? The simple answer is no, that would get too complicated. The solution is to use React's context API and wrap the whole app in a Wishlist Context Provider, so that any component in the app can consume the state and use the dispatch functions. I'll leave it to you to see how I implemented this.
+
+So there you go. This pattern becomes very useful as the app grows in complexity and features are added. The github [repo](https://github.com/isai7710/wishlist-app/) should outline the implementation of the rest of the action types using the dispatch function, so make sure you check it out for further review.
 
 I also included some neat (and sometimes disfunctional) lightweight ai features too using the Hugging Face API, but I'll save the explanation for another time.
 
