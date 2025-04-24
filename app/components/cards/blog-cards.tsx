@@ -72,7 +72,7 @@ export default function BlogCards({ posts }: { posts: PostMetadata[] }) {
         <button
           className={cn(
             "w-24 rounded-full py-1 px-2 border bg-palette-3/10 backdrop-blur-sm",
-            activeTab === "project" ? "border-palette-4" : "border-palette-3",
+            activeTab === "project" ? "border-palette-4" : "border-palette-1",
           )}
           onClick={() => setActiveTab("project")}
         >
