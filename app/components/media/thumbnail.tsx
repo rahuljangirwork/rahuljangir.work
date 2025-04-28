@@ -4,11 +4,12 @@ import { PostMetadata } from "@/app/lib/types";
 import { cn } from "@/app/lib/utils";
 import Scene from "@/app/components/model/scene";
 import { InvertedPendulumSimulation } from "../mdx/inverted-pendulum";
+import StandaloneBeamRenderer from "./standalone-beam-animation";
 
 export default function Thumbnail({
   src,
   className,
-  autoPlay,
+  autoPlay = true,
 }: {
   src: PostMetadata["src"];
   className?: string;
@@ -65,6 +66,15 @@ export default function Thumbnail({
           </>
         ) : src.scene === "inverted-pendulum" ? (
           <InvertedPendulumSimulation autoPlay={autoPlay} />
+        ) : src.scene === "beam-animation" ? (
+          <StandaloneBeamRenderer
+            autoPlay={autoPlay}
+            force={1000}
+            youngModulus={200}
+            momentInertia={1.83}
+            animationDuration={4000}
+            scaleFactor={1000}
+          />
         ) : (
           <></>
         )}
