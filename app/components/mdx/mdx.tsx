@@ -8,6 +8,7 @@ import {
   InvertedPendulumSimulation,
   InvertedPendulumSVG,
 } from "./inverted-pendulum";
+import BeamAnimation from "./beam-animation";
 
 type TableProps = {
   data: {
@@ -67,4 +68,5 @@ export const CustomMDXComponents = {
   WorkInProgress,
   InvertedPendulumSimulation,
   InvertedPendulumSVG,
+  BeamAnimation,
 };
