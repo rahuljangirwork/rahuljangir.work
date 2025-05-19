@@ -1,9 +1,22 @@
+"use client";
+
 import { Mail } from "react-feather";
+import { usePathname } from "next/navigation";
+import { cn } from "@/app/lib/utils";
 
 export default function Footer() {
+  const pathname = usePathname();
+
   return (
-    <footer className="bg-palette-2/10 backdrop-blur-md p-2 z-20 relative">
-      <div className="flex justify-between items-center text-palette-2/70">
+    <footer
+      className={cn(
+        "backdrop-blur-md p-2 z-20 relative",
+        pathname === "/gallery"
+          ? "bg-[#1f1f1f] border-t border-t-palette-2/20 text-palette-4/50"
+          : "bg-palette-1/20 text-palette-2/70",
+      )}
+    >
+      <div className="flex justify-between items-center">
         <div className="w-full md:w-1/3">
           <p className="text-sm">© 2024 Isai Sanchez. All rights reserved.</p>
         </div>
