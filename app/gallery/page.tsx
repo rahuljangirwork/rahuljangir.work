@@ -1,52 +1,29 @@
-import { getAllGalleryImages } from "@/app/lib/gallery";
 import Link from "next/link";
-import Image from "next/image";
-
-type ImageData = {
-  src: string;
-  width: number;
-  height: number;
-  alt: string;
-};
+import { Suspense } from "react";
+import GalleryContainer from "@/app/components/media/gallery-container";
+import GalleryLoading from "../components/media/gallery-loading";
 
 export default async function GalleryPage() {
-  const images: ImageData[] = await getAllGalleryImages();
-
   return (
-    <div className="min-h-screen bg-gray-100 flex pt-12 px-8 gap-8">
-      <div className="h-72 w-1/5 flex flex-col justify-between">
-        <div className="text-palette-1">
-          <h1 className="text-5xl font-bold">Isai Sanchez</h1>
-          <p>my life in film.</p>
+    <div className="min-h-screen bg-[#1e1e1e] flex flex-col md:flex-row py-12 px-4 md:px-8 gap-8">
+      <div className="md:h-72 md:w-1/5 flex flex-col justify-between mb-8 md:mb-0">
+        <div className="text-palette-2">
+          <h1 className="text-4xl md:text-5xl font-bold tracking-tight">
+            Isai Sanchez
+          </h1>
+          <p className="mt-2 text-palette-2 opacity-80">my life in film.</p>
         </div>
-        <Link href="/" className="text-palette-4">
+        <Link
+          href="/"
+          className="text-palette-4 mt-6 md:mt-0 inline-block transition-all duration-300 hover:translate-x-[-4px]"
+        >
           {`< back home.`}
         </Link>
       </div>
-      <div className="h-full w-full grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3">
-        {images.map((image, idx) => {
-          const aspectRatio = image.height / image.width;
-          const spanRows = Math.ceil(aspectRatio * 10);
-
-          return (
-            <div
-              key={idx}
-              className="relative w-full overflow-hidden"
-              style={{
-                gridRowEnd: `span ${spanRows}`,
-                paddingBottom: `${aspectRatio * 100}%`,
-              }}
-            >
-              <Image
-                src={image.src}
-                alt={image.alt}
-                fill
-                style={{ objectFit: "cover" }}
-                className="absolute left-0 top-0 h-full w-full"
-              />
-            </div>
-          );
-        })}
+      <div className="h-full w-full">
+        <Suspense fallback={<GalleryLoading />}>
+          <GalleryContainer />
+        </Suspense>
       </div>
     </div>
   );
