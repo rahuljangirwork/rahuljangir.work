@@ -1,8 +1,8 @@
 import { getAllGalleryImages } from "@/app/lib/gallery";
-import GalleryImages from "./gallery-images";
+import GalleryGrid from "./gallery-grid";
 
 export default async function GalleryContainer() {
   const images = await getAllGalleryImages();
 
-  return <GalleryImages initialImages={images} />;
+  return <GalleryGrid initialImages={images} />;
 }
