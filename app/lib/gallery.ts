@@ -26,7 +26,7 @@ export async function getAllGalleryImages(): Promise<ImageData[]> {
       src: "/gallery/horses.JPG",
       width: 1500,
       height: 1000, // 3:2 landscape
-      alt: "purple bee butt",
+      alt: "horses in Idaho",
       camera: "Minolta STsi",
     },
     {
