@@ -1,0 +1,48 @@
+---
+title: "BFS Visualizer"
+publishDate: "May 2025"
+description: "Visualizing the breadth first search algorithm for graphs"
+type: "blog"
+src:
+  {
+    image:
+      {
+        path: "/assets/bfs-visualizer-screenshot1.png",
+        alt: "screenshot of my bfs visualizer",
+      },
+  }
+---
+
+I wanted to practice some good old data structures and algorithms and thought it would be cool to visualize the BFS algorithm, so I wrote [this](https://github.com/isai7710/BFS-visualizer). Then I thought why not explain it in a quick blog post so here we are. :)
+
+# Overview
+
+In short, the [Breadth First Search (BFS)](https://en.wikipedia.org/wiki/Breadth-first_search) algorithm is a search algorithm that starts at a given node and explores all of its neighbors at the current depth before moving on to the next layer. You may ask yourself, **what exactly are we searching through, and what are we searching for?** Typically, we are navigating through structured data like [Trees](<https://en.wikipedia.org/wiki/Tree_(abstract_data_type)>) or [Graphs](<https://en.wikipedia.org/wiki/Tree_(graph_theory)>) looking for a specific value, an optional path, or simply exploring just because we can. For example, BFS can be used in a chess engine that's searching for the best move for white by modeling the game as a tree, or it can be used in a simple maze-solving algorithm by treating the maze as a graph of walkable paths.
+
+# Core Classes
+
+## `Node`
+
+- **Purpose**: Render the state of an independent graph data structure
+- **Responsibilities**: Manage state, handle position in window, render, remember neighbors
+- **Key features**: Color-coded states (`UNVISITED`, `IN_QUEUE`, `CURRENT`, `VISITED`), neighbor tracking, click detection
+- **Additional Notes**:
+
+The `addNeighbor()` method uses a linear search through an `m_neighbors` vector for duplicate detection instead of an `std::set` or `std::unordered_set`. Doesn't an unordered_set average O(1) for search? True, but for smaller neighbor counts (2-6) using a vector is simpler and could be faster due to contiguous memory storage and no hash computation overhead. If we were to scale this up we'd definitely want to benefit from a hash set.  
+Why don't we have a custom destructor? Since this class doesn't manage any resources (dynamic memory, file handling, etc) it is not necessary to have a desctructor. See the [Rule of 0/3/5](https://medium.com/@Farhan11637/the-rule-of-0-3-5-2e608a717811) for more information.
+A type alias is defined at the end of the `Node.h` file for a shared pointer to a `Node` object. `NodePtr` is now shorthand for `std::shared_ptr<Node>`.
+
+## `Graph`
+
+- **Purpose**: The **city planner** for our project. Manages not only each `Node` but the layout and relationships between them.
+- **Responsibilities**: Ensures the layout of the "city" (nodes and edges) looks neat by using placement algorithms and renders them appropriately.
+- **Key features**: `generateSampleGraph()` method for random graph generation, uses placement algorithms with fallback strategies and collision free node placement.
+- **Additional Notes**:
+
+Since the `Graph` class manages dynamic memory (`Node` instances) we need an efficient memory management strategy. An `std::unordered_map` was chosen because:
+
+1. **key value pairs**: we need to store both the id and the Node object itself.
+2. **fast lookup**: `std::unordered_map` has O(1) average lookup.
+   The difference between containers in `Node` and `Graph` comes down to different data needs. In `Node` we only need to store ids, but in `Graph` we need both `id` and `Node` objects.
+
+<WorkInProgress width="50%" />
