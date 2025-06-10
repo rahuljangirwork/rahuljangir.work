@@ -9,7 +9,6 @@ import {
   Code2,
 } from "lucide-react";
 import { motion, AnimatePresence, LayoutGroup } from "framer-motion";
-import { cn } from "@/app/lib/utils";
 import {
   Card,
   CardContent,
