@@ -15,7 +15,7 @@ const socialLinks = [
   },
   {
     name: "LinkedIn",
-    href: "/",
+    href: "https://www.linkedin.com/in/isai-sanchez-5a0178245/",
     icon: Linkedin,
   },
 ];
