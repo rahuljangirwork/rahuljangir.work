@@ -71,7 +71,7 @@ export default async function PostPage({
 
         <article
           key={post.frontmatter.title}
-          className="min-h-dvh prose prose-offwhite w-full"
+          className="min-h-dvh prose prose-offwhite w-full mb-4"
         >
           {post.content}
         </article>
