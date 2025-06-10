@@ -1,0 +1,240 @@
+---
+title: "Inverted Pendulum 1"
+publishDate: "March 2025"
+description: "Part 1 of a controls simulation of an inverted pendulum using Python"
+type: "blog"
+src: { scene: "inverted-pendulum" }
+technologies:
+  - "Python"
+  - "Matplotlib"
+  - "Numpy/Simpy"
+  - "OOP"
+---
+
+## Introduction
+
+Have you ever tried balancing a broomstick on your fingertip? You need lightning-fast reactions to ensure the error between "perfectly straight" and "currently tipping" remains as close to zero as possible. Now scale this problem up: Aerospace engineers at SpaceX must ensure their rockets stay upright when landing, Segways must have some correction to prevent face-plants, humanoid robots need to stay balanced and look natural when walking, otherwise investors get weirded out and pull funds.
+
+Correcting these errors between our desired outcome and our messy reality is the key behind control theory, and today we'll tackle one of my favorite problems to illustrate that - the inverted pendulum. Throughout this post I will assume you have some knowledge with the fundamentals of the **Euler-Lagrange Equation**, **Python**, **Linear Algebra** and **ODEs**. Bear with me through the math and hopefully you'll understand how a few equations can teach a machine to defy gravity.
+
+## First Steps - Deriving the EOMs!!!
+
+The key insight I want to instill before we dive into the math is the relationship between the horizontal motion of the cart and the angle of the pendulum. We need to move the cart at just the right speed and direction to keep the pendulum upright. Too little movement, and it falls. Too much, and we overshoot. The math we're about to derive captures this delicate balance between the two, and we're able to do so thanks to the elegant Euler-Lagrange Equation.
+
+When we use Euler-Lagrange to determine the equations of motion for a given system, we have to start off by defining our generalized coordinates (degrees of freedom) and the number of bodies in our system. Here's a quick little svg of how I'm defining all the coordinates:
+
+<InvertedPendulumSVG />
+
+The system has two degrees of freedom, one for the angle of the bar and another for the horizontal position of the cart, so I'll define our generalized coordinates as such: **$q_1 = \theta$ and $q_2 = z$**  
+There are two bodies, so we'll have 2 equations of motion.
+
+## Deriving the Lagrangian
+
+Let's kick things off by writing the position vectors to the center of mass of each body. Modeling the pendulum as a slender arm (1) and the cart as a solid body (2) we get:
+
+$$
+\vec{r}_1 = (z + \frac{l}{2}\sin\theta)\hat{i} + \frac{l}{2}\cos\theta\hat{j} \quad \textrm{and} \quad \vec{r}_2 = z\hat{i}
+$$
+
+Take the derivative of both to get:
+
+$$
+\dot{\vec{r}_1} = (\dot{z} + \frac{l}{2}\dot{\theta}\cos\theta)\hat{i} - \frac{l}{2}\dot{\theta}\sin\theta\hat{j} \quad \textrm{and} \quad \dot{\vec{r}_2} = \dot{z}\hat{i}
+$$
+
+Cool, now there's a couple more things we need before writing down the total kinetic energy. Notice that the slender arm will also have an angular velocity defined by: <Noteworthy note="The negative sign indicates the direction follows the right-hand rule based on our coordinate system from before - positive θ rotates counterclockwise." > $\vec{\omega}_1 = -\dot{\theta}\hat{k}$ </Noteworthy>
+
+and an <Noteworthy note="This is the inertia matrix for a thin rod about its center. For a rod of length l and mass m, the (1/12)ml² term comes from integrating r²dm over the rod's length." > inertia matrix </Noteworthy> of:
+
+$$
+I_{G_1} = \begin{bmatrix}
+0 & 0 & 0 \\
+0 & \frac{1}{12} m_1 l^2 & 0 \\
+0 & 0 & \frac{1}{12} m_1 l^2
+\end{bmatrix}
+$$
+
+### Kinetic Energy: $T$
+
+Now we can get the total kinetic energy, which, in our case, is defined by the following:
+
+$$
+T = \frac{1}{2} m_1 \dot{\vec{r}}_1 \cdot \dot{\vec{r}}_1 + \frac{1}{2} \vec{\omega}_1^\top I_{G_1} \vec{\omega}_1 + \frac{1}{2} m_2 \dot{\vec{r}}_2 \cdot \dot{\vec{r}}_2
+$$
+
+Click the dropdown below if you want to see some good old plugging and chugging. Otherwise, feel free to trust my algebra skills and skip ahead.
+
+<Dropdown label="KE derivation">
+    <div className="bg-primary/50 backdrop-blur-md border border-palette-1 rounded-md px-3">
+compute the first dot product:
+$$
+\dot{\vec{r}}_1 \cdot \dot{\vec{r}}_1 =
+\left(\dot{z} + \frac{l}{2}\dot{\theta}\cos\theta\right)^2 + \left(-\frac{l}{2}\dot{\theta}\sin\theta\right)^2
+$$
+
+$$
+= \dot{z}^2 + l \dot{z} \dot{\theta} \cos\theta + \frac{l^2}{4} \dot{\theta}^2 \cos^2\theta + \frac{l^2}{4} \dot{\theta}^2 \sin^2\theta
+$$
+
+$$
+= \dot{z}^2 + l \dot{z} \dot{\theta} \cos\theta + \frac{l^2}{4} \dot{\theta}^2
+$$
+
+now let's compute the angular velocity and inertia matrix multiplication:
+
+$$
+\vec{\omega}_1^\top I_{G_1} \vec{\omega}_1 =
+\begin{bmatrix} 0 & -\dot{\theta} & 0 \end{bmatrix}
+\begin{bmatrix} 0 & 0 & 0 \\ 0 & \frac{1}{12} m_1 l^2 & 0 \\ 0 & 0 & \frac{1}{12} m_1 l^2 \end{bmatrix}
+\begin{bmatrix} 0 \\ -\dot{\theta} \\ 0 \end{bmatrix} = \frac{1}{12} m_1 l^2 \dot{\theta}^2
+$$
+
+Plug everything back in to the kinetic energy equation and simplify:
+
+$$
+T = \frac{1}{2} m_1 \left( \dot{z}^2 + l \dot{z} \dot{\theta} \cos\theta + \frac{l^2}{4} \dot{\theta}^2 \right) + \frac{1}{2} \cdot \frac{1}{12} m_1 l^2 \dot{\theta}^2 + \frac{1}{2} m_2 \dot{z}^2
+$$
+
+$$
+T = \frac{1}{2} m_1 \dot{z}^2 + \frac{l}{2} m_1 \dot{z} \dot{\theta} \cos\theta + \frac{l^2}{8} m_1 \dot{\theta}^2 + \frac{l^2}{24} m_1 \dot{\theta}^2 + \frac{1}{2} m_2 \dot{z}^2
+$$
+
+finally, combine like terms to get:
+
+$$
+T = \frac{1}{2} (m_1 + m_2) \dot{z}^2 + \frac{l}{2} m_1 \dot{z} \dot{\theta} \cos\theta + \frac{l^2}{6} m_1 \dot{\theta}^2
+$$
+
+    </div>
+
+</Dropdown>
+
+In the end, we get the following:
+
+$$
+T = \frac{1}{2} (m_1 + m_2) \dot{z}^2 + \frac{l^2}{6} m_1 \dot{\theta}^2 + \frac{l}{2} m_1 \dot{z} \dot{\theta} \cos\theta
+$$
+
+### Potential Energy: $V$
+
+Defining the initial potential energy at the center of the cart, our total potential energy is given by the **gravitational potential energy** of the center of mass of the slender rod, which is:
+
+$$
+V = \frac{l}{2} m_1 g \cos\theta
+$$
+
+Now we can write out the Lagrangian $L = T - V$:
+
+$$
+L = \frac{1}{2} (m_1 + m_2) \dot{z}^2 + \frac{l^2}{6} m_1 \dot{\theta}^2 + \frac{l}{2} m_1 \dot{z} \dot{\theta} \cos\theta - \frac{l}{2} m_1 g \cos\theta
+$$
+
+## Deriving the Equations of Motion
+
+Recall the Euler-Lagrange equation:
+
+$$
+\frac{d}{dt} \left( \frac{\partial L}{\partial \dot{q}_k} \right) - \frac{\partial L}{\partial q_k} = Q_k
+$$
+
+See the little subscript $k$? That represents the number of generalized coordinates. We have two ($q_1 = \theta$ and $q_2 = z$) so we're going to apply this equation twice and end up with 2 EOMs. On the right hand side we have **generalized forces**. For more about them, read [here](https://en.wikipedia.org/wiki/Generalized_forces#)
+
+Once again, there's going to be lots of plugging and chugging, so click the dropdowns below if you want to see that happen. Otherwise, you can trust my partial derivative skills and skip ahead for the final result.
+
+<Dropdown label="θ" >
+    <div className="bg-primary/50 backdrop-blur-md border border-palette-1 rounded-md px-3">
+    Recall the Lagrangian we derived:
+
+$$
+L = \frac{1}{2} (m_1 + m_2) \dot{z}^2 + \frac{l^2}{6} m_1 \dot{\theta}^2 + \frac{l}{2} m_1 \dot{z} \dot{\theta} \cos\theta - \frac{l}{2} m_1 g \cos\theta
+$$
+
+    Let's start with the partial derivative inside the first term of the E-L equation: $\frac{d}{dt}(\frac{\partial L}{\partial \dot{\theta}})$
+
+$$
+\frac{\partial L}{\partial \dot{\theta}} = \frac{l^2}{3} m_1 \dot{\theta} + \frac{l}{2} m_1 \dot{z}\cos{\theta}
+$$
+
+    Okay, easy enough. Now take the derivative of that with respect to time and we get:
+
+$$
+\frac{d}{dt} \left( \frac{\partial L}{\partial \dot{\theta}} \right) = \frac{l^2}{3} m_1 \ddot{\theta} + \frac{l}{2} m_1 (-\dot{z} \dot{\theta} \sin{\theta} + \ddot{z} \cos{\theta})
+$$
+
+$$
+    = \frac{l^2}{3} m_1 \ddot{\theta} - \frac{l}{2} m_1 \dot{z} \dot{\theta} \sin{\theta} + \frac{l}{2} m_1 \ddot{z} \cos{\theta}
+$$
+
+    The second term of the E-L equation $\frac{\partial L}{\partial {\theta}}$ becomes:
+
+$$
+\frac{\partial L}{\partial \theta} = - \frac{l}{2} m_1 \dot{z} \dot{\theta} \sin{\theta} + \frac{l}{2} m_1 g \sin{\theta}
+$$
+
+    We have no generalized forces here ($Q_k = 0$), so our EOM for $\theta$ is:
+
+$$
+\frac{d}{dt} \left( \frac{\partial L}{\partial \dot{\theta}} \right) - \frac{\partial L}{\partial \theta} = 0
+$$
+
+$$
+    \implies \frac{l^2}{3} m_1 \ddot{\theta} - \frac{l}{2} m_1 \dot{z} \dot{\theta} \sin{\theta} + \frac{l}{2} m_1 \ddot{z} \cos{\theta} + \frac{l}{2} m_1 \dot{z} \dot{\theta} \sin{\theta} - \frac{l}{2} m_1 g \sin{\theta} = 0
+$$
+
+$$
+    \implies \frac{l^2}{3} m_1 \ddot{\theta} + \frac{l}{2} m_1 \ddot{z} \cos{\theta} - \frac{l}{2} m_1 g \sin{\theta} = 0
+$$
+
+    </div>
+
+</Dropdown>
+
+<Dropdown label="z" >
+    <div className="bg-primary/50 backdrop-blur-md border border-palette-1 rounded-md px-3">
+    Recall the Lagrangian we derived:
+
+$$
+L = \frac{1}{2} (m_1 + m_2) \dot{z}^2 + \frac{l^2}{6} m_1 \dot{\theta}^2 + \frac{l}{2} m_1 \dot{z} \dot{\theta} \cos\theta - \frac{l}{2} m_1 g \cos\theta
+$$
+
+    Let's start with the partial derivative inside the first term of the E-L equation: $\frac{d}{dt}(\frac{\partial L}{\partial \dot{z}})$
+
+$$
+\frac{\partial L}{\partial \dot{z}} = (m_1 + m_2)\dot{z} + \frac{l}{2}m_1\dot{\theta}\cos{\theta}
+$$
+
+    Now take the derivative of that partial with respect to time to get:
+
+$$
+\frac{d}{dt} \left( \frac{\partial L}{\partial \dot{z}} \right) = (m_1 + m_2)\ddot{z} + \frac{l}{2}({-}\dot{\theta}^2\sin{\theta} + \ddot{\theta}\cos{\theta})
+$$
+
+    The second term of the E-L equation $\frac{\partial L}{\partial z}$ is the easiest part:
+
+$$
+\frac{\partial L}{\partial z} = 0
+$$
+
+    Here we do have to calculate a generalized force using the concept of virtual work. However I will spare us the entangled definitions behind that since we simply end up with:
+
+$$
+Q_2 = F
+$$
+
+    So our EOM for $z$ is:
+
+$$
+\frac{d}{dt} \left( \frac{\partial L}{\partial \dot{z}} \right) - \frac{\partial L}{\partial z} = Q_2
+$$
+
+$$
+    \implies (m_1 + m_2)\ddot{z} + \frac{l}{2}\ddot{\theta}\cos{\theta} - \frac{l}{2}\dot{\theta}^2\sin{\theta} = F
+$$
+
+    </div>
+
+</Dropdown>
+
+<WorkInProgress width="50%" />
+
+I gracefully struggled through this simulation in a controls course that ended up being one of my favorite classes in college. I want to give a quick shout out to the following public resource which was the main material we studied in that class, and where a lot of my Python code comes from. The github repo can be found [here](https://github.com/byu-controlbook/controlbook_public). I also want to shout out my professor Dr. Killpack who did a phenomenal job instilling a continuous curiosity in engineering and especially in controls.
