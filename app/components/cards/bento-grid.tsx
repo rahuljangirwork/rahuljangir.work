@@ -1,3 +1,5 @@
+"use client";
+
 import { Card } from "@/app/components/ui/card";
 import {
   GraduationCap,
@@ -20,33 +22,72 @@ import Python from "../media/icons/python";
 import Numpy from "../media/icons/numpy";
 import Raspbi from "../media/icons/raspbi";
 import SolidWorks from "../media/icons/solidworks";
+import { motion } from "framer-motion";
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1, // Delay between each child animation
+      delayChildren: 0.2, // Initial delay before children start animating
+    },
+  },
+};
+
+const cardVariants = {
+  hidden: {
+    opacity: 0,
+    y: 30,
+    scale: 0.95,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 0.6,
+      ease: [0.25, 0.46, 0.45, 0.94], // Custom easing for smooth animation
+    },
+  },
+};
 
 export default function BentoGrid() {
   return (
     <div className="w-full mx-auto py-4 transition-colors duration-1000 ease-in-out text-palette-2 my-10 md:my-20">
-      <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-8 gap-4">
+      <motion.div
+        className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-8 gap-4"
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }} // Trigger when 20% of the component is visible
+      >
         {/* About Card */}
-        <Card className="col-span-full md:col-span-4 row-span-2 px-4 py-6 bg-palette-2/10 backdrop-blur-md flex flex-col justify-between border-none shadow-xl">
-          <div>
-            <div className="flex items-center mb-2">
-              <Atom className="h-7 w-7 mr-2" />
-              <h2 className="text-2xl font-bold">
-                About Me<span className="text-palette-4">.</span>
-              </h2>
-            </div>
-            <p className="text-sm">
-              I grew up playing soccer & piano in the beautiful state of Utah.
-              Throughout my education I was blessed to have mentors that
-              challenged me and sparked my interest in subjects relating to
-              engineering. It was tough but I loved the journey.
-              <br /> Some of my hobbies include taking pictures with my film
-              camera, chess, skateboarding, hiking and reading.
-            </p>
+        <motion.div
+          variants={cardVariants}
+          className="col-span-full md:col-span-4 row-span-2 rounded-lg px-4 py-6 bg-palette-2/10 backdrop-blur-md flex flex-col justify-between border-none shadow-xl"
+        >
+          <div className="flex items-center mb-2">
+            <Atom className="h-7 w-7 mr-2" />
+            <h2 className="text-2xl font-bold">
+              About Me<span className="text-palette-4">.</span>
+            </h2>
           </div>
-        </Card>
+          <p className="text-sm">
+            I grew up playing soccer & piano in the beautiful state of Utah.
+            Throughout my education I was blessed to have mentors that
+            challenged me and sparked my interest in subjects relating to
+            engineering. It was tough but I loved the journey.
+            <br /> Some of my hobbies include taking pictures with my film
+            camera, chess, skateboarding, hiking and reading.
+          </p>
+        </motion.div>
 
         {/* Education Card */}
-        <Card className="col-span-full sm:col-span-4 p-4 border-palette-1 shadow-xl">
+        <motion.div
+          variants={cardVariants}
+          className="col-span-full sm:col-span-4 bg-primary border border-palette-1 rounded-lg p-4 shadow-xl"
+        >
           <div className="flex items-center mb-2">
             <GraduationCap className="h-6 w-6 text-palette-4 mr-2" />
             <h3 className="text-md lg:text-lg font-semibold whitespace-nowrap">
@@ -60,10 +101,13 @@ export default function BentoGrid() {
               Provo, UT
             </p>
           </div>
-        </Card>
+        </motion.div>
 
         {/* Coding Card */}
-        <Card className="col-span-1 md:col-span-2 p-4 bg-primary border-palette-1 shadow-xl">
+        <motion.div
+          variants={cardVariants}
+          className="col-span-1 md:col-span-2 bg-primary border border-palette-1 p-4 rounded-lg shadow-xl"
+        >
           <div className="flex items-center mb-2">
             <Braces className="h-5 w-5 mr-2" />
             <h3 className="text-lg font-semibold">Coding</h3>
@@ -73,10 +117,13 @@ export default function BentoGrid() {
             <Python className="inline-block w-9 h- text-palette-3 bg-white/10 backdrop-blur-sm p-2 rounded-md" />
             <Numpy className="inline-block w-9 h-9 text-palette-3 bg-white/10 backdrop-blur-sm p-2 rounded-md" />
           </div>
-        </Card>
+        </motion.div>
 
         {/* Web Development Card */}
-        <Card className="col-span-1 md:col-span-2 p-4 bg-primary border-palette-1 shadow-xl">
+        <motion.div
+          variants={cardVariants}
+          className="col-span-1 md:col-span-2 p-4 bg-primary border border-palette-1 rounded-lg shadow-xl"
+        >
           <div className="flex items-center mb-2">
             <Code className="h-5 w-5 mr-2" />
             <h3 className="text-lg font-semibold">Web Dev</h3>
@@ -86,10 +133,13 @@ export default function BentoGrid() {
             <Typescript className="inline-block w-9 h-9 text-palette-3 bg-white/10 backdrop-blur-sm p-2 rounded-md" />
             <TailwindCSS className="inline-block w-9 h-9 text-palette-3 bg-white/10 backdrop-blur-sm p-2 rounded-md" />
           </div>
-        </Card>
+        </motion.div>
 
         {/* Contact Card */}
-        <Card className="col-span-full sm:col-span-4 order-1 md:order-none p-4 bg-primary border-palette-1 shadow-xl">
+        <motion.div
+          variants={cardVariants}
+          className="col-span-full sm:col-span-4 order-1 md:order-none p-4 bg-primary border border-palette-1 rounded-lg shadow-xl"
+        >
           <div className="flex items-center mb-2">
             <Mail className="h-5 w-5 mr-2 text-palette-4" />
             <h3 className="text-lg font-semibold">Contact Me</h3>
@@ -100,10 +150,13 @@ export default function BentoGrid() {
               isaisanchezcc@gmail.com
             </EmailToast>
           </p>
-        </Card>
+        </motion.div>
 
         {/* Hardware Card */}
-        <Card className="col-span-1 md:col-span-2 p-4 bg-primary border-palette-1 shadow-xl">
+        <motion.div
+          variants={cardVariants}
+          className="col-span-1 md:col-span-2 p-4 bg-primary border border-palette-1 rounded-lg shadow-xl"
+        >
           <div className="flex items-center mb-2">
             <Cpu className="h-5 w-5 mr-2" />
             <h3 className="text-lg font-semibold">Hardware</h3>
@@ -112,10 +165,13 @@ export default function BentoGrid() {
             <Arduino className="inline-block w-9 h-9 text-palette-3 bg-white/10 backdrop-blur-sm p-1 rounded-md" />
             <Raspbi className="inline-block w-9 h-9 text-palette-3 bg-white/10 backdrop-blur-sm p-1 rounded-md" />
           </div>
-        </Card>
+        </motion.div>
 
         {/* CAD Card */}
-        <Card className="col-span-1 md:col-span-2 p-4 bg-primary border-palette-1 shadow-xl">
+        <motion.div
+          variants={cardVariants}
+          className="col-span-1 md:col-span-2 p-4 bg-primary border border-palette-1 rounded-lg shadow-xl"
+        >
           <div className="flex items-center mb-2">
             <Cog className="h-5 w-5 mr-2" />
             <h3 className="text-lg font-semibold">CAD</h3>
@@ -123,8 +179,8 @@ export default function BentoGrid() {
           <div className="flex space-x-2">
             <SolidWorks className="inline-block w-9 h-9 text-palette-3 bg-white/10 backdrop-blur-sm p-2 rounded-md" />
           </div>
-        </Card>
-      </div>
+        </motion.div>
+      </motion.div>
     </div>
   );
 }
