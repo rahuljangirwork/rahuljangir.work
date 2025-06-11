@@ -1,12 +1,12 @@
 import Link from "next/link";
-import { GitHub, Twitter, Linkedin } from "react-feather";
+import { Twitter, Github, Linkedin } from "lucide-react";
 import { cn } from "@/app/lib/utils";
 
 const socialLinks = [
   {
     name: "GitHub",
     href: "https://github.com/isai7710",
-    icon: GitHub,
+    icon: Github,
   },
   {
     name: "Twitter",

@@ -1,6 +1,6 @@
 "use client";
 
-import { Mail } from "react-feather";
+import { Mail } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { cn } from "@/app/lib/utils";
 

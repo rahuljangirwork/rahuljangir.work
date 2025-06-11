@@ -3,8 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import clsx from "clsx";
-import { Menu, X, AtSign } from "react-feather";
-import { TentTreeIcon } from "lucide-react";
+import { TentTreeIcon, Menu, X, AtSign } from "lucide-react";
 import { useState } from "react";
 import DropdownMenu from "@/app/components/navigation/dropdown-menu";
 import { motion, AnimatePresence } from "framer-motion";
