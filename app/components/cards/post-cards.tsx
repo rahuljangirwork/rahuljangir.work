@@ -158,13 +158,10 @@ function PostCard({ post }: { post: PostMetadata }) {
               <CardTitle className="text-xl sm:text-2xl font-bold line-clamp-1">
                 {post.title}
               </CardTitle>
-              <Badge
-                variant="outline"
-                className="text-[10px] border-palette-2/20 text-palette-2/50"
-              >
+              <div className="flex items-center text-xs text-palette-2/50">
                 <Calendar className="w-3 h-3 mr-1" />
                 {post.publishDate}
-              </Badge>
+              </div>
             </div>
 
             <CardDescription className="text-sm text-palette-2 line-clamp-2 mb-3">
