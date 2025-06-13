@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { getSortedPostsMetaData } from "@/app/lib/posts";
 import BlogCards from "@/app/components/cards/blog-cards";
+import Divider from "@/app/components/divider";
 import type { PostMetadata } from "@/app/lib/types";
 
 export const metadata: Metadata = {
@@ -11,18 +12,20 @@ export default async function Blog() {
   const allPostsData: PostMetadata[] = await getSortedPostsMetaData();
 
   return (
-    <main className="mt-8 flex flex-col lg:flex-row md:items-start w-full max-w-4xl lg:gap-8 px-4 lg:px-0 mx-auto text-palette-3 min-h-screen mb-8">
-      <section className="flex flex-col items-start gap-2 pb-6 lg:pb-0 text-palette-2 w-full lg:w-1/4">
+    <main className="mt-8 flex flex-col md:items-start w-full max-w-4xl gap-6 px-4 lg:px-0 mx-auto text-palette-3 min-h-screen mb-8">
+      <section className="flex flex-col items-center gap-2 pb-0 text-palette-2 w-full">
         <h1 className="text-4xl font-extrabold">
           Blog Posts<span className="text-palette-4">.</span>
         </h1>
-        <p className="text-md mb-2">
-          Personal insights on small worlds within engineering and my life
+        <Divider className="w-1/2" />
+        <p className="text-center text-pretty text-md mb-2">
+          A collection of my personal work and insights on small worlds within
+          engineering
           <span className="text-palette-4">.</span>
         </p>
       </section>
 
-      <section className="w-full mx-auto lg:w-3/4">
+      <section className="w-full max-w-3xl mx-auto">
         <BlogCards posts={allPostsData} />
       </section>
     </main>
