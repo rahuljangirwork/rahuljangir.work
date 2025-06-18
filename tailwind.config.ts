@@ -6,13 +6,14 @@ const config = {
   prefix: "",
   theme: {
     extend: {
+
       colors: {
-        primary: "#1A4D2E", // dark forrest green
+        primary: "#4F200D", // deep earthy brown (unchanged)
         palette: {
-          1: "#4F6F52", // lighter muted forrest green
-          2: "#E8DFCA", // light beige
-          3: "#F5E5E6", // off-white
-          4: "#F28D35", // ACCENT: Vibrant Orange
+          1: "#7B4019", // Adjusted lighter muted forest green (more vibrant)
+          2: "#F0F2BD", // light beige (unchanged)
+          3: "#F6F1E9", // Slightly adjusted off-white (softer)
+          4: "#FF8400", // Muted vibrant orange (slightly deeper)
         },
       },
       // accordion animations used by shadcn-ui
@@ -40,10 +41,9 @@ const config = {
         },
         offwhite: {
           css: {
-            // Simplified version of your existing styles
             code: {
-              color: "#F28D35", // Your palette-4 color
-              backgroundColor: "#1A4D2E", // Your primary color
+              color: "#D45D29", // Your adjusted palette-4 color (muted vibrant orange)
+              backgroundColor: "#4F200D", // Your primary color (deep earthy brown)
               padding: "0.2em 0.4em",
               borderRadius: "0.25rem",
               fontWeight: "400",
@@ -52,7 +52,7 @@ const config = {
               padding: "0",
               backgroundColor: "transparent",
               margin: "0",
-              border: "1px solid #4F6F52", // Your palette-1 color
+              border: "1px solid #5C2C16", // Adjusted palette-1 color (lighter forest green)
               borderRadius: "0.5rem",
               overflow: "hidden",
             },
@@ -66,15 +66,15 @@ const config = {
                 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
             },
             // Your color variables (keeping the most important ones)
-            "--tw-prose-body": "#F5E5E6",
-            "--tw-prose-headings": "#E8DFCA",
-            "--tw-prose-links": "#F28D35",
-            "--tw-prose-bold": "#E8DFCA",
-            "--tw-prose-quotes": "#E8DFCA",
-            "--tw-prose-quote-borders": "#4F6F52",
-            "--tw-prose-hr": "#4F6F52",
-            "--tw-prose-th-borders": "#4F6F52",
-            "--tw-prose-td-borders": "#4F6F52",
+            "--tw-prose-body": "#F3E6E7", // Adjusted off-white for softer text body
+            "--tw-prose-headings": "#E8DFCA", // light beige for headings
+            "--tw-prose-links": "#D45D29", // Muted Vibrant Orange for links
+            "--tw-prose-bold": "#E8DFCA", // Light beige (same for bold text)
+            "--tw-prose-quotes": "#E8DFCA", // Light beige for quotes
+            "--tw-prose-quote-borders": "#5C2C16", // Adjusted forest green for quote borders
+            "--tw-prose-hr": "#5C2C16", // Adjusted forest green for horizontal rule
+            "--tw-prose-th-borders": "#5C2C16", // Adjusted forest green for table borders
+            "--tw-prose-td-borders": "#5C2C16", // Adjusted forest green for table cell borders
           },
         },
       },
