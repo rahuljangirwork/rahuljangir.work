@@ -7,52 +7,57 @@ import NavBar from "@/app/components/navigation/nav-bar";
 
 export const metadata: Metadata = {
   title: {
-    template: "%s | Isai's Portfolio",
-    default: "Isai's Portfolio",
+    template: "%s | Rahul Jangir Work",
+    default: "Rahul Jangir Work",
   },
   description:
-    "A portfolio website for Isai Sanchez, a mechanical engineer and freelance software developer",
+    "खम्माघणी! I'm Rahul Jangir — a full-stack developer, Linux tweaker, and embedded systems enthusiast, passionate about building clean, efficient, and powerful systems.",
   keywords: [
-    "mechanical engineer",
-    "software developer",
-    "CAD",
-    "robotics",
+    "full-stack developer",
+    "Linux",
+    "embedded systems",
+    "Angular",
     "Next.js",
-    "React",
-    "TailwindCSS",
-    "web development",
-    "portfolio",
+    "Supabase",
+    "PostgreSQL",
+    "SQL Server",
+    "DWM",
+    "Suckless",
+    "developer portfolio",
+    "Rahul Jangir",
+    "system architect",
   ],
-  authors: [{ name: "Isai" }],
-  creator: "Isai",
+  authors: [{ name: "Rahul Jangir" }],
+  creator: "Rahul Jangir",
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://www.isais.dev",
-    siteName: "Isai's Portfolio",
-    title: "Isai - Engineer & Developer",
-    description: "A portfolio of experiences and projects",
+    url: "https://rahuljangir.work",
+    siteName: "Rahul's Work",
+    title: "Rahul Jangir - Developer & System Architect",
+    description: "Explore the work of Rahul Jangir — full-stack developer, Linux optimizer, and passionate builder of modern software systems.",
     images: [
       {
-        url: "https://www.isais.dev/_next/image?url=%2Fassets%2Fmebw.JPG&w=3840&q=75",
+        url: "https://rahuljangir.work/assets/profile-image.jpg", // Replace with actual image path
         width: 1200,
         height: 630,
-        alt: "Black and White mirror film selfie",
+        alt: "Rahul Jangir profile image",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Isai - Mechanical Engineer & Software Developer",
-    description: "An engineer's portfolio of experiences and projects",
+    title: "Rahul Jangir - Full-Stack Developer & Linux Power User",
+    description: "Explore the projects and skills of Rahul Jangir, blending web development with system-level productivity.",
     images: [
-      "https://www.isais.dev/_next/image?url=%2Fassets%2Fmebw.JPG&w=3840&q=75",
+      "https://rahuljangir.work/assets/profile-image.jpg", // Replace with actual image path
     ],
   },
   icons: {
     icon: "/favicon.ico",
   },
 };
+
 
 export default function RootLayout({
   children,

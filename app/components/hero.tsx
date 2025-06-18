@@ -77,7 +77,7 @@ export default function Hero() {
           transition={{ duration: 0.5 }}
         >
           <Image
-            src="/assets/me.jpg"
+            src="/assets/Portpolio.png"
             alt="Mirror film selfie"
             fill
             sizes="(max-width: 640px) 208px, (max-width: 768px) 256px, (max-width: 1024px) 320px, (max-width: 1280px) 400px, 470px"
