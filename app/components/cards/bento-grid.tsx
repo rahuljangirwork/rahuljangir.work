@@ -74,13 +74,11 @@ export default function BentoGrid() {
             </h2>
           </div>
           <p className="text-sm">
-            I grew up playing soccer & piano in the beautiful state of Utah.
-            Throughout my education I was blessed to have mentors that
-            challenged me and sparked my interest in subjects relating to
-            engineering. It was tough but I loved the journey.
-            <br /> Some of my hobbies include taking pictures with my film
-            camera, chess, skateboarding, hiking and reading.
+            I grew up in the beautiful state of Rajasthan. Even though it&apos;s not known as a technical hub, I was always curious about how technology works.
+            Throughout my journey, I focused on understanding systems deeply rather than just using them.
+            Today, I enjoy building clean and efficient software, working with machines, and constantly learning. I love my machines, I love technology — it&apos;s not just my work, it&apos;s my passion.
           </p>
+
         </motion.div>
 
         {/* Education Card */}
@@ -91,14 +89,14 @@ export default function BentoGrid() {
           <div className="flex items-center mb-2">
             <GraduationCap className="h-6 w-6 text-palette-4 mr-2" />
             <h3 className="text-md lg:text-lg font-semibold whitespace-nowrap">
-              B.S. Mechanical Engineering
+              Master of Computer Applications
             </h3>
           </div>
           <div className="flex items-center justify-between text-sm">
-            <p>Brigham Young University</p>
+            <p>Savitribai Phule Pune University </p>
             <p className="flex items-center gap-1">
               <MapPin className="w-4 h-4 inline-block" />
-              Provo, UT
+              Pune, MH
             </p>
           </div>
         </motion.div>
@@ -145,9 +143,9 @@ export default function BentoGrid() {
             <h3 className="text-lg font-semibold">Contact Me</h3>
           </div>
           <p className="text-sm text-balance">
-            Shoot me an email!
+            Email!
             <EmailToast className="inline-flex gap-1 text-sm text-palette-4 hover:underline focus:outline-none">
-              isaisanchezcc@gmail.com
+              rahuljangir.works@gmail.com
             </EmailToast>
           </p>
         </motion.div>

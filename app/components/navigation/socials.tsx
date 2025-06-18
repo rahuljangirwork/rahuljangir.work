@@ -5,17 +5,17 @@ import { cn } from "@/app/lib/utils";
 const socialLinks = [
   {
     name: "GitHub",
-    href: "https://github.com/isai7710",
+    href: "https://github.com/rahuljangirwork",
     icon: Github,
   },
   {
     name: "Twitter",
-    href: "https://twitter.com/isaisanzy",
+    href: "https://twitter.com/rahuljangirwork",
     icon: Twitter,
   },
   {
     name: "LinkedIn",
-    href: "https://www.linkedin.com/in/isai-sanchez-5a0178245/",
+    href: "https://www.linkedin.com/in/rahuljangirwork",
     icon: Linkedin,
   },
 ];

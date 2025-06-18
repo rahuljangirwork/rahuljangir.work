@@ -14,10 +14,10 @@ const links = [
     name: "Blog",
     href: "/blog",
   },
-  {
-    name: "Gallery",
-    href: "/gallery",
-  },
+  // {
+  //   name: "Gallery",
+  //   href: "/gallery",
+  // },
 ];
 
 export default function NavBar() {

@@ -32,7 +32,8 @@ export default function Hero() {
             animate="visible"
             transition={{ duration: 0.5 }}
           >
-            Hi<span className="text-palette-4">,</span> I&apos;m Isai
+            खम्माघणी
+            <span className="text-palette-4">,</span> I&apos;m Rahul
             <span className="text-palette-4">.</span>
           </motion.h1>
 
@@ -43,11 +44,11 @@ export default function Hero() {
             animate="visible"
             transition={{ delay: 0.2, duration: 0.5 }}
           >
-            <span className="text-palette-4">Mechanical Engineer</span> and
-            freelance <span className="text-palette-4">Software Developer</span>{" "}
-            trained in CAD, robotics, and simple web development. I love
-            transforming innovative designs to life.
+            <span className="text-palette-4">Software Engineer</span>, freelancer, and
+            <span className="text-palette-4"> Digital Product Designer</span> from Rajasthan.
+            Passionate about my culture and building efficient, scalable, and user-friendly software solutions. Always learning, always creating.
           </motion.p>
+
 
           <motion.div
             variants={fadeInLeft}
@@ -76,7 +77,7 @@ export default function Hero() {
           transition={{ duration: 0.5 }}
         >
           <Image
-            src="/assets/mebw.JPG"
+            src="/assets/me.jpg"
             alt="Mirror film selfie"
             fill
             sizes="(max-width: 640px) 208px, (max-width: 768px) 256px, (max-width: 1024px) 320px, (max-width: 1280px) 400px, 470px"

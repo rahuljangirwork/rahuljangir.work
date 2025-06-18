@@ -14,7 +14,7 @@ export default async function Home() {
       <section id="projects" className="scroll-mt-24 text-palette-2">
         <PostCards posts={posts} />
       </section>
-      <About />
+      {/* <About /> */}
     </div>
   );
 }

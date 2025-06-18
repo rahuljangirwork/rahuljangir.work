@@ -16,7 +16,7 @@ export default function EmailToast({
 }) {
   const { toast } = useToast();
 
-  const email = "isaisanchezcc@gmail.com";
+  const email = "rahuljangir.works@gmail.com";
 
   const handleCopyEmail = async () => {
     try {
