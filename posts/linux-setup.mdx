@@ -1,0 +1,65 @@
+---
+title: "My First Linux Setup"
+publishDate: "June 2025"
+description: "A beginner-friendly walkthrough of how I set up my first productive Linux environment"
+type: "blog"
+src:
+  {
+    image:
+      {
+        path: "/assets/linux-setup-screenshot.png",
+        alt: "screenshot of my Linux desktop",
+      },
+  }
+technologies:
+  - "Debian 12"
+  - "Neovim"
+  - "i3 / DWM"
+  - "Zsh"
+---
+
+# My First Linux Setup 🐧
+
+Switching to Linux felt like stepping into a developer’s playground.
+
+This post outlines how I customized my Linux desktop for development and productivity, while keeping everything lightweight and clean.
+
+---
+
+## 💻 OS and Window Manager
+
+- **Base**: Debian 12 (NetInstall)
+- **WM**: i3 → then moved to DWM
+- **Display Manager**: LightDM
+- **Terminal**: Alacritty
+- **Shell**: Zsh with Oh-My-Zsh
+
+> I avoided bloated desktop environments and went minimal from the start.
+
+---
+
+## 🧰 Essential Tools
+
+| Tool         | Purpose                 |
+|--------------|--------------------------|
+| `neovim`     | Code editing             |
+| `tmux`       | Terminal multiplexing    |
+| `zsh`        | Shell & plugin support   |
+| `ranger`     | Terminal file explorer   |
+| `git`        | Version control          |
+
+All installed via `apt` and configured manually.
+
+---
+
+## 🎨 Theming
+
+- Fonts: JetBrains Mono + Nerd Font
+- GTK Theme: Dracula
+- Terminal Colors: Tokyo Night
+
+```bash
+sudo apt install fonts-jetbrains-mono
+```
+
+<WorkInProgress width="50%" />
