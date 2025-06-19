@@ -2,4 +2,4 @@ name = "rahuljangirwork"
 compatibility_date = "2024-06-01"
 
 [build]
-command = "npx @cloudflare/next-on-pages@1"
+command = "pnpm exec next-on-pages"
