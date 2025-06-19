@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import clsx from "clsx";
-import { TentTreeIcon, Menu, X, AtSign } from "lucide-react";
+import { IconBlob, IconAt, IconX } from '@tabler/icons-react';
 import { useState } from "react";
 import DropdownMenu from "@/app/components/navigation/dropdown-menu";
 import { motion, AnimatePresence } from "framer-motion";
@@ -43,7 +43,7 @@ export default function NavBar() {
                 pathname === "/" && "text-palette-4",
               )}
             >
-              <TentTreeIcon className="w-6 h-6 group-hover:rotate-[20deg] transition ease-in-out duration-300" />
+              <IconBlob className="w-6 h-6 group-hover:rotate-[5deg] transition ease-in-out duration-300" />
               Home
             </Link>
           </div>
@@ -70,7 +70,7 @@ export default function NavBar() {
               onMouseEnter={() => setShowSocials(true)}
               onMouseLeave={() => setShowSocials(false)}
             >
-              <AtSign className="transition-colors duration-200 group-hover:text-palette-4" />
+              <IconAt className="transition-colors duration-200 group-hover:text-palette-4" />
               <AnimatePresence>
                 {showSocials && (
                   <motion.div
@@ -94,41 +94,32 @@ export default function NavBar() {
           {/* ---Menu Icon and Toggled Menu--- */}
           <div className="relative md:hidden">
             <motion.button
-              onClick={() => setShowDropDown(!showDropDown)}
+              onClick={() => setShowDropDown((prev) => !prev)}
               className="border border-palette-1 p-1 rounded-md"
               aria-label={!showDropDown ? "Open menu" : "Close menu"}
               whileTap={{ scale: 0.95 }}
             >
               <AnimatePresence initial={false} mode="wait">
-                {!showDropDown ? (
-                  <motion.div
-                    key="menu"
-                    initial={{ opacity: 0, rotate: -45 }}
-                    animate={{ opacity: 1, rotate: 0 }}
-                    exit={{ opacity: 0, rotate: 45 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <Menu />
-                  </motion.div>
-                ) : (
-                  <motion.div
-                    key="close"
-                    initial={{ opacity: 0, rotate: -45 }}
-                    animate={{ opacity: 1, rotate: 0 }}
-                    exit={{ opacity: 0, rotate: 45 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <X />
-                  </motion.div>
-                )}
+                <motion.div
+                  key={showDropDown ? "close" : "menu"}
+                  initial={{ opacity: 0, rotate: -45 }}
+                  animate={{ opacity: 1, rotate: 0 }}
+                  exit={{ opacity: 0, rotate: 45 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  {showDropDown ? <IconX /> : <IconAt />}
+                </motion.div>
               </AnimatePresence>
             </motion.button>
+
             <AnimatePresence>
               {showDropDown && (
                 <DropdownMenu links={links} setIsOpen={setShowDropDown} />
               )}
             </AnimatePresence>
           </div>
+
+
         </nav>
       </header>
     </>

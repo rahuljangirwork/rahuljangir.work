@@ -1,22 +1,28 @@
 import Link from "next/link";
-import { Twitter, Github, Linkedin } from "lucide-react";
+
+import { IconBrandInstagram, IconBrandGithub, IconBrandX, IconBrandLinkedin } from '@tabler/icons-react';
 import { cn } from "@/app/lib/utils";
 
 const socialLinks = [
   {
     name: "GitHub",
     href: "https://github.com/rahuljangirwork",
-    icon: Github,
+    icon: IconBrandGithub,
   },
   {
     name: "Twitter",
     href: "https://twitter.com/rahuljangirwork",
-    icon: Twitter,
+    icon: IconBrandX,
   },
   {
     name: "LinkedIn",
     href: "https://www.linkedin.com/in/rahuljangirwork",
-    icon: Linkedin,
+    icon: IconBrandLinkedin,
+  },
+  {
+    name: "Instagram",
+    href: "https://www.linkedin.com/in/rahuljangirwork",
+    icon: IconBrandInstagram,
   },
 ];
 
