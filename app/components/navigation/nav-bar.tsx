@@ -9,6 +9,10 @@ import DropdownMenu from "@/app/components/navigation/dropdown-menu";
 import { motion, AnimatePresence } from "framer-motion";
 import Socials from "@/app/components/navigation/socials";
 
+import { Banner } from "@/app/components/ui/banner"; // adjust the path as needed
+import { IconBulb } from "@tabler/icons-react"; // you can use any icon you like
+
+
 const links = [
   {
     name: "Blog",
@@ -25,8 +29,29 @@ export default function NavBar() {
   const [showDropDown, setShowDropDown] = useState(false);
   const [showSocials, setShowSocials] = useState(false);
 
+  const [showBanner, setShowBanner] = useState(true);
+
+
   return (
     <>
+
+      {showBanner && (
+        <div className="mx-auto w-full max-w-2xl px-4 pb-2">
+          <Banner
+            show={showBanner}
+            onHide={() => setShowBanner(false)}
+            icon={<IconBulb size={18} />}
+            title="This site is built with ❤️ and open source tools!"
+            action={{
+              label: "Star on GitHub",
+              onClick: () =>
+                window.open("https://github.com/rahuljangirwork/rahuljangir.work", "_blank"),
+            }}
+            learnMoreUrl="https://github.com/rahuljangirwork/rahuljangir.work"
+          />
+        </div>
+      )}
+
       <header
         className={clsx(
           pathname === "/gallery"
