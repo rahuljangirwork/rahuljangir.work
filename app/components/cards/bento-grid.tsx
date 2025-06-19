@@ -84,7 +84,7 @@ export default function BentoGrid() {
         {/* Education Card */}
         <motion.div
           variants={cardVariants}
-          className="col-span-full sm:col-span-4 bg-primary border border-palette-1 rounded-lg p-4 shadow-xl"
+          className="flex flex-col justify-center col-span-full sm:col-span-4 bg-primary border border-palette-1 rounded-lg p-4 shadow-xl"
         >
           <div className="flex items-center mb-2">
             <GraduationCap className="h-6 w-6 text-palette-4 mr-2" />
@@ -104,7 +104,7 @@ export default function BentoGrid() {
         {/* Coding Card */}
         <motion.div
           variants={cardVariants}
-          className="col-span-1 md:col-span-2 bg-primary border border-palette-1 p-4 rounded-lg shadow-xl"
+          className="flex flex-col justify-center  col-span-1 md:col-span-2 bg-primary border border-palette-1 p-4 rounded-lg shadow-xl"
         >
           <div className="flex items-center mb-2">
             <Braces className="h-5 w-5 mr-2" />
@@ -120,7 +120,7 @@ export default function BentoGrid() {
         {/* Web Development Card */}
         <motion.div
           variants={cardVariants}
-          className="col-span-1 md:col-span-2 p-4 bg-primary border border-palette-1 rounded-lg shadow-xl"
+          className="flex flex-col justify-center col-span-1 md:col-span-2 p-4 bg-primary border border-palette-1 rounded-lg shadow-xl"
         >
           <div className="flex items-center mb-2">
             <Code className="h-5 w-5 mr-2" />
@@ -136,7 +136,7 @@ export default function BentoGrid() {
         {/* Contact Card */}
         <motion.div
           variants={cardVariants}
-          className="col-span-full sm:col-span-4 order-1 md:order-none p-4 bg-primary border border-palette-1 rounded-lg shadow-xl"
+          className="flex flex-col justify-center col-span-full sm:col-span-4 order-1 md:order-none p-4 bg-primary border border-palette-1 rounded-lg shadow-xl"
         >
           <div className="flex items-center mb-2">
             <Mail className="h-5 w-5 mr-2 text-palette-4" />
@@ -153,7 +153,7 @@ export default function BentoGrid() {
         {/* Hardware Card */}
         <motion.div
           variants={cardVariants}
-          className="col-span-1 md:col-span-2 p-4 bg-primary border border-palette-1 rounded-lg shadow-xl"
+          className="flex flex-col justify-center col-span-1 md:col-span-2 p-4 bg-primary border border-palette-1 rounded-lg shadow-xl"
         >
           <div className="flex items-center mb-2">
             <Cpu className="h-5 w-5 mr-2" />
@@ -168,7 +168,7 @@ export default function BentoGrid() {
         {/* CAD Card */}
         <motion.div
           variants={cardVariants}
-          className="col-span-1 md:col-span-2 p-4 bg-primary border border-palette-1 rounded-lg shadow-xl"
+          className="flex flex-col justify-center col-span-1 md:col-span-2 p-4 bg-primary border border-palette-1 rounded-lg shadow-xl"
         >
           <div className="flex items-center mb-2">
             <Cog className="h-5 w-5 mr-2" />

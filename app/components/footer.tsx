@@ -163,7 +163,7 @@ export default function Footer() {
                 <div className="flex flex-col sm:flex-row sm:divide-x divide-palette-1 text-center sm:text-left">
                   <p className="px-3">Version 1.0</p>
                   <p className="px-3">2025© Edition</p>
-                  <p className="px-3">Local time: {localTime} (Kolkata)</p>
+                  <p className="px-3">Local time: {localTime} (Rajasthan)</p>
                 </div>
 
                 <a
