@@ -1,4 +1,5 @@
 "use client";
+
 import {
   SplitCard,
   SplitCardContent,
@@ -7,16 +8,12 @@ import {
 } from "@/app/components/cards/split-card";
 import EmailToast from "@/app/components/ui/email-toast";
 import { useState } from "react";
-import { cn } from "../lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import { AnimatedTabs } from "./ui/animated-tabs";
 
 export default function About() {
-  const [showTLDR, setShowTLDR] = useState(true);
-
-  const toggleView = () => {
-    setShowTLDR((prev) => !prev);
-  };
+  const [activeTab, setActiveTab] = useState("tldr");
 
   const variants = {
     enter: { opacity: 0, y: 20 },
@@ -24,10 +21,15 @@ export default function About() {
     exit: { opacity: 0, y: -20 },
   };
 
+  const tabs = [
+    { id: "tldr", label: "TL;DR" },
+    { id: "long-story", label: "Long Story" },
+  ];
+
   return (
     <SplitCard className="my-24 text-palette-2">
       <SplitCardContent side="all">
-        <SplitCardHeader className="flex justify-between items-center mb-2">
+        <SplitCardHeader className="flex flex-col md:flex-row md:justify-between md:items-center mb-4 gap-4">
           <motion.h1
             className="text-left md:text-center font-bold text-3xl"
             initial={{ opacity: 0, x: -20 }}
@@ -36,68 +38,63 @@ export default function About() {
           >
             About the site<span className="text-palette-4">.</span>
           </motion.h1>
-          <motion.div
-            className="flex gap-2"
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <button
-              onClick={toggleView}
-              className={cn(
-                showTLDR ? "border border-palette-4" : "",
-                "text-sm rounded-md px-2 py-1 bg-palette-2/10 backdrop-blur-md",
-              )}
-            >
-              TL;DR
-            </button>
-            <button
-              onClick={toggleView}
-              className={cn(
-                !showTLDR ? "border border-palette-4" : "",
-                "text-sm rounded-md px-2 py-1 bg-palette-2/10 backdrop-blur-md",
-              )}
-            >
-              Long Story
-            </button>
-          </motion.div>
+
+          {/* Use your animated tabs instead of plain buttons */}
+          <AnimatedTabs
+            tabs={tabs}
+            defaultTab="tldr"
+            onChange={(tabId) => setActiveTab(tabId)}
+          />
         </SplitCardHeader>
-        <SplitCardBody className="flex flex-col gap-3">
+
+        <SplitCardBody className="flex flex-col gap-3 min-h-[200px]">
           <AnimatePresence mode="wait">
-            {showTLDR ? (
+            {activeTab === "tldr" ? (
               <motion.div
                 key="tldr"
                 variants={variants}
                 initial="enter"
                 animate="center"
+                exit="exit"
                 transition={{ duration: 0.3 }}
+                className="flex flex-col gap-2 text-md text-left text-pretty"
               >
-                <p className="text-md text-pretty text-left mb-1">
-                  Thanks for stopping by! I&apos;ve always wanted a space to
-                  share my projects, notes, and thoughts on various topics from
-                  my education, hobbies, and life experiences, so here it is :)
-                  Feel free to reach out!
-                  <EmailToast className="inline-flex gap-1 text-md text-palette-4 hover:underline focus:outline-none items-center">
-                    rahuljangir.works@gmail.com
-                  </EmailToast>
+                <p>
+                  Big thanks to{" "}
+                  <Link
+                    href="https://www.isais.dev/"
+                    className="text-palette-4 hover:underline"
+                  >
+                    isais.dev
+                  </Link>{" "}
+                  — this site wouldn&apos;t be here without his work! 99% of the
+                  structure came from his template.
                 </p>
-                <p className="text-md text-pretty text-left">
-                  The site was built with{" "}
+                <p>
+                  For the past two months I was thinking: where do I start? Now
+                  I’m here. This is my space to share my projects, thoughts, how
+                  I build digital products, how I learn, how I solve problems.
+                </p>
+                <p>
+                  I&apos;ll also share my Linux configuration and workflow for
+                  productivity — hope it helps someone!
+                </p>
+                <p>
+                  This site is built with{" "}
                   <Link
                     href="https://nextjs.org/"
                     className="text-palette-4 hover:underline"
                   >
                     Next.js
                   </Link>{" "}
-                  and uses Typescript, Tailwind CSS for styling, and some simple
-                  and neat{" "}
+                  , TypeScript, Tailwind CSS, and{" "}
                   <Link
                     href="https://ui.shadcn.com/"
                     className="text-palette-4 hover:underline"
                   >
                     shadcn
                   </Link>{" "}
-                  components too. Source code is{" "}
+                  components. Source code is{" "}
                   <Link
                     href="https://github.com/rahuljangirwork/rahuljangir.work"
                     className="text-palette-4 hover:underline"
@@ -108,56 +105,88 @@ export default function About() {
                 </p>
               </motion.div>
             ) : (
-              <motion.div
-                key="long-story"
-                className="text-md text-pretty text-left flex flex-col gap-2"
-                variants={variants}
-                initial="enter"
-                animate="center"
-                transition={{ duration: 0.3 }}
-              >
-                <p>Thanks for stopping by to my personal website!</p>
-                <p>
-                  Like I said, I&apos;ve always wanted an online space dedicated
-                  to sharing my efforts, thoughts, and reflections on everything
-                  that I&apos;ve been fortunate enough to experience throughout
-                  my schooling at BYU and life growing up in Utah.
-                </p>
-                <p>
-                  Here, you&apos;ll find some of my projects, notes, and blog
-                  posts, covering everything from how I set up my Minolta film
-                  camera to the intricacies of the 2nd Law of Thermodynamics and
-                  everything in between. I&apos;d love to hear your feedback or
-                  chat about any of these topics, so feel free to reach out!
-                  <EmailToast className="inline-flex gap-1 text-md text-palette-4 hover:underline focus:outline-none items-center">
-                    rahuljangir.works@gmail.com
-                  </EmailToast>
-                </p>
-                <p>
-                  The site was built with{" "}
-                  <Link
-                    href="https://nextjs.org/"
-                    className="text-palette-4 hover:underline"
-                  >
-                    Next.js
-                  </Link>{" "}
-                  and uses Typescript, Tailwind CSS for styling, and some simple
-                  and neat{" "}
-                  <Link
-                    href="https://ui.shadcn.com/"
-                    className="text-palette-4 hover:underline"
-                  >
-                    shadcn
-                  </Link>{" "}
-                  components too. Source code is{" "}
-                  <Link
-                    href="https://github.com/rahuljangirwork/rahuljangir.work"
-                    className="text-palette-4 hover:underline"
-                  >
-                    here
-                  </Link>
-                </p>
-              </motion.div>
+                <motion.div
+                  key="long-story"
+                  variants={variants}
+                  initial="enter"
+                  animate="center"
+                  exit="exit"
+                  transition={{ duration: 0.3 }}
+                  className="flex flex-col gap-3 text-md text-left text-pretty"
+                >
+                  <p>
+                    For the past couple of months, I’ve been thinking deeply about how to begin sharing my journey — and this is it. I’ve finally carved out a space to document my projects, daily learnings, thoughts, and the way I build and break things.
+                  </p>
+
+                  <p>
+                    I’ll be sharing my Linux setups, dotfiles, development tools, and productivity workflows. I love tweaking minimal environments like DWM, setting up custom configs, and optimizing my systems to match my workflow.
+                  </p>
+
+                  <p>
+                    I’m Rahul Jangir — a full-stack developer, and architect at{" "}
+                    <Link
+                      href="https://getmysolutions.in/" // replace with the actual URL
+                      className="text-palette-4 hover:underline"
+                    >
+                      GetMy Solutions Pvt. Ltd.
+                    </Link>
+                    . I come from Rajasthan, where curiosity sparked my interest in understanding how machines work. Even though it&apos;s far from a tech hub, that never stopped me from exploring deeper layers of technology — from circuits to cloud.
+                  </p>
+
+                  <p>
+                    I specialize in building efficient and reliable software, whether it&apos;s working with bare-metal systems, IoT, or modern web technologies. I&apos;m passionate about problem-solving and creating tools that simplify complexity.
+                  </p>
+
+                  <p>
+                    I also enjoy working with platforms like{" "}
+                    <Link
+                      href="https://supabase.com"
+                      className="text-palette-4 hover:underline"
+                    >
+                      Supabase
+                    </Link>
+                    ,{" "}
+                    <Link
+                      href="https://angular.io"
+                      className="text-palette-4 hover:underline"
+                    >
+                      Angular
+                    </Link>
+                    , and Next.js to craft scalable apps. Whether it’s authentication flows, real-time dashboards, or custom CRM tools — I thrive on clean architecture and performance.
+                  </p>
+
+                  <p>
+                    Outside of software, I’m exploring the world of ethical hacking and cybersecurity. Understanding vulnerabilities and strengthening systems is something I’m keen to master.
+                  </p>
+
+                  <p>
+                    I believe in building things from scratch, learning through doing, and staying close to the system. Most of my development happens on Linux — it’s more than an OS, it’s my playground.
+                  </p>
+
+                  <p>
+                    This site is built with{" "}
+                    <Link href="https://nextjs.org/" className="text-palette-4 hover:underline">
+                      Next.js
+                    </Link>
+                    , TypeScript, Tailwind CSS, and{" "}
+                    <Link href="https://ui.shadcn.com/" className="text-palette-4 hover:underline">
+                      shadcn
+                    </Link>{" "}
+                    components. The source code is available{" "}
+                    <Link
+                      href="https://github.com/rahuljangirwork/rahuljangir.work"
+                      className="text-palette-4 hover:underline"
+                    >
+                      here
+                    </Link>
+                    .
+                  </p>
+
+                  <p>
+                    If you’re someone who loves raw development, minimal setups, building powerful tools, or just geeking out over systems — we’ll get along well. Welcome to my corner of the internet.
+                  </p>
+                </motion.div>
+
             )}
           </AnimatePresence>
         </SplitCardBody>

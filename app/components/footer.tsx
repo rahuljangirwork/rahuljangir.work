@@ -5,11 +5,11 @@
 import { useState, useEffect, FormEvent } from "react";
 import { IconMail } from '@tabler/icons-react';
 import { GridWrapper } from "./GridWrapper";
-import { usePathname } from "next/navigation";
-import { cn } from "@/app/lib/utils";
+// import { usePathname } from "next/navigation";
+// import { cn } from "@/app/lib/utils";
 
 export default function Footer() {
-  const pathname = usePathname();
+  // const pathname = usePathname();
   // inside your Footer component:
   const [localTime, setLocalTime] = useState("");
 
