@@ -11,6 +11,8 @@ import {
 import Noteworthy from "./noteworthy";
 import BeamAnimation from "./beam-animation";
 
+import GeCarousel from "./geCarousel";
+
 type TableProps = {
   data: {
     headers: string[];
@@ -71,4 +73,5 @@ export const CustomMDXComponents = {
   InvertedPendulumSVG,
   Noteworthy,
   BeamAnimation,
+  GeCarousel,
 };

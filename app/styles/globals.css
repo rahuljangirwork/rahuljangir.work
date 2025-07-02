@@ -3,7 +3,6 @@
 @tailwind utilities;
 
 .custom-gradient {
-  background-color: ; /* Your primary color */
   background-image: radial-gradient(at 94% 33%, #2a5d3e 0, transparent 69%),
     radial-gradient(at 5% 3%, #153d24 0, transparent 83%),
     radial-gradient(at 23% 54%, #225a36 0, transparent 81%),
@@ -30,4 +29,45 @@
 
 html {
   scroll-behavior: smooth;
+}
+
+
+
+/* globals.css or any global CSS file */
+.carousel-container {
+  position: relative;
+  max-width: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.carousel-image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+/* Optional button position styling */
+.carousel-prev-button,
+.carousel-next-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  z-index: 10;
+}
+
+.carousel-prev-button {
+  left: 4%;
+}
+
+.carousel-next-button {
+  right: 4%;
 }
