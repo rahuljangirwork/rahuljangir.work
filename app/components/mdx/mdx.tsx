@@ -10,8 +10,9 @@ import {
 } from "./inverted-pendulum";
 import Noteworthy from "./noteworthy";
 import BeamAnimation from "./beam-animation";
-
+// import here to avoid circular dependency issues
 import GeCarousel from "./geCarousel";
+import { PhotoGallery } from "@/app/components/ui/gallery";
 
 type TableProps = {
   data: {
@@ -74,4 +75,5 @@ export const CustomMDXComponents = {
   Noteworthy,
   BeamAnimation,
   GeCarousel,
+  PhotoGallery,
 };
