@@ -1,9 +1,12 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { space_grotesk } from "@/app/lib/fonts";
 import "@/app/styles/globals.css";
 import Footer from "@/app/components/footer";
 import { Toaster } from "@/app/components/ui/toaster";
 import NavBar from "@/app/components/navigation/nav-bar";
+
+import StackedDialogDemo from "./components/StackedDialogDemo";
 
 export const metadata: Metadata = {
   title: {
@@ -66,6 +69,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+
+      <head>
+        {/* ── Cloudflare Web Analytics ── */}
+        <Script
+          id="cf-analytics"
+          strategy="afterInteractive"
+          src="https://static.cloudflareinsights.com/beacon.min.js"
+          data-cf-beacon='{"token":"6895340ad87d47529dd6ed688fe0240b"}'
+        />
+        {/* ─────────────────────────────── */}
+      </head>
       <body
         className={`${space_grotesk.className} antialiased bg-primary sm:custom-gradient custom-scrollbar flex flex-col min-h-screen`}
       >
@@ -74,6 +88,11 @@ export default function RootLayout({
           {children}
           <Footer />
         </main>
+
+        {/* BOTTOM-LEFT Stacked Dialog */}
+        <div className="fixed bottom-4 left-4 z-50">
+          <StackedDialogDemo />
+        </div>
         <Toaster />
       </body>
     </html>
