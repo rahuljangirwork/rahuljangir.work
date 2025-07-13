@@ -185,7 +185,7 @@ export const DialogStackBody = ({
       <Portal.Root>
         <div
           className={cn(
-            "pointer-events-none fixed inset-0 z-50 mx-auto flex w-full max-w-lg flex-col items-center justify-center",
+            "pointer-events-none  w-full max-w-lg fixed inset-0 z-50 flex items-end justify-start p-4",
             className
           )}
           {...props}

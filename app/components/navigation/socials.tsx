@@ -21,7 +21,7 @@ const socialLinks = [
   },
   {
     name: "Instagram",
-    href: "https://www.linkedin.com/in/rahuljangirwork",
+    href: "https://www.instagram.com/rahuljangirwork/",
     icon: IconBrandInstagram,
   },
 ];
