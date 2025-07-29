@@ -10,7 +10,7 @@ type OS = {
 export function WakaTimeOperatingSystemsCard({ operatingSystems }: { operatingSystems: OS[] }) {
     return (
         <div className="card">
-            <h3 className="font-bold text-lg">Operating Systems</h3>
+            {/* <h3 className="font-bold text-lg">Operating Systems</h3> */}
             <ul className="space-y-1 mt-2">
                 {operatingSystems.slice(0, 5).map(os => (
                     <li key={os.name} className="flex justify-between items-center">
