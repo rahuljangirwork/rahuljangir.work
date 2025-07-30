@@ -49,70 +49,56 @@ export interface PostContent {
 
 // Add these to your existing types file
 // app/lib/types.ts
-export type StatsRange =
-  | "last_7_days"
-  | "last_30_days"
-  | "last_6_months"
-  | "last_year"
-  | "all_time"
+// app/lib/types.ts
+// app/lib/types.ts
+
+// app/lib/types.ts
+
+export type StatsRange = "today" | "week" | "all_time";
 
 export interface WakaTimeStatItem {
-  name: string
-  total_seconds: number
-  percent: number
-  digital: string
-  decimal: string
-  text: string
-  hours: number
-  minutes: number
-  seconds: number
+  name: string;
+  total_seconds: number;
+  percent: number;
+  digital: string;
+  decimal: string;
+  text: string;
+  hours: number;
+  minutes: number;
+  seconds: number;
+  color?: string | null;
 }
 
-export interface WakaTimeLanguage extends WakaTimeStatItem {
-  color?: string
+export interface Project extends WakaTimeStatItem {
+  ai_additions?: number;
+  ai_deletions?: number;
+  human_additions?: number;
+  human_deletions?: number;
 }
 
-export interface WakaTimeEditor extends WakaTimeStatItem { }
-export interface WakaTimeOS extends WakaTimeStatItem { }
-export interface WakaTimeMachine extends WakaTimeStatItem { }
+export interface WakaTimeStatsEntry {
+  id: string;
+  user_id: string;
+  period_type: string;
+  period_start: string; // ISO datetime string
+  period_end: string; // ISO datetime string
 
-export interface WakaTimeStats {
-  username: string
-  user_id: string
-  range: string
-  languages: WakaTimeLanguage[]
-  editors: WakaTimeEditor[]
-  operating_systems: WakaTimeOS[]
-  machines: WakaTimeMachine[]
-  total_seconds: number
-  daily_average: number
-  is_up_to_date: boolean
-  percent_calculated: number
-  status: string
-  timeout: number
-  writes_only: boolean
-  best_day?: {
-    date: string
-    total_seconds: number
-    text: string
-  }
-  days_including_holidays: number
-  days_minus_holidays: number
+  best_day?: { date: string; text: string; total_seconds?: number };
+
+  languages: WakaTimeStatItem[];
+  editors: WakaTimeStatItem[];
+  operating_systems: WakaTimeStatItem[];
+  machines: WakaTimeStatItem[];
+  projects: Project[];
+
+  total_seconds: number;
+  human_readable_total: string;
+  human_readable_daily_average?: string | null;
+  daily_average_seconds?: number;
+
+  // Any additional fields are allowed
+  [key: string]: any;
 }
 
-export interface WakaTimeInsightResponse<T> {
-  data: T[]
-  range: string
-  is_up_to_date: boolean
-  percent_calculated: number
-  timeout: number
-}
-
-export interface WakaTimeAllStats {
-  stats: { data: WakaTimeStats }
-  editors: WakaTimeInsightResponse<WakaTimeEditor>
-  languages: WakaTimeInsightResponse<WakaTimeLanguage>
-  operatingSystems: WakaTimeInsightResponse<WakaTimeOS>
-  machines: WakaTimeInsightResponse<WakaTimeMachine>
-  range: string
-}
+// This is the result from your get_portfolio_data('wakatime', ...) RPC: an array of stat entries
+export type WakaTimeStatsData = WakaTimeStatsEntry[];

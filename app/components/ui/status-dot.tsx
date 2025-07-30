@@ -1,3 +1,5 @@
+// src/components/ui/status-dot.tsx (or your path)
+
 import { cn } from "@/app/lib/utils";
 import {
     Check,
@@ -15,16 +17,9 @@ import {
     TooltipTrigger,
 } from "./tooltip";
 
-export type UserStatus =
-    | "online"
-    | "idle"
-    | "dnd"
-    | "invisible"
-    | "travel"
-    | "busy"
-    | "offline";
+export type UserStatus = string; // Accept any string status dynamically
 
-const palette: Record<UserStatus, string> = {
+const palette: Record<string, string> = {
     online: "bg-emerald-500",
     idle: "bg-amber-400",
     dnd: "bg-rose-500",
@@ -32,9 +27,12 @@ const palette: Record<UserStatus, string> = {
     travel: "bg-blue-500",
     busy: "bg-purple-500",
     offline: "bg-gray-500",
+
+    // Default fallback color for unknown statuses
+    fallback: "bg-zinc-400",
 };
 
-const Icon: Record<UserStatus, React.ElementType> = {
+const Icon: Record<string, React.ElementType> = {
     online: Check,
     idle: Clock,
     dnd: Minus,
@@ -42,6 +40,9 @@ const Icon: Record<UserStatus, React.ElementType> = {
     travel: MapPin,
     busy: Zap,
     offline: Power,
+
+    // Default fallback icon for unknown statuses
+    fallback: Minus,
 };
 
 interface StatusDotProps extends React.HTMLAttributes<HTMLSpanElement> {
@@ -55,8 +56,9 @@ export function StatusDot({
     className,
     ...props
 }: StatusDotProps) {
-    const IconComp = Icon[status];
-    const colorClass = palette[status];
+    // Use fallback color/icon if status is unknown
+    const colorClass = palette[status] ?? palette.fallback;
+    const IconComp = Icon[status] ?? Icon.fallback;
 
     return (
         <TooltipProvider delayDuration={150}>

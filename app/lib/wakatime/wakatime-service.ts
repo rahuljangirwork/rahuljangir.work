@@ -1,85 +1,55 @@
-"use server"
+// app/lib/wakatime/wakatime-service.ts
 
-import { StatsRange, WakaTimeAllStats } from "../types"
+import type { StatsRange, WakaTimeStatsData } from "../types";
 
-const WAKATIME_API_BASE = "https://wakatime.com/api/v1"
+export interface DateRangeFilter {
+    after?: string;
+    before?: string;
+}
 
-// Server-side function - API key stays secure
-async function makeWakaTimeRequest(endpoint: string) {
-    const apiKey = process.env.WAKATIME_API_KEY
+export function getDateRange(range: StatsRange): DateRangeFilter {
+    const now = new Date();
 
-    if (!apiKey) {
-        throw new Error("WakaTime API key not configured")
+    switch (range) {
+        case "today": {
+            // Start from midnight today
+            const startOfToday = new Date(now);
+            startOfToday.setHours(0, 0, 0, 0);
+            return {
+                after: startOfToday.toISOString(),
+                before: now.toISOString(),
+            };
+        }
+        case "week":
+            // Last 7 days including today
+            return {
+                after: new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000).toISOString(),
+                before: now.toISOString(),
+            };
+        case "all_time":
+        default:
+            return {};
     }
+}
 
-    const response = await fetch(`${WAKATIME_API_BASE}${endpoint}`, {
-        headers: {
-            Authorization: `Basic ${Buffer.from(apiKey).toString("base64")}`,
-        },
-        next: { revalidate: 3600 }, // Revalidate every hour
-    })
+export async function getWakaTimeStats(range: StatsRange): Promise<WakaTimeStatsData> {
+    const dateRange = getDateRange(range);
+
+    // Supabase RPC expects filter: must include period_type + date range
+    const filter = { period_type: "daily", ...dateRange };
+
+    const response = await fetch("/api/portfolio", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ flag: "wakatime", filter }),
+    });
+
+    const json = await response.json();
 
     if (!response.ok) {
-        throw new Error(`WakaTime API error: ${response.status}`)
+        throw new Error(json.error || "Failed to fetch WakaTime stats");
     }
 
-    return response.json()
-}
-
-// Updated to use only FREE endpoints
-export async function getWakaTimeStats(range: StatsRange = "last_7_days"): Promise<WakaTimeAllStats> {
-    try {
-        // Only use the FREE stats endpoint
-        const stats = await makeWakaTimeRequest(`/users/current/stats/${range}`)
-
-        // Extract data from the free stats endpoint
-        const statsData = stats.data
-
-        return {
-            stats,
-            // Map free endpoint data to match your existing structure
-            editors: {
-                data: statsData.editors || [],
-                range,
-                is_up_to_date: statsData.is_up_to_date,
-                percent_calculated: statsData.percent_calculated,
-                timeout: statsData.timeout
-            },
-            languages: {
-                data: statsData.languages || [],
-                range,
-                is_up_to_date: statsData.is_up_to_date,
-                percent_calculated: statsData.percent_calculated,
-                timeout: statsData.timeout
-            },
-            operatingSystems: {
-                data: statsData.operating_systems || [],
-                range,
-                is_up_to_date: statsData.is_up_to_date,
-                percent_calculated: statsData.percent_calculated,
-                timeout: statsData.timeout
-            },
-            machines: {
-                data: statsData.machines || [],
-                range,
-                is_up_to_date: statsData.is_up_to_date,
-                percent_calculated: statsData.percent_calculated,
-                timeout: statsData.timeout
-            },
-            range
-        }
-    } catch (error) {
-        console.error("Failed to fetch WakaTime data:", error)
-        throw error
-    }
-}
-
-// Optional: Add a function to check if premium features are available
-export async function checkWakaTimePremiumAccess(): Promise<boolean> {
-    try {
-        await makeWakaTimeRequest(`/users/current/insights/languages/last_7_days`)
-        return true
-    } catch (error) {
-        return false
-    }
+    // Data is returned as an array of WakaTimeStatsEntry
+    return json.data as WakaTimeStatsData;
 }

@@ -1,66 +1,82 @@
-// components/wakatimes-range.tsx
-
 "use client";
-import React, { useState, useTransition } from "react";
-import { CodingDashboard } from "./wakatime-dashboard";
+
+import React, { useState, useEffect, useTransition } from "react";
 import { getWakaTimeStats } from "@/app/lib/wakatime/wakatime-service";
 
-// Ensure this matches your declared union type somewhere, eg:
-type StatsRange = "last_7_days" | "last_30_days" | "all_time";
+import { StatsRange } from "@/app/lib/types";
+import type { WakaTimeStatsEntry } from "@/app/lib/types";
+import { CodingDashboard } from "./wakatime-dashboard";
+
 const RANGE_OPTIONS: { label: string; value: StatsRange }[] = [
-    { label: "Week", value: "last_7_days" },
-    { label: "Month", value: "last_30_days" },
+    { label: "Today", value: "today" },
+    { label: "Week", value: "week" },
     { label: "All Time", value: "all_time" },
 ];
 
-export function WakaTimeSection() { // <-- Capitalized
-    const [range, setRange] = useState<StatsRange>("last_7_days"); // <--- Fix type!
-    const [data, setData] = React.useState<any>(null);
+export function WakaTimeSection() {
+    // data now holds single WakaTimeStatsEntry or null
+    const [data, setData] = useState<WakaTimeStatsEntry | null>(null);
+    const [range, setRange] = useState<StatsRange>("today");
+    const [error, setError] = useState<string | null>(null);
     const [isPending, startTransition] = useTransition();
-    const [error, setError] = React.useState<string | null>(null);
 
-    React.useEffect(() => {
-        let mounted = true;
+    useEffect(() => {
+        let isActive = true;
         setError(null);
+
         startTransition(() => {
             getWakaTimeStats(range)
-                .then((res) => mounted && setData(res))
-                .catch(() => mounted && setError("Failed to load coding stats"));
+                .then((statsArray) => {
+                    if (!isActive) return;
+
+                    // Select first entry (assuming API returns latest first)
+                    if (statsArray && statsArray.length > 0) {
+                        setData(statsArray[0]);
+                    } else {
+                        setData(null);
+                    }
+                })
+                .catch(() => {
+                    if (isActive) setError("Failed to load WakaTime stats");
+                    setData(null);
+                });
         });
+
         return () => {
-            mounted = false;
+            isActive = false;
         };
     }, [range]);
 
     return (
         <div>
             <div className="flex gap-2 mb-6">
-                {RANGE_OPTIONS.map(opt => (
+                {RANGE_OPTIONS.map(({ label, value }) => (
                     <button
-                        key={opt.value}
-                        className={`px-3 py-1 rounded-md border
-              ${range === opt.value
+                        key={value}
+                        type="button"
+                        className={`px-3 py-1 rounded-md border ${range === value
                                 ? "bg-palette-4 text-white border-palette-4"
-                                : "bg-muted border-transparent text-muted-foreground hover:bg-palette-2"}
-            `}
+                                : "bg-muted border-transparent text-muted-foreground hover:bg-palette-2"
+                            }`}
                         disabled={isPending}
-                        onClick={() => setRange(opt.value)}
+                        onClick={() => setRange(value)}
                     >
-                        {opt.label}
+                        {label}
                     </button>
                 ))}
             </div>
+
             {error && (
-                <div className="bg-red-100 text-red-700 rounded p-3 mb-4">
-                    {error}
-                </div>
+                <div className="bg-red-100 text-red-700 rounded p-3 mb-4">{error}</div>
             )}
+
             {isPending || !data ? (
                 <div className="space-y-6">
                     <div className="w-full h-32 bg-palette-2 animate-pulse rounded-lg" />
                     <div className="w-full h-32 bg-palette-2 animate-pulse rounded-lg" />
                 </div>
             ) : (
+                // Now `data` is a WakaTimeStatsEntry, exactly what CodingDashboard expects
                 <CodingDashboard data={data} />
             )}
         </div>

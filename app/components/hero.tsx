@@ -1,4 +1,3 @@
-// src/components/hero.tsx
 "use client";
 
 import { motion } from "framer-motion";
@@ -6,21 +5,23 @@ import Image from "next/image";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 
-import { StatusDot } from "./ui/status-dot";
-import { usePortfolioStatus } from "../lib/usePortfolioStatus";
+import { StatusDot, UserStatus } from "./ui/status-dot";
+import { usePortfolioStatus, PortfolioStatusData } from "../lib/usePortfolioStatus";
 
 const fadeInUp = { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } };
 const fadeInLeft = { hidden: { opacity: 0, x: -20 }, visible: { opacity: 1, x: 0 } };
 const fadeInRight = { hidden: { opacity: 0, x: 20 }, visible: { opacity: 1, x: 0 } };
 
 export default function Hero() {
-  /* 🔴  live status from Supabase ---------------------------------------- */
-  const status = usePortfolioStatus();   // "online" | "idle" | "dnd" | "invisible"
+  const statusData = usePortfolioStatus();
+
+  // Fallback to invisible if no data yet
+  const status: UserStatus = statusData?.status ?? "invisible";
 
   return (
     <section className="my-10 md:my-24 lg:my-32">
       <div className="flex flex-col md:flex-row justify-between items-center md:items-start gap-8 md:gap-12 text-palette-2">
-        {/* text column ---------------------------------------------------- */}
+        {/* Text column */}
         <div className="flex flex-col gap-2 items-center md:items-start text-center md:text-left max-w-xl">
           <motion.h1
             className="font-bold text-5xl md:text-6xl"
@@ -62,7 +63,7 @@ export default function Hero() {
           </motion.div>
         </div>
 
-        {/* avatar column -------------------------------------------------- */}
+        {/* Avatar column */}
         <motion.div
           className="relative order-first md:order-last aspect-square w-52 sm:w-64 md:w-80 lg:w-[400px] xl:w-[470px]"
           variants={fadeInRight}
@@ -80,13 +81,13 @@ export default function Hero() {
             className="border-4 border-palette-1 rounded-full object-cover shadow-2xl z-20"
           />
 
-          {/* halo blobs (unchanged) */}
+          {/* Halo blobs */}
           <div className="absolute -top-4 -right-4 w-24 h-24 bg-palette-1/50 rounded-full blur-xl z-10" />
           <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-palette-1/50 rounded-full blur-xl z-10" />
           <div className="absolute -top-6 -left-6 w-32 h-32 bg-primary/80 rounded-full blur-xl z-10" />
           <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-primary/80 rounded-full blur-xl z-10" />
 
-          {/* presence indicator */}
+          {/* Presence indicator */}
           <StatusDot status={status} />
         </motion.div>
       </div>
