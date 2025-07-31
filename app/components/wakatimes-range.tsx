@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useTransition } from "react";
-import { getWakaTimeStats } from "@/app/lib/wakatime/wakatime-service";
+// import { getWakaTimeStats } from "@/app/lib/wakatime/wakatime-service";
 
 import { StatsRange } from "@/app/lib/types";
 import type { WakaTimeStatsEntry } from "@/app/lib/types";
@@ -20,32 +20,7 @@ export function WakaTimeSection() {
     const [error, setError] = useState<string | null>(null);
     const [isPending, startTransition] = useTransition();
 
-    useEffect(() => {
-        let isActive = true;
-        setError(null);
 
-        startTransition(() => {
-            getWakaTimeStats(range)
-                .then((statsArray) => {
-                    if (!isActive) return;
-
-                    // Select first entry (assuming API returns latest first)
-                    if (statsArray && statsArray.length > 0) {
-                        setData(statsArray[0]);
-                    } else {
-                        setData(null);
-                    }
-                })
-                .catch(() => {
-                    if (isActive) setError("Failed to load WakaTime stats");
-                    setData(null);
-                });
-        });
-
-        return () => {
-            isActive = false;
-        };
-    }, [range]);
 
     return (
         <div>

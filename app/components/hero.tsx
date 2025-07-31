@@ -6,17 +6,17 @@ import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 
 import { StatusDot, UserStatus } from "./ui/status-dot";
-import { usePortfolioStatus, PortfolioStatusData } from "../lib/usePortfolioStatus";
+// import { usePortfolioStatus, PortfolioStatusData } from "../lib/usePortfolioStatus";
 
 const fadeInUp = { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } };
 const fadeInLeft = { hidden: { opacity: 0, x: -20 }, visible: { opacity: 1, x: 0 } };
 const fadeInRight = { hidden: { opacity: 0, x: 20 }, visible: { opacity: 1, x: 0 } };
 
 export default function Hero() {
-  const statusData = usePortfolioStatus();
+  // const statusData = usePortfolioStatus();
 
   // Fallback to invisible if no data yet
-  const status: UserStatus = statusData?.status ?? "invisible";
+  // const status: UserStatus = statusData?.status ?? "invisible";
 
   return (
     <section className="my-10 md:my-24 lg:my-32">

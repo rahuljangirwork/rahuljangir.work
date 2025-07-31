@@ -128,3 +128,56 @@ rahuljangir.work/
 ├── tailwind.config.ts
 ├── tsconfig.json
 └── wrangler.toml
+
+
+
+
+
+rahuljangir.work/
+├── app/
+│   ├── blog/
+│   ├── components/
+│   │   ├── wakatime/                     # WakaTime specific components
+│   │   │   ├── cards/
+│   │   │   │   ├── WakaTimeTotalTimeCard.tsx
+│   │   │   │   ├── WakaTimeLanguagesCard.tsx
+│   │   │   │   ├── WakaTimeProjectsCard.tsx
+│   │   │   │   ├── WakaTimeEditorsCard.tsx
+│   │   │   │   ├── WakaTimeOSCard.tsx
+│   │   │   │   ├── WakaTimeMachinesCard.tsx
+│   │   │   │   └── WakaTimeBestDayCard.tsx
+│   │   │   ├── charts/
+│   │   │   │   ├── LanguagesPieChart.tsx
+│   │   │   │   ├── ProjectsBarChart.tsx
+│   │   │   │   ├── ActivityHeatmap.tsx
+│   │   │   │   └── WeeklyOverview.tsx
+│   │   │   ├── WakaTimeSection.tsx
+│   │   │   ├── WakaTimeDashboard.tsx
+│   │   │   └── WakaTimeStatsGrid.tsx
+│   │   └── ... (your existing components)
+│   ├── lib/
+│   │   ├── supabase/                     # Supabase specific logic
+│   │   │   ├── client.ts                 # Supabase client setup
+│   │   │   ├── rpc/                      # RPC function calls
+│   │   │   │   ├── wakatime-rpc.ts       # WakaTime RPC functions
+│   │   │   │   ├── blog-rpc.ts           # Blog RPC functions
+│   │   │   │   └── index.ts              # Export all RPC functions
+│   │   │   └── types.ts                  # Supabase types
+│   │   ├── validations/                  # Zod schemas
+│   │   │   ├── wakatime.ts               # WakaTime response schemas
+│   │   │   ├── blog.ts
+│   │   │   └── common.ts
+│   │   ├── store/                        # Zustand stores
+│   │   │   ├── wakatime-store.ts
+│   │   │   ├── blog-store.ts
+│   │   │   └── index.ts
+│   │   ├── hooks/                        # Custom hooks
+│   │   │   ├── use-wakatime.ts
+│   │   │   ├── use-supabase-rpc.ts       # Generic RPC hook
+│   │   │   └── use-blog.ts
+│   │   ├── utils/                        # Utility functions
+│   │   │   ├── wakatime-utils.ts         # WakaTime data processing
+│   │   │   ├── format.ts                 # Formatting utilities
+│   │   │   └── index.ts
+│   │   └── ... (your existing lib files)
+│   └── ... (rest of your app structure)
