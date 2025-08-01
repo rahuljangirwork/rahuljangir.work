@@ -102,7 +102,7 @@ export default function BentoGrid() {
         </motion.div>
 
         {/* Coding Card */}
-        <motion.div
+        {/* <motion.div
           variants={cardVariants}
           className="flex flex-col justify-center  col-span-1 md:col-span-2 bg-primary border border-palette-1 p-4 rounded-lg shadow-xl"
         >
@@ -115,10 +115,10 @@ export default function BentoGrid() {
             <Python className="inline-block w-9 h- text-palette-3 bg-white/10 backdrop-blur-sm p-2 rounded-md" />
             <Numpy className="inline-block w-9 h-9 text-palette-3 bg-white/10 backdrop-blur-sm p-2 rounded-md" />
           </div>
-        </motion.div>
+        </motion.div> */}
 
         {/* Web Development Card */}
-        <motion.div
+        {/* <motion.div
           variants={cardVariants}
           className="flex flex-col justify-center col-span-1 md:col-span-2 p-4 bg-primary border border-palette-1 rounded-lg shadow-xl"
         >
@@ -131,7 +131,7 @@ export default function BentoGrid() {
             <Typescript className="inline-block w-9 h-9 text-palette-3 bg-white/10 backdrop-blur-sm p-2 rounded-md" />
             <TailwindCSS className="inline-block w-9 h-9 text-palette-3 bg-white/10 backdrop-blur-sm p-2 rounded-md" />
           </div>
-        </motion.div>
+        </motion.div> */}
 
         {/* Contact Card */}
         <motion.div
@@ -151,7 +151,7 @@ export default function BentoGrid() {
         </motion.div>
 
         {/* Hardware Card */}
-        <motion.div
+        {/* <motion.div
           variants={cardVariants}
           className="flex flex-col justify-center col-span-1 md:col-span-2 p-4 bg-primary border border-palette-1 rounded-lg shadow-xl"
         >
@@ -163,10 +163,10 @@ export default function BentoGrid() {
             <Arduino className="inline-block w-9 h-9 text-palette-3 bg-white/10 backdrop-blur-sm p-1 rounded-md" />
             <Raspbi className="inline-block w-9 h-9 text-palette-3 bg-white/10 backdrop-blur-sm p-1 rounded-md" />
           </div>
-        </motion.div>
+        </motion.div> */}
 
         {/* CAD Card */}
-        <motion.div
+        {/* <motion.div
           variants={cardVariants}
           className="flex flex-col justify-center col-span-1 md:col-span-2 p-4 bg-primary border border-palette-1 rounded-lg shadow-xl"
         >
@@ -177,7 +177,7 @@ export default function BentoGrid() {
           <div className="flex space-x-2">
             <SolidWorks className="inline-block w-9 h-9 text-palette-3 bg-white/10 backdrop-blur-sm p-2 rounded-md" />
           </div>
-        </motion.div>
+        </motion.div> */}
       </motion.div>
     </div>
   );

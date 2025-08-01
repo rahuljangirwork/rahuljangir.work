@@ -1,6 +1,20 @@
 import { supabase } from "../supabase-client";
 import type { WakaTimeRpcResponse } from '../../validations/wakatime';
 
+// Add this interface for the profile data response
+interface UserProfileResponse {
+    status: string;
+    message: string;
+    data: {
+        profile: any;
+        current_status: any;
+        tech_stack: any;
+        social_links: any[];
+        statistics: any;
+    };
+    timestamp: string;
+}
+
 export class WakaTimeRPC {
     // Static configuration
     private static readonly DEFAULT_USERNAME = 'rahuljangirworks';
@@ -19,45 +33,18 @@ export class WakaTimeRPC {
         return data;
     }
 
-    static async getHistoricalStats(): Promise<WakaTimeRpcResponse[]> {
-        const { data, error } = await supabase.rpc('get_historical_wakatime_stats', {
-            p_username: this.DEFAULT_USERNAME
+    // Add this new method for user profile data
+    static async getUserProfileData(username?: string): Promise<UserProfileResponse> {
+        const { data, error } = await supabase.rpc('get_user_profile_data', {
+            p_username: username || this.DEFAULT_USERNAME
         });
 
         if (error) {
-            throw new Error(`Failed to fetch historical stats: ${error.message}`);
-        }
-
-        return data || [];
-    }
-
-    static async getStatsForRange(range: string): Promise<WakaTimeRpcResponse> {
-        const { data, error } = await supabase.rpc('get_wakatime_stats_for_range', {
-            time_range: range,
-            p_username: this.DEFAULT_USERNAME
-        });
-
-        if (error) {
-            throw new Error(`Failed to fetch stats for range: ${error.message}`);
+            throw new Error(`Failed to fetch user profile data: ${error.message}`);
         }
 
         return data;
     }
 
-    // Helper method to get stats with different parameters if needed
-    static async getLatestStatsWithParams(
-        username?: string,
-        includeRawData: boolean = true
-    ): Promise<WakaTimeRpcResponse> {
-        const { data, error } = await supabase.rpc('get_latest_wakatime_stats', {
-            p_username: username || this.DEFAULT_USERNAME,
-            p_include_raw_data: includeRawData
-        });
-
-        if (error) {
-            throw new Error(`Failed to fetch latest stats: ${error.message}`);
-        }
-
-        return data;
-    }
+    // ... rest of your existing methods
 }

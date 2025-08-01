@@ -3,18 +3,20 @@
 import React from "react";
 
 interface WakaTimeTotalTimeCardProps {
-    totalTime: string;
+    weeklyTotalTime: string;
 }
 
-export function WakaTimeTotalTimeCard({ totalTime }: WakaTimeTotalTimeCardProps) {
+export function WakaTimeTotalTimeCard({ weeklyTotalTime }: WakaTimeTotalTimeCardProps) {
     return (
         <div className="flex flex-col justify-center">
-            <p className="text-4xl md:text-6xl font-bold text-palette-4 mb-2">
-                {totalTime}
+            <p className="text-4xl md:text-5xl font-bold text-palette-2">
+                {weeklyTotalTime}
             </p>
-            <p className="text-sm text-palette-3">
-                This week's total coding time
+            <p className="text-sm text-palette-2/60 mt-1">
+                This week
             </p>
         </div>
+
+      
     );
 }

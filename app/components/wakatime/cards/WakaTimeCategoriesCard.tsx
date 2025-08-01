@@ -3,7 +3,7 @@
 import React from "react";
 import { ProgressBlocks } from "@/app/components/ProgressBlocks";
 
-type OS = {
+type Category = {
     name: string;
     percent: number;
     text: string;
@@ -14,38 +14,38 @@ type OS = {
     total_seconds?: number;
 };
 
-interface WakaTimeOperatingSystemsCardProps {
-    operatingSystems: OS[];
+interface WakaTimeCategoriesCardProps {
+    categories: Category[];
 }
 
-export function WakaTimeOperatingSystemsCard({ operatingSystems }: WakaTimeOperatingSystemsCardProps) {
-    const topOS = operatingSystems.slice(0, 3);
+export function WakaTimeCategoriesCard({ categories }: WakaTimeCategoriesCardProps) {
+    const topCategories = categories.slice(0, 3);
 
-    if (topOS.length === 0) {
+    if (topCategories.length === 0) {
         return (
             <div className="text-center py-4">
-                <p className="text-sm text-palette-2/60">No OS data</p>
+                <p className="text-sm text-palette-2/60">No category data</p>
             </div>
         );
     }
 
     return (
         <div className="space-y-4 flex-1">
-            {topOS.map((os, index) => {
+            {topCategories.map((category, index) => {
                 // Calculate blocks based on percentage (out of 20 blocks for fine granularity)
                 const totalBlocks = 20;
-                const completedBlocks = Math.round((os.percent / 100) * totalBlocks);
+                const completedBlocks = Math.round((category.percent / 100) * totalBlocks);
 
                 return (
                     <div key={index} className="space-y-2">
-                        {/* OS Name & Percentage */}
+                        {/* Category Name & Percentage */}
                         <div className="flex justify-between items-center">
                             <span className="text-sm font-medium text-palette-2 truncate">
-                                {os.name}
+                                {category.name}
                             </span>
                             <div className="flex items-center gap-2 text-xs">
                                 <span className="text-palette-4 font-medium">
-                                    {os.percent.toFixed(0)}%
+                                    {category.percent.toFixed(0)}%
                                 </span>
                             </div>
                         </div>
