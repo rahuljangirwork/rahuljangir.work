@@ -45,7 +45,7 @@ export function CurrentActivityCard({ currentStatus }: CurrentActivityCardProps)
 
     return (
         <div className="space-y-3">
-            <div className="flex items-center gap-2">
+            {/* <div className="flex items-center gap-2">
                 <span className="text-xl">{currentStatus.emoji || '💻'}</span>
                 <div className="flex-1">
                     <div className="font-medium capitalize">{currentStatus.status || 'Working'}</div>
@@ -53,7 +53,7 @@ export function CurrentActivityCard({ currentStatus }: CurrentActivityCardProps)
                         {currentStatus.activity || 'Coding'}
                     </div>
                 </div>
-            </div>
+            </div> */}
 
             {currentStatus.message && (
                 <p className="text-sm line-clamp-2">{currentStatus.message}</p>
