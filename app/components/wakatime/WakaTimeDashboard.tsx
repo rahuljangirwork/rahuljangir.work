@@ -465,6 +465,23 @@ export function WakaTimeDashboard() {
           </motion.div>
         )}
 
+
+        {/* Editors */}
+        {stats && (
+          <motion.div
+            variants={cardVariants}
+            className="col-span-2 sm:col-span-2 md:col-span-3 rounded-lg p-4 bg-primary border border-palette-1 shadow-xl flex flex-col"
+          >
+            <div className="flex items-center mb-2">
+              <Palette className="h-6 w-6 mr-2 text-palette-4" />
+              <h3 className="text-md lg:text-lg font-semibold text-palette-2">
+                Editors
+              </h3>
+            </div>
+            <WakaTimeEditorsCard editors={stats.editors || []} />
+          </motion.div>
+        )}
+
            {/* Tech Stack */}
         <motion.div
           variants={cardVariants}
@@ -484,7 +501,7 @@ export function WakaTimeDashboard() {
         {stats && (
           <motion.div
             variants={cardVariants}
-            className="col-span-2 sm:col-span-2 md:col-span-3 rounded-lg p-4 bg-primary border border-palette-1 shadow-xl flex flex-col"
+            className="col-span-2 sm:col-span-2 md:col-span-4 rounded-lg p-4 bg-primary border border-palette-1 shadow-xl flex flex-col"
           >
             <div className="flex items-center mb-2">
               <Merge className="h-6 w-6 mr-2 text-palette-4" />
@@ -614,21 +631,7 @@ export function WakaTimeDashboard() {
             />
           </motion.div>
         )}
-        {/* Editors */}
-        {stats && (
-          <motion.div
-            variants={cardVariants}
-            className="col-span-2 sm:col-span-2 md:col-span-2 rounded-lg p-4 bg-primary border border-palette-1 shadow-xl flex flex-col"
-          >
-            <div className="flex items-center mb-2">
-              <Palette className="h-6 w-6 mr-2 text-palette-4" />
-              <h3 className="text-md lg:text-lg font-semibold text-palette-2">
-                Editors
-              </h3>
-            </div>
-            <WakaTimeEditorsCard editors={stats.editors || []} />
-          </motion.div>
-        )}
+     
 
          {/* Interruptions */}
         {stats && (

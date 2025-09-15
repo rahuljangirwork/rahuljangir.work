@@ -1,4 +1,4 @@
-import { Awards } from "@/components/ui/award"
+import { Awards } from "./award"
 
 export function Component() {
   return (
