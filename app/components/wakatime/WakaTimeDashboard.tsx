@@ -270,7 +270,7 @@ export function WakaTimeDashboard() {
 
       {/* Dashboard Grid */}
       <motion.div
-        className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-8 gap-4"
+        className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-4"
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
@@ -279,7 +279,7 @@ export function WakaTimeDashboard() {
         {/* About Card */}
         <motion.div
           variants={cardVariants}
-          className="col-span-full md:col-span-4 row-span-2 rounded-lg px-4 py-6 bg-palette-2/10 backdrop-blur-md flex flex-col justify-between border-none shadow-xl"
+          className="col-span-full md:col-span-4 lg:row-span-2 rounded-lg px-4 py-6 bg-palette-2/10 backdrop-blur-md flex flex-col justify-between border-none shadow-xl"
         >
           <div className="flex items-center mb-2">
             <Atom className="h-7 w-7 mr-2" />
@@ -358,25 +358,7 @@ export function WakaTimeDashboard() {
         )}
 
       
-        {/* Total Coding Time */}
-        {stats && (
-          <motion.div
-            variants={cardVariants}
-            className="col-span-2 sm:col-span-4 md:col-span-4 row-span-1 rounded-lg px-4 py-6 bg-palette-2/10 backdrop-blur-md flex flex-col border-none shadow-xl"
-          >
-            <div className="flex items-center mb-2">
-              <Clock className="h-7 w-7 mr-2 text-palette-4" />
-              <h3 className="text-2xl font-bold text-palette-2">
-                Total Coding Time
-              </h3>
-            </div>
-            <WakaTimeTotalTimeCard
-              weeklyTotalTime={stats.weekly_human_readable_total || "0 mins"}
-            />
-          </motion.div>
-        )}
-
-  {/* Daily Average */}
+        {/* Daily Average */}
         {stats && (
           <motion.div
             variants={cardVariants}
@@ -394,10 +376,28 @@ export function WakaTimeDashboard() {
           </motion.div>
         )}
 
+        {/* Total Coding Time */}
+        {stats && (
+          <motion.div
+            variants={cardVariants}
+            className="col-span-2 sm:col-span-4 md:col-span-4 rounded-lg px-4 py-6 bg-palette-2/10 backdrop-blur-md flex flex-col border-none shadow-xl"
+          >
+            <div className="flex items-center mb-2">
+              <Clock className="h-7 w-7 mr-2 text-palette-4" />
+              <h3 className="text-2xl font-bold text-palette-2">
+                Total Coding Time
+              </h3>
+            </div>
+            <WakaTimeTotalTimeCard
+              weeklyTotalTime={stats.weekly_human_readable_total || "0 mins"}
+            />
+          </motion.div>
+        )}
+
         {/* Current Activity */}
         <motion.div
           variants={cardVariants}
-          className="col-span-2 sm:col-span-4 md:col-span-3 rounded-lg p-4 bg-primary border border-palette-1 shadow-xl flex flex-col"
+          className="col-span-2 sm:col-span-4 md:col-span-4 lg:col-span-3 rounded-lg p-4 bg-primary border border-palette-1 shadow-xl flex flex-col"
         >
           <div className="flex items-center mb-3">
             <Activity className="h-6 w-6 mr-2 text-palette-4" />
@@ -412,7 +412,7 @@ export function WakaTimeDashboard() {
         {stats?.raw_data?.goals?.[0] && (
           <motion.div
             variants={cardVariants}
-            className="col-span-2 sm:col-span-4 md:col-span-5 rounded-lg p-4 bg-primary border border-palette-1 shadow-xl flex flex-col"
+            className="col-span-2 sm:col-span-4 md:col-span-4 lg:col-span-5 rounded-lg p-4 bg-primary border border-palette-1 shadow-xl flex flex-col"
           >
             <div className="flex items-center justify-between mb-2">
               <div className="flex items-center">
@@ -435,7 +435,7 @@ export function WakaTimeDashboard() {
         {stats && (
           <motion.div
             variants={cardVariants}
-            className="col-span-2 sm:col-span-4 md:col-span-3 rounded-lg p-4 bg-primary border border-palette-1 shadow-xl flex flex-col"
+            className="col-span-2 sm:col-span-4 md:col-span-4 lg:col-span-3 rounded-lg p-4 bg-primary border border-palette-1 shadow-xl flex flex-col"
           >
             <div className="flex items-center mb-2">
               <FolderKanban className="h-6 w-6 mr-2 text-palette-4" />
@@ -470,7 +470,7 @@ export function WakaTimeDashboard() {
         {stats && (
           <motion.div
             variants={cardVariants}
-            className="col-span-2 sm:col-span-2 md:col-span-3 rounded-lg p-4 bg-primary border border-palette-1 shadow-xl flex flex-col"
+            className="col-span-2 sm:col-span-2 lg:col-span-3 rounded-lg p-4 bg-primary border border-palette-1 shadow-xl flex flex-col"
           >
             <div className="flex items-center mb-2">
               <Palette className="h-6 w-6 mr-2 text-palette-4" />
