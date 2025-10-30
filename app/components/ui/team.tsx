@@ -1,23 +1,25 @@
+import Image from "next/image";
+
 const members = [
     {
-        name: "'Méschac Irung'",
-        role: "'Creator'",
-        avatar: "'https://avatars.githubusercontent.com/u/47919550?v=4'",
+        name: "Méschac Irung",
+        role: "Creator",
+        avatar: "https://avatars.githubusercontent.com/u/47919550?v=4",
     },
     {
-        name: "'Théo Balick'",
-        role: "'Frontend Dev'",
-        avatar: "'https://avatars.githubusercontent.com/u/68236786?v=4'",
+        name: "Théo Balick",
+        role: "Frontend Dev",
+        avatar: "https://avatars.githubusercontent.com/u/68236786?v=4",
     },
     {
-        name: "'Glodie Lukose'",
-        role: "'Frontend Dev'",
-        avatar: "'https://avatars.githubusercontent.com/u/99137927?v=4'",
+        name: "Glodie Lukose",
+        role: "Frontend Dev",
+        avatar: "https://avatars.githubusercontent.com/u/99137927?v=4",
     },
     {
-        name: "'Bernard Ngandu'",
-        role: "'Backend Dev'",
-        avatar: "'https://avatars.githubusercontent.com/u/31113941?v=4'",
+        name: "Bernard Ngandu",
+        role: "Backend Dev",
+        avatar: "https://avatars.githubusercontent.com/u/31113941?v=4",
     },
 ]
 
@@ -33,7 +35,7 @@ export default function TeamSection() {
                         {members.map((member, index) => (
                             <div key={index}>
                                 <div className="bg-white size-20 rounded-full border border-neutral-200 p-0.5 shadow shadow-zinc-950/5 dark:bg-neutral-950 dark:border-neutral-800">
-                                    <img className="aspect-square rounded-full object-cover" src={member.avatar} alt={member.name} height="460" width="460" loading="lazy" />
+                                    <Image className="aspect-square rounded-full object-cover" src={member.avatar} alt={member.name} height={460} width={460} loading="lazy" />
                                 </div>
                                 <span className="mt-2 block text-sm">{member.name}</span>
                                 <span className="text-neutral-500 block text-xs dark:text-neutral-400">{member.role}</span>
@@ -48,7 +50,7 @@ export default function TeamSection() {
                         {members.map((member, index) => (
                             <div key={index}>
                                 <div className="bg-white size-20 rounded-full border border-neutral-200 p-0.5 shadow shadow-zinc-950/5 dark:bg-neutral-950 dark:border-neutral-800">
-                                    <img className="aspect-square rounded-full object-cover" src={member.avatar} alt={member.name} height="460" width="460" loading="lazy" />
+                                    <Image className="aspect-square rounded-full object-cover" src={member.avatar} alt={member.name} height={460} width={460} loading="lazy" />
                                 </div>
                                 <span className="mt-2 block text-sm">{member.name}</span>
                                 <span className="text-neutral-500 block text-xs dark:text-neutral-400">{member.role}</span>
@@ -63,7 +65,7 @@ export default function TeamSection() {
                         {members.map((member, index) => (
                             <div key={index}>
                                 <div className="bg-white size-20 rounded-full border border-neutral-200 p-0.5 shadow shadow-zinc-950/5 dark:bg-neutral-950 dark:border-neutral-800">
-                                    <img className="aspect-square rounded-full object-cover" src={member.avatar} alt={member.name} height="460" width="460" loading="lazy" />
+                                    <Image className="aspect-square rounded-full object-cover" src={member.avatar} alt={member.name} height={460} width={460} loading="lazy" />
                                 </div>
                                 <span className="mt-2 block text-sm">{member.name}</span>
                                 <span className="text-neutral-500 block text-xs dark:text-neutral-400">{member.role}</span>

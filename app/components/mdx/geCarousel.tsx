@@ -40,6 +40,7 @@
 
 // components/GeCarousel.tsx
 import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from "@/app/components/ui/carousel"; // Adjust the import path as needed
+import Image from "next/image";
 
 type MyComponentProps = {
   images: string[]; // Accept an array of image URLs
@@ -53,9 +54,11 @@ export default function MyComponent({ images }: MyComponentProps) {
         <CarouselContent>
           {images.map((image, index) => (
             <CarouselItem key={index}>
-              <img
+              <Image
                 src={image}
                 alt={`carousel-image-${index}`}
+                width={800}
+                height={450}
                 className="w-full h-auto rounded-lg"
               />
             </CarouselItem>

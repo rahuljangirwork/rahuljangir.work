@@ -194,3 +194,5 @@ export const Photo = forwardRef<HTMLDivElement, {
     </motion.div>
   );
 });
+
+Photo.displayName = "Photo";

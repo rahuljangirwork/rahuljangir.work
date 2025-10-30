@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 
 interface ProfileBasicCardProps {
     profileData?: {
@@ -38,9 +39,11 @@ export function ProfileBasicCard({ profileData }: ProfileBasicCardProps) {
         <div className="space-y-3">
             <div className="flex items-start gap-3">
                 {profileData.avatar_url && (
-                    <img
+                    <Image
                         src={profileData.avatar_url}
                         alt="Avatar"
+                        width={48}
+                        height={48}
                         className="w-12 h-12 rounded-full object-cover"
                     />
                 )}

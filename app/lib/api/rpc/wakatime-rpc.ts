@@ -46,5 +46,29 @@ export class WakaTimeRPC {
         return data;
     }
 
-    // ... rest of your existing methods
+    static async getHistoricalStats(username?: string) {
+        const { data, error } = await supabase.rpc('get_historical_wakatime_stats', {
+            p_username: username || this.DEFAULT_USERNAME,
+        });
+
+        if (error) {
+            throw new Error(`Failed to fetch historical stats: ${error.message}`);
+        }
+
+        return data ?? [];
+    }
+
+    static async getStatsForRange(range: 'last_7_days' | 'last_30_days' | 'last_6_months' | 'last_year', username?: string) {
+        const { data, error } = await supabase.rpc('get_wakatime_stats_for_range', {
+            p_username: username || this.DEFAULT_USERNAME,
+            p_range: range,
+            p_include_raw_data: this.INCLUDE_RAW_DATA,
+        });
+
+        if (error) {
+            throw new Error(`Failed to fetch stats for range "${range}": ${error.message}`);
+        }
+
+        return data;
+    }
 }

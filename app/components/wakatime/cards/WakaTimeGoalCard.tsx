@@ -72,7 +72,7 @@ export function WakaTimeGoalCard({ goal }: WakaTimeGoalCardProps) {
             {todayData && (
                 <div className="space-y-2">
                     <div className="flex justify-between items-center">
-                        <span className="text-xs text-palette-2/60">Today's Progress</span>
+                        <span className="text-xs text-palette-2/60">Today&apos;s Progress</span>
                         <span className="text-xs text-palette-4 font-medium">
                             {todayData.actual_seconds_text} / {todayData.goal_seconds_text}
                         </span>

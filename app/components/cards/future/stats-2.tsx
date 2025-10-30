@@ -1,13 +1,14 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
 import * as React from "react";
-import { clsx, type ClassValue } from "clsx";
+import clsx from "clsx";
 import { twMerge } from "tailwind-merge";
 import * as RechartsPrimitive from "recharts";
 import { ExternalLink } from "lucide-react";
 
-function cn(...inputs: ClassValue[]) {
-    return twMerge(clsx(inputs));
+function cn(...inputs: Parameters<typeof clsx>) {
+    return twMerge(clsx(...inputs));
 }
 
 const Card = React.forwardRef<

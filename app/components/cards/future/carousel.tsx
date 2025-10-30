@@ -1,5 +1,12 @@
 import { useEffect, useState, useRef } from "react";
-import { motion, PanInfo, useMotionValue, useTransform } from "framer-motion";
+import {
+    motion,
+    PanInfo,
+    useMotionValue,
+    useTransform,
+    MotionValue,
+    type Transition,
+} from "framer-motion";
 
 // import {
 //     FiCircle,
@@ -64,9 +71,68 @@ const DEFAULT_ITEMS: CarouselItem[] = [
 const DRAG_BUFFER = 0;
 const VELOCITY_THRESHOLD = 500;
 const GAP = 16;
-const SPRING_OPTIONS = { type: "spring", stiffness: 300, damping: 30 };
+const SPRING_OPTIONS: Transition = {
+    type: "spring",
+    stiffness: 300,
+    damping: 30,
+};
 
 // Component definition
+const CarouselCard = ({
+    item,
+    index,
+    trackItemOffset,
+    itemWidth,
+    round,
+    effectiveTransition,
+    x,
+}: {
+    item: CarouselItem;
+    index: number;
+    trackItemOffset: number;
+    itemWidth: number;
+    round: boolean;
+    effectiveTransition: Transition;
+    x: MotionValue<number>;
+}) => {
+    const range = [
+        -(index + 1) * trackItemOffset,
+        -index * trackItemOffset,
+        -(index - 1) * trackItemOffset,
+    ];
+    const outputRange = [90, 0, -90];
+    const rotateY = useTransform(x, range, outputRange, { clamp: false });
+
+    return (
+        <motion.div
+            key={index}
+            className={`relative shrink-0 flex flex-col ${round
+                ? "items-center justify-center text-center bg-[#060606] border-0"
+                : "items-start justify-between bg-[#222] border border-[#222] rounded-[12px]"
+                } overflow-hidden cursor-grab active:cursor-grabbing`}
+            style={{
+                width: itemWidth,
+                height: round ? itemWidth : "100%",
+                rotateY: rotateY,
+                ...(round && { borderRadius: "50%" }),
+            }}
+            transition={effectiveTransition}
+        >
+            <div className={`${round ? "p-0 m-0" : "mb-4 p-5"}`}>
+                <span className="flex h-[28px] w-[28px] items-center justify-center rounded-full bg-[#060606]">
+                    {item.icon}
+                </span>
+            </div>
+            <div className="p-5">
+                <div className="mb-1 font-black text-lg text-white">
+                    {item.title}
+                </div>
+                <p className="text-sm text-white">{item.description}</p>
+            </div>
+        </motion.div>
+    );
+};
+
 export const Component = ({ // Changed from export default function Carousel
     items = DEFAULT_ITEMS,
     baseWidth = 300,
@@ -129,7 +195,7 @@ export const Component = ({ // Changed from export default function Carousel
         pauseOnHover,
     ]);
 
-    const effectiveTransition = isResetting ? { duration: 0 } : SPRING_OPTIONS;
+    const effectiveTransition: Transition = isResetting ? { duration: 0 } : SPRING_OPTIONS;
 
     // Handles the instant jump when the animation completes on the cloned item.
     const handleAnimationComplete = () => {
@@ -179,8 +245,8 @@ export const Component = ({ // Changed from export default function Carousel
         <div
             ref={containerRef}
             className={`relative overflow-hidden p-4 ${round
-                    ? "rounded-full border border-white"
-                    : "rounded-[24px] border border-[#222]"
+                ? "rounded-full border border-white"
+                : "rounded-[24px] border border-[#222]"
                 }`}
             style={{
                 width: `${baseWidth}px`,
@@ -204,45 +270,18 @@ export const Component = ({ // Changed from export default function Carousel
                 transition={effectiveTransition}
                 onAnimationComplete={handleAnimationComplete} // Callback when animation finishes
             >
-                {carouselItems.map((item, index) => {
-                    // Define the range for x values corresponding to the current item's position, and its neighbors
-                    const range = [
-                        -(index + 1) * trackItemOffset, // When the item to the right is centered
-                        -index * trackItemOffset,      // When this item is centered
-                        -(index - 1) * trackItemOffset, // When the item to the left is centered
-                    ];
-                    // Define the output range for rotateY. Item in center is 0deg, items to side are +/-90deg
-                    const outputRange = [90, 0, -90];
-                    const rotateY = useTransform(x, range, outputRange, { clamp: false });
-                    return (
-                        <motion.div
-                            key={index} // Using index as key is fine here because the `carouselItems` array structure is stable and indices are unique.
-                            className={`relative shrink-0 flex flex-col ${round
-                                    ? "items-center justify-center text-center bg-[#060606] border-0"
-                                    : "items-start justify-between bg-[#222] border border-[#222] rounded-[12px]"
-                                } overflow-hidden cursor-grab active:cursor-grabbing`}
-                            style={{
-                                width: itemWidth,
-                                height: round ? itemWidth : "100%",
-                                rotateY: rotateY,
-                                ...(round && { borderRadius: "50%" }),
-                            }}
-                            transition={effectiveTransition}
-                        >
-                            <div className={`${round ? "p-0 m-0" : "mb-4 p-5"}`}>
-                                <span className="flex h-[28px] w-[28px] items-center justify-center rounded-full bg-[#060606]">
-                                    {item.icon}
-                                </span>
-                            </div>
-                            <div className="p-5">
-                                <div className="mb-1 font-black text-lg text-white">
-                                    {item.title}
-                                </div>
-                                <p className="text-sm text-white">{item.description}</p>
-                            </div>
-                        </motion.div>
-                    );
-                })}
+                {carouselItems.map((item, index) => (
+                    <CarouselCard
+                        key={index}
+                        item={item}
+                        index={index}
+                        trackItemOffset={trackItemOffset}
+                        itemWidth={itemWidth}
+                        round={round}
+                        effectiveTransition={effectiveTransition}
+                        x={x}
+                    />
+                ))}
             </motion.div>
             <div
                 className={`flex w-full justify-center ${round ? "absolute z-20 bottom-12 left-1/2 -translate-x-1/2" : ""
@@ -254,12 +293,12 @@ export const Component = ({ // Changed from export default function Carousel
                         <motion.div
                             key={index}
                             className={`h-2 w-2 rounded-full cursor-pointer transition-colors duration-150 ${currentIndex % items.length === index // Use modulo for looping dot highlight
-                                    ? round
-                                        ? "bg-white"
-                                        : "bg-[#333333]"
-                                    : round
-                                        ? "bg-[#555]"
-                                        : "bg-[rgba(51,51,51,0.4)]"
+                                ? round
+                                    ? "bg-white"
+                                    : "bg-[#333333]"
+                                : round
+                                    ? "bg-[#555]"
+                                    : "bg-[rgba(51,51,51,0.4)]"
                                 }`}
                             animate={{
                                 scale: currentIndex % items.length === index ? 1.2 : 1,

@@ -140,7 +140,7 @@ const InvertedPendulumSimulation: React.FC<InvertedPendulumSimulationProps> = ({
         cancelAnimationFrame(requestRef.current);
       }
     };
-  }, [running]);
+  }, [running, animationLoop]);
 
   // Convert simulation theta to SVG coordinates for the pendulum rod end
   const rodEndX: number = svgCartCenterX + pendulumLength * Math.sin(theta);

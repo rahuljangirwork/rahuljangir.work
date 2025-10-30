@@ -141,7 +141,7 @@ export function usePostMetrics(slug: string) {
       if (data?.votes !== undefined) setVotes(data.votes);
       setHasVoted(localStorage.getItem(voteKey) === 'true');
     })();
-  }, [slug]);
+  }, [slug, voteKey]);
 
   /* ---------- 1b. subscribe to live updates ---------- */
   useEffect(() => {
@@ -220,7 +220,7 @@ export function usePostMetrics(slug: string) {
       if (timer) clearTimeout(timer);
       io.disconnect();
     };
-  }, [slug]);
+  }, [slug, viewKey]);
 
   /* ---------- 3. up‑vote once per browser ---------- */
   const upvote = useCallback(async () => {
@@ -234,7 +234,7 @@ export function usePostMetrics(slug: string) {
 
     localStorage.setItem(voteKey, 'true');
     setHasVoted(true);
-  }, [hasVoted, slug]);
+  }, [hasVoted, slug, voteKey]);
 
   /* ---------- hook result ---------- */
   return { views, votes, upvote, hasVoted };

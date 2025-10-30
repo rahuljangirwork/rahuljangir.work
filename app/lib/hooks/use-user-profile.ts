@@ -1,77 +1,69 @@
-import { useEffect, useCallback, useRef } from 'react';
+import { useEffect, useCallback } from 'react';
+import { useUserProfileStore } from '../store/user-profile-store';
 import { WakaTimeRPC } from '../api/rpc/wakatime-rpc';
 import { useSupabaseRpc } from './use-supabase-rpc';
 
-interface UserProfileData {
-    profile: any;
-    current_status: any;
-    tech_stack: any;
-    social_links: any[];
-    statistics: any;
-}
+const FIVE_MINUTES_IN_MS = 5 * 60 * 1000;
 
-interface UseUserProfileReturn {
-    profileData: UserProfileData | null;
-    isLoading: boolean;
-    error: string | null;
-    fetchProfile: () => void;
-    refreshProfile: () => Promise<void>;
-    clearError: () => void;
-}
-
-export function useUserProfile(username?: string, autoFetch = true): UseUserProfileReturn {
-    const hasFetchedRef = useRef(false);
-
+export function useUserProfile(username?: string, autoFetch = true) {
     const {
-        data: profileResponse,
+        profileData,
+        lastUpdated,
         isLoading,
         error,
+        setProfileData,
+        setLoading,
+        setError,
+        clearError,
+    } = useUserProfileStore();
+
+    const {
         execute: fetchProfileData,
-        reset
+        isLoading: isFetching,
     } = useSupabaseRpc(
         () => WakaTimeRPC.getUserProfileData(username),
         {
-            onSuccess: (data) => {
-                console.log('Profile data loaded:', data);
-                hasFetchedRef.current = true;
+            onSuccess: (response) => {
+                setProfileData(response.data);
+                setError(null);
             },
             onError: (error) => {
-                console.error('Failed to load profile:', error);
+                setError(error.message);
             }
         }
     );
 
-    const refreshProfile = useCallback(async () => {
-        try {
-            hasFetchedRef.current = false;
+    const isDataStale = useCallback(() => {
+        if (!lastUpdated) return true;
+        const now = new Date().getTime();
+        const lastUpdatedTime = new Date(lastUpdated).getTime();
+        return (now - lastUpdatedTime) > FIVE_MINUTES_IN_MS;
+    }, [lastUpdated]);
+
+    const stableFetchProfile = useCallback(async () => {
+        if (isDataStale() && !isLoading) {
             await fetchProfileData();
-        } catch (error) {
-            console.error('Failed to refresh profile:', error);
-            throw error;
         }
+    }, [fetchProfileData, isDataStale, isLoading]);
+
+    const refreshProfile = useCallback(async () => {
+        await fetchProfileData();
     }, [fetchProfileData]);
 
-    const stableFetchProfile = useCallback(() => {
-        if (!hasFetchedRef.current && !isLoading) {
-            fetchProfileData();
-        }
-    }, [fetchProfileData, isLoading]);
-
-    // Auto fetch on mount
     useEffect(() => {
-        if (autoFetch && !profileResponse?.data) {
+        if (autoFetch && (!profileData || isDataStale()) && !isLoading) {
             stableFetchProfile();
         }
-    }, [autoFetch, profileResponse?.data, stableFetchProfile]);
+    }, [autoFetch, profileData, isDataStale, stableFetchProfile, isLoading]);
 
-    const clearError = useCallback(() => {
-        reset();
-    }, [reset]);
+    useEffect(() => {
+        setLoading(isFetching);
+    }, [isFetching, setLoading]);
 
     return {
-        profileData: profileResponse?.data || null,
+        profileData,
         isLoading,
-        error: typeof error === 'string' ? error : error?.message || null,
+        error,
         fetchProfile: stableFetchProfile,
         refreshProfile,
         clearError,

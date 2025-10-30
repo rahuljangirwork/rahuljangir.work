@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import "katex/dist/katex.min.css";
-var Latex = require("react-latex");
+import Latex from "react-latex";
 import { Dispatch, SetStateAction } from "react";
 
 interface BeamControlsProps {

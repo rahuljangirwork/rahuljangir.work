@@ -42,7 +42,7 @@ export function Calendar() {
     const bookingLink = `https://cal.com/aliimam/designali`;
 
     const renderCalendarDays = () => {
-        let days: React.ReactNode[] = [
+        const days: React.ReactNode[] = [
             ...dayNames.map((day, i) => (
                 <CalendarDay key={`header-${day}`} day={day} isHeader />
             )),
